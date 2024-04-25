@@ -1,8 +1,8 @@
 package fit.se2.APlusBook.model;
 
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
+@Entity
 public class OrderItem {
 
     @OneToOne

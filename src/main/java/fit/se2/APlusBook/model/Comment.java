@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Length;
 
 import java.util.Date;
 
+@Entity
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

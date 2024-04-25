@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.Length;
 import jakarta.persistence.*;
 
 @Entity
-public class Role {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -13,6 +13,9 @@ public class Role {
 
     @Length(min = 3, max = 30)
     private String name;
+
+    @Length(max = 200)
+    private String description;
 
     public long getId() {
         return id;
@@ -29,7 +32,14 @@ public class Role {
     public void setName(String name) {
         this.name = name;
     }
-    
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     
 }
