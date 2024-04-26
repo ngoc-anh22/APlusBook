@@ -1,6 +1,7 @@
 package fit.se2.APlusBook.model;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -33,10 +34,10 @@ public class Book {
     private int quatityImport;
     private int quantitySold;
 
-    @ManyToMany
+    @ManyToOne
     private Publisher publisher;
     @ManyToMany
-    private Author author;
+    private List<Author> author;
     @ManyToOne
     private Category category;
     
@@ -100,10 +101,10 @@ public class Book {
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
     }
-    public Author getAuthor() {
+    public List<Author> getAuthor() {
         return author;
     }
-    public void setAuthor(Author author) {
+    public void setAuthor(List<Author> author) {
         this.author = author;
     }
     public Category getCategory() {

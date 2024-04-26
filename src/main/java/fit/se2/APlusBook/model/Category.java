@@ -1,5 +1,7 @@
 package fit.se2.APlusBook.model;
 
+import java.util.List;
+
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.*;
@@ -16,6 +18,9 @@ public class Category {
 
     @Length(max = 200)
     private String description;
+
+    @OneToMany
+    private List<Book> book;
 
     public long getId() {
         return id;
@@ -41,5 +46,12 @@ public class Category {
         this.description = description;
     }
 
+    public List<Book> getBook() {
+        return book;
+    }
+
+    public void setBook(List<Book> book) {
+        this.book = book;
+    }
     
 }

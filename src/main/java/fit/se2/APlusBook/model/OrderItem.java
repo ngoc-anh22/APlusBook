@@ -1,22 +1,24 @@
 package fit.se2.APlusBook.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
 public class OrderItem {
 
-    @OneToOne
-    private Book book;
-    @OneToMany
+    @ManyToOne
+    private List<Book> book;
+    @ManyToOne
     private Order order;
 
     private int orderQuantity;
     private double orderPrice;
 
-    public Book getBook() {
+    public List<Book> getBook() {
         return book;
     }
-    public void setBook(Book book) {
+    public void setBook(List<Book> book) {
         this.book = book;
     }
     public Order getOrder() {

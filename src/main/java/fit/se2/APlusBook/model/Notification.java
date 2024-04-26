@@ -64,7 +64,4 @@ public class Notification {
     public void setCreatedBy(Publisher createdBy) {
         this.createdBy = createdBy;
     }
-
-    
-    
 }
