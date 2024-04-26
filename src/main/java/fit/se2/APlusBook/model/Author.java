@@ -47,6 +47,4 @@ public class Author {
     public void setPhoneNum(Long phoneNum) {
         this.phoneNum = phoneNum;
     }
-
-    
 }
