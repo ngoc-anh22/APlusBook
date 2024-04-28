@@ -1,18 +1,24 @@
 package fit.se2.APlusBook.service;
 
-import org.springframework.security.core.userdetails.User;
+import fit.se2.APlusBook.model.User;
+import fit.se2.APlusBook.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public class UserService extends BaseService<User> {
+import java.util.Optional;
 
-    @Override
-    protected Class<User> clazz() {
-        return User.class;
-    }
+public class UserService{
+
+    @Autowired
+    private UserRepository userRepository;
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        String sql = "select * from tbl_users u where u.username = '" + username + "' and status = 1";
-        return this.getEntityByNativeSQL(sql);
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isEmpty()) {
+            throw new UsernameNotFoundException(String.format("No User with username %s found", username));
+        }
+        User temp = user.get();
+        return new org.springframework.security.core.userdetails.User(temp.getUserName(), temp.getPassword());
     }
 }

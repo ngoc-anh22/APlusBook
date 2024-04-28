@@ -4,9 +4,6 @@ import fit.se2.APlusBook.model.Author;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthorService extends BaseService<Author>{
+public class AuthorService{
 
-    protected Class<Author> clazz() {
-        return Author.class;
-    }
 }
