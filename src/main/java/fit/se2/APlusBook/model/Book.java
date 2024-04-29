@@ -40,6 +40,8 @@ public class Book {
     private List<Author> author;
     @ManyToOne
     private Category category;
+    @OneToMany
+    private List<Comment> comment;
     
     public long getId() {
         return id;
@@ -112,6 +114,12 @@ public class Book {
     }
     public void setCategory(Category category) {
         this.category = category;
+    }
+    public List<Comment> getComment() {
+        return comment;
+    }
+    public void setComment(List<Comment> comment) {
+        this.comment = comment;
     }
 
     

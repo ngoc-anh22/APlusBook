@@ -3,6 +3,7 @@ package fit.se2.APlusBook.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fit.se2.APlusBook.model.Book;
+import fit.se2.APlusBook.model.Comment;
 import fit.se2.APlusBook.repository.BookRepository;
+import fit.se2.APlusBook.repository.CommentRepository;
 
 @Controller
 public class BookController {
     @Autowired
     BookRepository bookRepository;
+    @Autowired
+    CommentRepository commentRepository;
 
     @RequestMapping(value = "/book/list")
     public String getAllBook(Model model) {
@@ -92,4 +97,13 @@ public class BookController {
         return "redirect:/book/detail";
     }
 
+    @RequestMapping(value = "/{bookid}/comment")
+    public ResponseEntity<List<Comment>> getCommentsByBookId (@PathVariable Long id) {
+        List<Comment> comments = commentRepository.getCommentsByBookId(id);
+        if (comments == null || comments.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        
+        return ResponseEntity.ok(comments);
+    }
 }
