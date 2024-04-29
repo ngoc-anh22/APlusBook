@@ -37,11 +37,21 @@ public class MySecurityConfig extends WebSecurityConfiguration {
     SecurityFilterChain filterChain(HttpSecurity http, DaoAuthenticationProvider authenticationProvider) throws Exception{
         return http
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers("/register/**")
+                        .requestMatchers("/register/**", "/", "/**/details")
                         .permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().hasAnyAuthority("ADMIN")
                 )
-                .formLogin(Customizer.withDefaults()
+                .formLogin(formLogin -> formLogin
+                        .loginPage("/log-in")
+                        .loginProcessingUrl("/logIn-Processing")
+                        .defaultSuccessUrl("/home")
+                        .failureUrl("/log-in?error=true")
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/log-out")
+                        .logoutSuccessUrl("/home")
+                        .permitAll()
                 )
                 .authenticationProvider(authenticationProvider)
                 .build();

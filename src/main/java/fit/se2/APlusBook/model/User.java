@@ -1,14 +1,23 @@
 package fit.se2.APlusBook.model;
 
+import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotEmpty;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -54,9 +63,43 @@ public class User {
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
+
+    //Authority information
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role);
+        return Collections.singleton(authority);
+    }
+
     public String getPassword() {
         return password;
     }
+
+    @Override
+    public String getUsername() {
+        return this.userName;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -97,5 +140,9 @@ public class User {
         this.role = role;
     }
 
-    
+    public User(UserSimple user, PasswordEncoder encoder) {
+        this.userName = user.getUsername();
+        this.password = encoder.encode(user.getPassword());
+        this.address = user.getAddress();
+    }
 }
