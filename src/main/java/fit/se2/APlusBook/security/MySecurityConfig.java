@@ -44,7 +44,7 @@ public class MySecurityConfig {
                 .formLogin(formLogin -> formLogin
                         .loginPage("/log-in")
                         .loginProcessingUrl("/logIn-Processing")
-                        .defaultSuccessUrl("/home")
+                        .successHandler(new UrlSuccessHandler())
                         .failureUrl("/log-in?error=true")
                         .permitAll()
                 )

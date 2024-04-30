@@ -1,6 +1,6 @@
 package fit.se2.APlusBook.model;
 
-import jakarta.validation.constraints.Pattern;
+import fit.se2.APlusBook.dto.UserDto;
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.*;
@@ -14,14 +14,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 @Entity
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private long id;
+    @Column(name = "id")
+    private Long id;
 
     @Length(min = 3, max = 20)
     @NotEmpty(message = "User name can not be empty")
@@ -45,10 +44,10 @@ public class User implements UserDetails {
     private String avatar;
     private String role;
     
-    public long getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getUserName() {
@@ -140,7 +139,7 @@ public class User implements UserDetails {
         this.role = role;
     }
 
-    public User(UserSimple user, PasswordEncoder encoder) {
+    public User(UserDto user, PasswordEncoder encoder) {
         this.userName = user.getUsername();
         this.password = encoder.encode(user.getPassword());
         this.address = user.getAddress();

@@ -1,9 +1,9 @@
-package fit.se2.APlusBook.model;
+package fit.se2.APlusBook.dto;
 
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 
-public class UserSimple {
+public class UserDto {
         @Length(min = 6, max = 60)
         private String username;
         @Pattern(regexp = "^(?=.*\\d)(?=.*[A-Z]).{6,60}$",
