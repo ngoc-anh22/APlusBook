@@ -16,6 +16,7 @@ public class CommentController {
     @Autowired
     CommentRepository commentRepository;
 
+    @SuppressWarnings("deprecation")
     @RequestMapping(value = "/comment/detail/{id}")
     public String getCommentById (@PathVariable(value = "id") Long id, Model model) {
         Comment comment = commentRepository.getById(id);
@@ -29,7 +30,8 @@ public class CommentController {
         return "commentAdd";
     }
 
-    @RequestMapping(value = "/comment/edit/{id}")
+    @SuppressWarnings("deprecation")
+    @RequestMapping(value = "/comment/update/{id}")
     public String updateComment(@PathVariable(value = "id") Long id, Model model) {
         Comment comment = commentRepository.getById(id);
         model.addAttribute("comment", comment);
@@ -48,6 +50,7 @@ public class CommentController {
         return "redirect:/comment/detail";
     }
 
+    @SuppressWarnings("deprecation")
     @RequestMapping(value = "/comment/delete/{id}")
     public String deleteComment(@PathVariable(value = "id") Long id) {
         if(commentRepository.existsById(id)) {

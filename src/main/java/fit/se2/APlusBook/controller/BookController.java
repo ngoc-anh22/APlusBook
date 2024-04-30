@@ -31,6 +31,7 @@ public class BookController {
         return "bookList";
     }
 
+    @SuppressWarnings("deprecation")
     @RequestMapping(value = "/book/detail/{id}")
     public String getBookById(@PathVariable(value = "id") Long id, Model model) {
         Book book = bookRepository.getById(id);
@@ -62,6 +63,7 @@ public class BookController {
         return "filterResults";
     }
 
+    @SuppressWarnings("deprecation")
     @RequestMapping(value = "/book/update/{id}")
     public String updateBook(@PathVariable(value = "id") Long id, Model model) {
         Book book = bookRepository.getById(id);
@@ -69,6 +71,7 @@ public class BookController {
         return "bookUpdate";
     }
 
+    @SuppressWarnings("deprecation")
     @RequestMapping(value = "book/delete/{id}")
     public String deleteBook(@PathVariable(value = "id") Long id) {
         if(bookRepository.existsById(id)) {

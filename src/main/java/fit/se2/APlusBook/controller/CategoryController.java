@@ -1,10 +1,8 @@
 package fit.se2.APlusBook.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,21 +16,23 @@ import fit.se2.APlusBook.repository.CategoryRepository;
 public class CategoryController {
     @Autowired
     CategoryRepository categoryRepository;
-    @RequestMapping(value = "/category")
+    @RequestMapping(value = "/category/list")
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
 
-    @GetMapping("/{categoryId}")
-    public ResponseEntity<Category> getCategoryById(@PathVariable Long categoryId) {
-        Optional<Category> category = categoryRepository.findById(categoryId);
-        return category.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    @SuppressWarnings("deprecation")
+    @GetMapping("/category/{id}")
+    public String getCategoryById(@PathVariable Long id, Model model) {
+        Category category = categoryRepository.getById(id);
+        model.addAttribute("category", category);
+        return "categoryDetail";
     }
 
     @RequestMapping(value = "/category/{name}")
     public String getCategoryByName(@PathVariable String name, Model model) {
         Category category = categoryRepository.findByName(name);
         model.addAttribute("categoryName", category);
-        return "CategoryName";
+        return "categoryName";
     }
 }
