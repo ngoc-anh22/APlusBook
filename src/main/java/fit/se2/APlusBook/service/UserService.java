@@ -19,7 +19,7 @@ public class UserService{
         if (user.isEmpty()) {
             throw new UsernameNotFoundException(String.format("No User with username %s found", username));
         }
-        User user1 = user.getFirst();
+        User user1 = user.get(0);
         return new org.springframework.security.core.userdetails.User(user1.getUserName(), user1.getPassword(), user1.getAuthorities());
     }
 }
