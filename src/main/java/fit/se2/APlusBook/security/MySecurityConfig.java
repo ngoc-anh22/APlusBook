@@ -15,7 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class MySecurityConfig extends WebSecurityConfiguration {
+public class MySecurityConfig {
 
     @Autowired
     private UserDetailsService userDetailService;
@@ -37,7 +37,7 @@ public class MySecurityConfig extends WebSecurityConfiguration {
     SecurityFilterChain filterChain(HttpSecurity http, DaoAuthenticationProvider authenticationProvider) throws Exception{
         return http
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers("/register/**", "/", "/**/details")
+                        .requestMatchers("/register/**", "/")
                         .permitAll()
                         .anyRequest().hasAnyAuthority("ADMIN")
                 )
