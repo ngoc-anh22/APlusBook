@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 
+@Entity
 public class Voucher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
