@@ -1,9 +1,18 @@
 package fit.se2.APlusBook.controller;
+import fit.se2.APlusBook.model.User;
+import fit.se2.APlusBook.repository.UserRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 public class UserController {
-<<<<<<< Updated upstream
-    
-=======
 
     @Autowired
     private UserRepository userRepository;
@@ -12,7 +21,7 @@ public class UserController {
     private EntityManager entityManager;
 
     public User saveOrUpdate(User user) {
-        if (user.getId() == null || user.getId() <0) {
+        if  (user.getId() < 0) {
             entityManager.persist(user);
             return user;
         } else {
@@ -65,5 +74,4 @@ public class UserController {
         }
         return "redirect:/admin/account/list";
     }
->>>>>>> Stashed changes
 }
