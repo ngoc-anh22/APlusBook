@@ -25,6 +25,8 @@ public class Comment {
 
     @ManyToOne
     private User user;
+    @ManyToOne
+    private Book book;
 
     public Long getId() {
         return id;

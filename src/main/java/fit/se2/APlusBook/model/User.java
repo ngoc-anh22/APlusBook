@@ -41,7 +41,7 @@ public class User implements UserDetails {
     
     private String address;
     private String email;
-    private Long phoneNum;
+    private String phoneNum;
     private String avatar;
     private String role;
     
@@ -121,10 +121,10 @@ public class User implements UserDetails {
     public void setEmail(String email) {
         this.email = email;
     }
-    public Long getPhoneNum() {
+    public String getPhoneNum() {
         return phoneNum;
     }
-    public void setPhoneNum(Long phoneNum) {
+    public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
     public String getAvatar() {
