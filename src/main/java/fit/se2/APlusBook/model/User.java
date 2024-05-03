@@ -1,6 +1,5 @@
 package fit.se2.APlusBook.model;
 
-import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.*;
@@ -14,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 @Entity
 public class User implements UserDetails {

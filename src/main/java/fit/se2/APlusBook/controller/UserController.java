@@ -36,6 +36,7 @@ public class UserController {
         return "accountList";
     }
 
+    @SuppressWarnings("deprecation")
     @RequestMapping(value = "/admin/account/details/{id}")
     public String getAccountById(@PathVariable(value = "id") Long id, Model model) {
         User account = userRepository.getById(id);

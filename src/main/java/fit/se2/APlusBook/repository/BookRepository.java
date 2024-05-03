@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 
 import fit.se2.APlusBook.model.Book;
 
-import java.util.Optional;
 
 public interface BookRepository extends JpaRepository <Book, Long> {
     List<Book> findByTitle(String title);
@@ -17,7 +16,4 @@ public interface BookRepository extends JpaRepository <Book, Long> {
     @Query("SELECT b FROM Book b WHERE b.price = :price AND b.publisher = :publisher AND b.category = :category")
     List<Book> findByFilters(@Param("price") double price, @Param("publisher") String publisher, @Param("category") String category);
 
-//    Optional<Book> findBook(String string);
-
-    
 }
