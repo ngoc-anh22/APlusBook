@@ -1,14 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="_layout">
+      layout:decorate="'_layout'">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
 <body>
-<div layout:fragment="content">
 
+<div layout:fragment="content">
+    <form
+            class="container-sm bg-main-lighter my-5 px-5 py-4 rounded"
+            style="max-width: 720px"
+            action="#"
+    >
+        <h3 class="text-center mb-3">Welcome to My Website</h3>
+
+        <div class="mb-2">
+            <label for="username" class="form-label">Username</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    placeholder="Please enter your username"
+            />
+            <p class="text-danger fst-italic err-msg">Error message here</p>
+        </div>
+        <div class="mb-2">
+            <label for="password" class="form-label">Password</label>
+            <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Please enter your password"
+            />
+            <p class="text-danger fst-italic err-msg">Error message here</p>
+        </div>
+        <button type="submit" class="btn bg-main mt-3 text-light col-12">
+            Login
+        </button>
+        <hr />
+        <p class="text-center">
+            You do not have an account before?<br />
+            Please sign up by clicking <a href="/signup">here</a> first.
+        </p>
+    </form>
 </div>
 </body>
 </html>
