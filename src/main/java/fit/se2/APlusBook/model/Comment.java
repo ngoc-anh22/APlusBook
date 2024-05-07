@@ -13,7 +13,7 @@ public class Comment {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Length(max = 100)
+    @Length(max = 1000)
     private String commentDetail;
 
     @Temporal(TemporalType.DATE)

@@ -13,10 +13,10 @@ public class Notification {
     @Column(name = "id", nullable = false)
     private long id;
 
-    @Length(min = 3, max = 100)
+    @Length(min = 3, max = 200)
     private String title;
 
-    @Length(min = 3, max = 100)
+    @Length(min = 3, max = 1000)
     private String body;
 
     @Temporal(TemporalType.DATE)

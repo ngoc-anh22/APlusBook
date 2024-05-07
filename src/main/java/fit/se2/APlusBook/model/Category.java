@@ -13,7 +13,7 @@ public class Category {
     @Column(name = "id", nullable = false)
     private long id;
 
-    @Length(min = 3, max = 30)
+    @Length(min = 3, max = 50)
     private String name;
 
     @OneToMany

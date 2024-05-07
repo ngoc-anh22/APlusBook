@@ -16,10 +16,10 @@ public class Book {
     @Column(name = "id", nullable = false)
     private long id;
 
-    @Length(min = 3, max = 50)
+    @Length(min = 3, max = 200)
     private String title;
 
-    @Length(min = 3, max = 100)
+    @Length(min = 3, max = 1000)
     private String description;
 
     @Temporal(TemporalType.DATE)
@@ -29,7 +29,7 @@ public class Book {
     private long ISBN;
     
     @Min(0)
-    private double price;
+    private String price;
     private int quantityInStock;
     private int quatityImport;
     private int quantitySold;
@@ -73,10 +73,10 @@ public class Book {
     public void setISBN(long iSBN) {
         ISBN = iSBN;
     }
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
     public int getQuantityInStock() {
