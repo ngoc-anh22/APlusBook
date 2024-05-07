@@ -16,11 +16,11 @@ public class Voucher {
     @Column(name = "id", nullable = false)
     private long id;
     
-    @Length(min = 3, max = 50)
+    @Length(min = 3)
     @NotEmpty(message = "Name can not be empty")
     private String name;
 
-    @Length(max = 200)
+    @Length(min = 3)
     private String description;
 
     @Length(max = 20)

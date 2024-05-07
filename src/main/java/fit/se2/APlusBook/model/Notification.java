@@ -1,6 +1,7 @@
 package fit.se2.APlusBook.model;
 
 import java.util.Date;
+import java.util.concurrent.Flow.Publisher;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -13,17 +14,16 @@ public class Notification {
     @Column(name = "id", nullable = false)
     private long id;
 
-    @Length(min = 3, max = 200)
+    @Length(min = 3)
     private String title;
 
-    @Length(min = 3, max = 1000)
+    @Length(min = 3)
     private String body;
 
     @Temporal(TemporalType.DATE)
     private Date createdDate;
     
-    @ManyToOne
-    private Publisher createdBy;
+    private String createdBy;
 
     public long getId() {
         return id;
@@ -57,11 +57,11 @@ public class Notification {
         this.createdDate = createdDate;
     }
 
-    public Publisher getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(Publisher createdBy) {
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 }
