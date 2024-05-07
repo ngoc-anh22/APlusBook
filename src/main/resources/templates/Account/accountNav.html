@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+</head>
+<body>
+<div th:fragment="navbar" class="col-3 d-flex flex-column border-end border-2">
+    <a href="/account/details" class="text-dark text-decoration-none py-2 text-start"
+    >Account Information</a
+    >
+    <a href="/account/change-pasword" class="text-dark text-decoration-none py-2 text-start"
+    >Change password</a
+    >
+    <!-- For admin -->
+    <a href="/account/manage-products" class="text-dark text-decoration-none py-2 text-start"
+    >Manage product</a
+    >
+    <a href="#" class="text-dark text-decoration-none py-2 text-start"
+    >Manage order !!</a
+    >
+    <a href="#" class="text-dark text-decoration-none py-2 text-start"
+    >Manage customers !!</a
+    >
+    <a href="#" class="text-dark text-decoration-none py-2 text-start"
+    >Manage promotions !!</a
+    >
+    <!-- For customers -->
+    <a href="/account/my-order" class="text-dark text-decoration-none py-2 text-start"
+    >My order</a
+    >
+    <a href="#" class="text-dark text-decoration-none py-2 text-start"
+    >Payment !!</a
+    >
+    <a href="#" class="text-dark text-decoration-none py-2 text-start"
+    >Log out !!</a
+    >
+</div>
+
+</body>
+</html>

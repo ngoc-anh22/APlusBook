@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/_layout}">
+<head>
+
+    <title>My Orders</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container text-center px-5">
+        <div class="row align-items-start mt-5">
+            <div th:replace="~{Account/accountNav :: navbar}"></div>
+            <div class="col-8 text-start ms-5">
+                <h4 class="text-center fw-bold">MY ORDERS</h4>
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="table-primary">
+                        <th scope="col" class="text-center">Order</th>
+                        <th scope="col" class="text-center">Quantity</th>
+                        <th scope="col" class="text-center">Date</th>
+                        <th scope="col" class="text-center">Price</th>
+                        <th scope="col" class="text-center">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th
+                                scope="row"
+                                class="d-flex flex-row align-items-center py-4 ms-2"
+                        >
+                            <img th:src="@{/images/APlusBook_logo.png}" alt="Logo" />
+                            <span class="ms-3 text-uppercase">
+                    Bài giảng lịch sử An Nam và rất nhiều thứ hay ho khác sẽ
+                    được giới thiệu sau cho các bạn nhé</span
+                            >
+                        </th>
+                        <td class="align-middle text-center">1</td>
+                        <td class="align-middle text-center">28/4/2024</td>
+                        <td class="align-middle text-center">233.000đ</td>
+                        <td class="align-middle text-center text-danger fw-medium">Cancel</td>
+                    </tr>
+                    <tr>
+                        <th
+                                scope="row"
+                                class="d-flex flex-row align-items-center py-4 ms-2"
+                        >
+                            <img th:src="@{/images/APlusBook_logo.png}" alt="Logo" />
+                            <span class="ms-3 text-uppercase">
+                    Bài giảng lịch sử An Nam và rất nhiều thứ hay ho khác sẽ
+                    được giới thiệu sau cho các bạn nhé</span
+                            >
+                        </th>
+                        <td class="align-middle text-center">1</td>
+                        <td class="align-middle text-center">28/4/2024</td>
+                        <td class="align-middle text-center">233.000đ</td>
+                        <td class="align-middle text-center text-main fw-medium">Shipping</td>
+                    </tr>
+                    <tr>
+                        <th
+                                scope="row"
+                                class="d-flex flex-row align-items-center py-4 ms-2"
+                        >
+                            <img th:src="@{/images/APlusBook_logo.png}" alt="Logo" />
+                            <span class="ms-3 text-uppercase">
+                    Bài giảng lịch sử An Nam</span
+                            >
+                        </th>
+                        <td class="align-middle text-center">1</td>
+                        <td class="align-middle text-center">28/4/2024</td>
+                        <td class="align-middle text-center">233.000đ</td>
+                        <td class="align-middle text-center text-success fw-medium">Done</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

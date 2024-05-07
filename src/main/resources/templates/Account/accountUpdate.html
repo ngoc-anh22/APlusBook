@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/_layout}">
+<head>
+
+    <title>Update Account </title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container text-center px-5">
+        <div class="row align-items-start mt-5">
+            <div th:replace="~{Account/accountNav :: navbar}"></div>
+
+            <div class="col-8 text-start ms-5">
+                <h4 class="text-center fw-bold">UPDATE ACCOUNT</h4>
+                <form
+                        class="container-sm py-4 rounded"
+                        style="max-width: 720px"
+                        action="#"
+                >
+                    <div class="mb-2">
+                        <label for="name" class="form-label">Name</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="name"
+                                value="user.name"
+                        />
+                        <p class="text-danger fst-italic err-msg">Cant change name</p>
+                    </div>
+                    <div class="mb-2">
+                        <label for="username" class="form-label">Username</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="username"
+                                value="user.username"
+                        />
+                        <p class="text-danger fst-italic err-msg">Cant change name</p>
+                    </div>
+                    <div class="mb-2">
+                        <label for="email" class="form-label">Email</label>
+                        <input
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                placeholder="Please enter your new email"
+                        />
+                        <p class="text-danger fst-italic err-msg">Error message here</p>
+                    </div>
+                    <div class="mb-2">
+                        <label for="address" class="form-label">address</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="address"
+                                value="user.address"
+                        />
+                        <p class="text-danger fst-italic err-msg">Error message here</p>
+                    </div>
+                    <div class="mb-2">
+                        <label for="dob" class="form-label">Date of birth</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="dob"
+                                value="user.dob"
+                        />
+                        <p class="text-danger fst-italic err-msg">Error message here</p>
+                    </div>
+                    <div class="d-flex flex-row justify-content-end">
+                        <button type="submit" class="btn bg-main mt-3 me-2 text-light">
+                            Update
+                        </button>
+                        <button type="button" class="btn btn-secondary mt-3 text-light">
+                            Cancel
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

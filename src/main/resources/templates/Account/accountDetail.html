@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/_layout}">
+<head>
+
+    <title>Account Detail</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container text-center px-5">
+        <div class="row align-items-start mt-5">
+            <div th:replace="~{Account/accountNav :: navbar}"></div>
+
+            <div class="col-8 text-start ms-5">
+                <div class="ms-5">
+                    <h4 class="text-center fw-bold">ACCOUNT INFORMATION</h4>
+                    <p>Name: {user.name} </p>
+                    <p>Usename: {user.username} </p>
+                    <p>Email: {user.email} </p>
+                    <p>Address: {user.address} </p>
+                    <p>Date of birth: {user.dob} </p>
+                    <a class="btn bg-main text-light" href="/account/update">Update</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

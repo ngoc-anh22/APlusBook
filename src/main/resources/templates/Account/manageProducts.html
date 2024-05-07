@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/_layout}">
+<head>
+
+    <title>Manage Products</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container text-center px-5">
+        <div class="row align-items-start mt-5">
+            <div th:replace="~{Account/accountNav :: navbar}"></div>
+
+            <div class="col-8 text-start ms-5">
+                <h4 class="text-center fw-bold">MANAGE PRODUCTS</h4>
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="table-primary">
+                        <th scope="col" class="text-center">ID</th>
+                        <th scope="col" class="text-center">Name</th>
+                        <th scope="col" class="text-center">Status</th>
+                        <th scope="col" class="text-center">Price</th>
+                        <th scope="col" class="text-center">Stock</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row" class="align-middle text-center">1</th>
+                        <td class="align-middle text-center text-uppercase fw-bold">
+                            Bài giảng văn hóa An Nam
+                        </td>
+                        <td class="align-middle text-danger text-center fw-medium">
+                            Sold out
+                        </td>
+                        <td class="align-middle text-center">233.000đ</td>
+                        <td class="align-middle text-center">0</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="align-middle text-center">1</th>
+                        <td class="align-middle text-center text-uppercase fw-bold">
+                            Bài giảng Tư tưởng Hồ Chí Minh về đại đoàn kết dân tộc và đoàn kết quốc tế
+                        </td>
+                        <td class="align-middle text-main text-center fw-medium">
+                            Available
+                        </td>
+                        <td class="align-middle text-center">233.000đ</td>
+                        <td class="align-middle text-center">124</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="align-middle text-center">1</th>
+                        <td class="align-middle text-center text-uppercase fw-bold">
+                            Bài giảng lịch sử An Nam và ứng dụng trong đời sống
+                        </td>
+                        <td class="align-middle text-success text-center fw-medium">
+                            Best Seller
+                        </td>
+                        <td class="align-middle text-center">233.000đ</td>
+                        <td class="align-middle text-center">124</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <ul class="pagination justify-content-center mt-4">
+                    <li class="page-item">
+                        <a class="page-link text-main" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-main" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-main" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-main" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-main" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
