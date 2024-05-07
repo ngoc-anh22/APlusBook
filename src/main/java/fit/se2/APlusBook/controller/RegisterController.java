@@ -20,6 +20,7 @@ public class RegisterController {
     public String login() {
         return "Authentication/login";
     }
+
     @GetMapping("/register")
     public String register() {
         return "Authentication/register";

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/_layout}">
+<head>
+
+    <title>Account Detail</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container text-center px-5">
+        <div class="row align-items-start mt-5">
+            <div th:replace="~{Account/accountNav :: navbar}"></div>
+
+            <div class="col-8 text-start ms-5">
+                <h4 class="text-center fw-bold">MANAGE CUSTOMERS</h4>
+                <form
+                        class="d-flex col-4 float-end mb-3 position-relative"
+                        role="search"
+                >
+                    <input
+                            class="form-control me-2 rounded-pill"
+                            type="search"
+                            placeholder="Search customer here"
+                            aria-label="Search"
+                    />
+                    <button
+                            class="btn-sm bg-main rounded-circle position-absolute top-0 end-0 me-3 mt-1"
+                            type="submit"
+                    >
+                        <i class="fas fa-magnifying-glass icon-custom"></i>
+                    </button>
+                </form>
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="table-primary">
+                        <th scope="col" class="text-center">ID</th>
+                        <th scope="col" class="text-center">Username</th>
+                        <th scope="col" class="text-center">Phone Number</th>
+                        <th scope="col" class="text-center">Date of birth</th>
+                        <th scope="col" class="text-center">Email</th>
+                        <th scope="col" class="text-center">Address</th>
+                        <th scope="col" class="text-center">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row" class="align-middle text-center">1</th>
+                        <td class="align-middle text-center fw-medium">Username</td>
+                        <td class="align-middle text-center">0123456789</td>
+                        <td class="align-middle text-center">01/01/2003</td>
+                        <td class="align-middle text-center">vfvafba@gmail.com</td>
+                        <td class="align-middle text-center">Address</td>
+                        <td class="align-middle">
+                            <a class="btn bg-main text-light" href="#">Update</a>
+                            <a class="btn btn-danger" href="#">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <ul class="pagination justify-content-center mt-4">
+                    <li class="page-item">
+                        <a class="page-link text-dark" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-dark" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-dark" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-dark" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-dark" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

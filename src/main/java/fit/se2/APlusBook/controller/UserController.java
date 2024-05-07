@@ -4,14 +4,12 @@ import fit.se2.APlusBook.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Controller
 public class UserController {
 
     @Autowired
@@ -37,11 +35,12 @@ public class UserController {
     }
 
     @SuppressWarnings("deprecation")
-    @RequestMapping(value = "/admin/account/details/{id}")
-    public String getAccountById(@PathVariable(value = "id") Long id, Model model) {
-        User account = userRepository.getById(id);
-        model.addAttribute("account", account);
-        return "accountDetail";
+    @RequestMapping(value = "/account/details")
+    public String getAccountById() {
+//        @PathVariable(value = "id") Long id, Model model
+//        User account = userRepository.getById(id);
+//        model.addAttribute("account", account);
+        return "Account/accountDetail";
     }
 
     @RequestMapping(value = "/admin/account/search")
@@ -58,12 +57,12 @@ public class UserController {
         return "searchAccount";
     }
 
-    @RequestMapping(value = "/admin/account/update/{id}")
-    public String updateAccount(Model model,
-                             @ModelAttribute("account") User account) {
-        User updateUser = saveOrUpdate(account);
-        model.addAttribute("account", updateUser);
-        return "accountUpdate";
+    @RequestMapping(value = "/account/update")
+    public String updateAccount() {
+//        Model model, @ModelAttribute("account") User account
+//        User updateUser = saveOrUpdate(account);
+//        model.addAttribute("account", updateUser);
+        return "Account/accountUpdate";
     }
 
     @SuppressWarnings("deprecation")
@@ -75,4 +74,28 @@ public class UserController {
         }
         return "redirect:/admin/account/list";
     }
-}
+    @GetMapping("/account/change-pasword")
+    public String changePassword() {
+        return "Account/changePassword";
+    }
+    @GetMapping("/account/my-order")
+    public String myOrder() {
+        return "Account/myOrder";
+    }
+    @GetMapping("/account/manage-products")
+    public String manageProducts() {
+        return "Account/manageProducts";
+    }
+    @GetMapping("/account/manage-orders")
+    public String manageOrder() {
+        return "Account/manageOrders";
+    }
+    @GetMapping("/account/manage-customers")
+    public String manageCustomers() {
+        return "Account/manageCustomers";
+    }
+    @GetMapping("/account/manage-promotions")
+    public String managePromotions() {
+        return "Account/managePromotions";
+    }
+ }
