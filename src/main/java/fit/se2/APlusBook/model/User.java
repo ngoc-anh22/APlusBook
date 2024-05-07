@@ -1,6 +1,5 @@
 package fit.se2.APlusBook.model;
 
-import fit.se2.APlusBook.dto.UserDto;
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.*;
@@ -19,8 +18,8 @@ import java.util.Collections;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "id", nullable = false)
+    private long id;
 
     @Length(min = 3, max = 20)
     @NotEmpty(message = "User name can not be empty")
@@ -40,14 +39,14 @@ public class User implements UserDetails {
     
     private String address;
     private String email;
-    private Long phoneNum;
+    private String phoneNum;
     private String avatar;
     private String role;
     
-    public Long getId() {
+    public long getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
     public String getUserName() {
@@ -120,10 +119,10 @@ public class User implements UserDetails {
     public void setEmail(String email) {
         this.email = email;
     }
-    public Long getPhoneNum() {
+    public String getPhoneNum() {
         return phoneNum;
     }
-    public void setPhoneNum(Long phoneNum) {
+    public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
     public String getAvatar() {
@@ -139,7 +138,7 @@ public class User implements UserDetails {
         this.role = role;
     }
 
-    public User(UserDto user, PasswordEncoder encoder) {
+    public User(UserSimple user, PasswordEncoder encoder) {
         this.userName = user.getUsername();
         this.password = encoder.encode(user.getPassword());
         this.address = user.getAddress();

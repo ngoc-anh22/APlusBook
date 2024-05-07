@@ -2,6 +2,7 @@ package fit.se2.APlusBook.controller;
 
 import java.util.List;
 
+import fit.se2.APlusBook.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -47,7 +48,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "/book/detail/{category}")
-    public String searchByCategory(@PathVariable(value = "category") String category, Model model) {
+    public String searchByCategory(@PathVariable(value = "category") Category category, Model model) {
         List<Book> books = bookRepository.findByCategory(category);
         model.addAttribute("books", books);
         return "searchBookByCategory";

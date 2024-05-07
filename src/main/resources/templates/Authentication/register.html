@@ -4,7 +4,7 @@
       layout:decorate="~{/_layout}">
 <head>
 
-    <title>Login</title>
+    <title>Signup</title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -35,13 +35,45 @@
             />
             <p class="text-danger fst-italic err-msg">Error message here</p>
         </div>
+        <div class="mb-2">
+            <label for="confirm_password" class="form-label"
+            >Confirm password</label
+            >
+            <input
+                    type="password"
+                    class="form-control"
+                    id="confirm_password"
+                    placeholder="Please enter your password again"
+            />
+            <p class="text-danger fst-italic err-msg">Error message here</p>
+        </div>
+        <div class="mb-2">
+            <label for="phonenum" class="form-label">Phone number</label>
+            <input
+                    type="tel"
+                    class="form-control"
+                    id="phonenum"
+                    placeholder="Please enter your phonenum"
+            />
+            <p class="text-danger fst-italic err-msg">Error message here</p>
+        </div>
+        <div class="mb-2">
+            <label for="email" class="form-label">Email</label>
+            <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="Please enter your email"
+            />
+            <p class="text-danger fst-italic err-msg">Error message here</p>
+        </div>
         <button type="submit" class="btn bg-main mt-3 text-light col-12">
-            Login
+            Sign up
         </button>
         <hr />
         <p class="text-center">
-            You do not have account before? <br />
-            Please sign up by clicking <a href="/register">here</a> first.
+            You have account before? <br />
+            Please login by clicking <a href="/log-in">here</a>.
         </p>
     </form>
     <!-- content page will override this -->

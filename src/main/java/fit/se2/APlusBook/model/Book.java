@@ -40,7 +40,7 @@ public class Book {
     private List<Author> author;
     @ManyToOne
     private Category category;
-    @OneToMany
+    @OneToMany(mappedBy = "book")
     private List<Comment> comment;
     
     public long getId() {

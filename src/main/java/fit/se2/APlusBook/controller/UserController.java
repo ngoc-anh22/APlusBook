@@ -1,16 +1,10 @@
 package fit.se2.APlusBook.controller;
-
-import fit.se2.APlusBook.model.Book;
-import fit.se2.APlusBook.model.Comment;
 import fit.se2.APlusBook.model.User;
 import fit.se2.APlusBook.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@Controller
 public class UserController {
 
     @Autowired
@@ -28,7 +21,7 @@ public class UserController {
     private EntityManager entityManager;
 
     public User saveOrUpdate(User user) {
-        if (user.getId() == null || user.getId() <0) {
+        if  (user.getId() < 0) {
             entityManager.persist(user);
             return user;
         } else {
@@ -43,6 +36,7 @@ public class UserController {
         return "accountList";
     }
 
+    @SuppressWarnings("deprecation")
     @RequestMapping(value = "/admin/account/details/{id}")
     public String getAccountById(@PathVariable(value = "id") Long id, Model model) {
         User account = userRepository.getById(id);
@@ -52,9 +46,9 @@ public class UserController {
 
     @RequestMapping(value = "/admin/account/search")
     public String searchAccount(@RequestParam(value = "regex") String str, Model model) {
-        List<User> accounts = userRepository.findByUsername(str);
+        List<User> accounts = userRepository.findByUserName(str);
         if (!accounts.isEmpty()) {
-           accounts = userRepository.findByPhoneNumber(str);
+           accounts = userRepository.findByPhoneNum(str);
            if (!accounts.isEmpty()) {
                accounts = userRepository.findByEmail(str);
            }

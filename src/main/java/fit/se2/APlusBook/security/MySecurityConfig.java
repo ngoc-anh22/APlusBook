@@ -37,14 +37,15 @@ public class MySecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http, DaoAuthenticationProvider authenticationProvider) throws Exception{
         return http
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers("/register/**", "/")
+                        .requestMatchers("/css/**", "/images/**").permitAll()
+                        .requestMatchers("/register/**", "/", "/**/details")
                         .permitAll()
                         .anyRequest().hasAnyAuthority("ADMIN")
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/log-in")
                         .loginProcessingUrl("/logIn-Processing")
-                        .successHandler(new UrlSuccessHandler())
+                        .defaultSuccessUrl("/home")
                         .failureUrl("/log-in?error=true")
                         .permitAll()
                 )
