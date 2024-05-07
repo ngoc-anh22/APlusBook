@@ -1,5 +1,6 @@
 package fit.se2.APlusBook.model;
 
+import fit.se2.APlusBook.dto.UserDto;
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.*;
@@ -138,7 +139,7 @@ public class User implements UserDetails {
         this.role = role;
     }
 
-    public User(UserSimple user, PasswordEncoder encoder) {
+    public User(UserDto user, PasswordEncoder encoder) {
         this.userName = user.getUsername();
         this.password = encoder.encode(user.getPassword());
         this.address = user.getAddress();
