@@ -21,11 +21,11 @@ public class User implements UserDetails {
     @Column(name = "id", nullable = false)
     private long id;
 
-    @Length(min = 3, max = 20)
+    @Length(min = 3, max = 50)
     @NotEmpty(message = "User name can not be empty")
     private String userName;
 
-    @Length(min = 3, max = 30)
+    @Length(min = 3, max = 50)
     @NotEmpty(message = "Full name can not be empty")
     private String fullName;
     

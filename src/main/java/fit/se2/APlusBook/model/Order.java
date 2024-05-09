@@ -17,7 +17,7 @@ public class Order {
     private Date orderedDate;
 
     private int totalAmount;
-    private double totalPrice;
+    private String totalPrice;
 
     @ManyToOne
     private User user;
@@ -49,11 +49,11 @@ public class Order {
         this.totalAmount = totalAmount;
     }
 
-    public double getTotalPrice() {
+    public String getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(String totalPrice) {
         this.totalPrice = totalPrice;
     }
 
