@@ -1,0 +1,78 @@
+.card-title{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+}
+.card-body{
+    height: 8rem;
+    justify-content: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+.card{
+  width: calc(90%/5);
+}
+  a:link:active, a:visited:active {
+    color: (black);
+  }
+.carousel-control-prev,
+.carousel-control-next {
+  background-color: #e1e1e1;
+  width: 5vh;
+  height: 5vh;
+  top: 50%;
+  transform: translateY(-50%);
+}
+@media (min-width: 768px) {
+  .card img {
+    height: 11em;
+  }
+}
+
+.form-check,
+.voucher_box,
+.input-group {
+  border: 1px solid rgb(154, 149, 149);
+  border-radius: 5px;
+}
+
+.form-check {
+  height: 3rem;
+
+}
+.row{
+  font-size: 14px;
+}
+.btn.btn-success {
+  background-color: #07689f;
+}
+.btn.btn-success:hover,
+.btn.btn-success:focus {
+    background-color: #07689f;
+    opacity: 0.9;
+}
+.book-image-checkout{
+  height: 120px;
+  width: auto;
+  margin-top: 0px;
+}
+.products{
+  border-top: 1px solid rgb(154, 149, 149);
+  padding-left: 10px;
+  overflow: scroll;
+}
+.book-information{
+  margin-left: 0px;
+}
+h6{
+  display: inline-block;
+}
+button{
+  background-color: #07689f;
+  color: white;
+  border-radius: 5px;
+  border: none;
+}

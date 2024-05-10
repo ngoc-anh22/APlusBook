@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/_layout}">
+
+<head>
+    <title>A Plus Book</title>
+    <link rel="stylesheet" th:href="@{/css/products.css}" type="text/css" />
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container-md mt-3">
+        <div class="row d-flex justify-content-around gy-5">
+            <div th:each="book: ${books}">
+            <div class="card" style="width: 17rem; height: 23rem;">
+                <a th:href="@{/books/{id}(id=${book.id})}"><img
+                        th:src="${book.image}"
+                        class="card-img-top mt-2 mb-0" alt="Book Image"></a>
+                <div class="card-body">
+                    <a th:href="@{/books/{id}(id=${book.id})}" style="text-decoration: none ; color: inherit">
+                        <h5 class="card-title fs-6 text-left fw-bold ps-0 my-0" th:text="${book.title}"></h5>
+                    </a>
+                    <div class="d-flex justify-content-between align-items-center text-danger fs-5 fw-bold">
+                        <p class="card-text my-0" th:text="${book.price} +'VND'"></p>
+
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <a href="#">
+                            <i class="fa-solid fa-cart-plus" style="color: #07689f;"></i></a>
+                        <p class="my-0" style="font-size:12px;" th:text="'Sold:' +${quantitySold}">Sold: 900</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
