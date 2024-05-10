@@ -42,6 +42,8 @@ public class User implements UserDetails {
     private String email;
     private String phoneNum;
     private String avatar;
+
+    @NotEmpty(message = "Role can not be empty")
     private String role;
     
     public long getId() {

@@ -10,6 +10,7 @@ public class UserDto {
                 message = "6 chars min (at least 1" +
                         "digit & 1 uppercase letter)")
         private String password;
+        private String role;
         private String address;
 
         public String getUsername() {
@@ -35,4 +36,12 @@ public class UserDto {
         public void setAddress(String address) {
             this.address = address;
         }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

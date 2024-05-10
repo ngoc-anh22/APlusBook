@@ -31,7 +31,7 @@ public class Book {
     @Min(0)
     private double price;
     private int quantityInStock;
-    private int quatityImport;
+    private int quantityImport;
     private int quantitySold;
 
     @ManyToOne
@@ -85,11 +85,11 @@ public class Book {
     public void setQuantityInStock(int quantityInStock) {
         this.quantityInStock = quantityInStock;
     }
-    public int getQuatityImport() {
-        return quatityImport;
+    public int getQuantityImport() {
+        return quantityImport;
     }
-    public void setQuatityImport(int quatityImport) {
-        this.quatityImport = quatityImport;
+    public void setQuantityImport(int quantityImport) {
+        this.quantityImport = quantityImport;
     }
     public int getQuantitySold() {
         return quantitySold;
