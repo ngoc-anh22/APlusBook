@@ -14,7 +14,7 @@ public class OrderItem {
     private Order order;
 
     private int orderQuantity;
-    private double orderPrice;
+    private String orderPrice;
 
     // Getters and setters
 
@@ -50,11 +50,11 @@ public class OrderItem {
         this.orderQuantity = orderQuantity;
     }
 
-    public double getOrderPrice() {
+    public String getOrderPrice() {
         return orderPrice;
     }
 
-    public void setOrderPrice(double orderPrice) {
+    public void setOrderPrice(String orderPrice) {
         this.orderPrice = orderPrice;
     }
 }

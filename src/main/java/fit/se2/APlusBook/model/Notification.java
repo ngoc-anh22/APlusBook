@@ -13,17 +13,16 @@ public class Notification {
     @Column(name = "id", nullable = false)
     private long id;
 
-    @Length(min = 3, max = 100)
+    @Length(min = 3)
     private String title;
 
-    @Length(min = 3, max = 100)
+    @Length(min = 3)
     private String body;
 
     @Temporal(TemporalType.DATE)
     private Date createdDate;
     
-    @ManyToOne
-    private Publisher createdBy;
+    private String createdBy;
 
     public long getId() {
         return id;
@@ -57,11 +56,11 @@ public class Notification {
         this.createdDate = createdDate;
     }
 
-    public Publisher getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(Publisher createdBy) {
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 }

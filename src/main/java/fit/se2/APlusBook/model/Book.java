@@ -18,10 +18,10 @@ public class Book {
     @Column(name = "id", nullable = false)
     private long id;
 
-    @Length(min = 3, max = 50)
+    @Length(min = 3)
     private String title;
 
-    @Length(min = 3, max = 100)
+    @Length(min = 3)
     private String description;
 
     @Temporal(TemporalType.DATE)
@@ -33,15 +33,13 @@ public class Book {
     private String avatar;
     
     @Min(0)
-    private double price;
+    private String price;
     private int quantityInStock;
     private int quantityImport;
     private int quantitySold;
 
-    @ManyToOne
-    private Publisher publisher;
-    @ManyToMany
-    private List<Author> author;
+    private String publisher;
+    private String author;
     @ManyToOne
     private Category category;
     @OneToMany(mappedBy = "book")
@@ -91,10 +89,10 @@ public class Book {
     public void setISBN(long iSBN) {
         ISBN = iSBN;
     }
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
     public int getQuantityInStock() {
@@ -115,16 +113,16 @@ public class Book {
     public void setQuantitySold(int quantitySold) {
         this.quantitySold = quantitySold;
     }
-    public Publisher getPublisher() {
+    public String getPublisher() {
         return publisher;
     }
-    public void setPublisher(Publisher publisher) {
+    public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
-    public List<Author> getAuthor() {
+    public String getAuthor() {
         return author;
     }
-    public void setAuthor(List<Author> author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
     public Category getCategory() {

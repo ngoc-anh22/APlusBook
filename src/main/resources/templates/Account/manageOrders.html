@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/_layout}">
+<head>
+
+    <title>Account Detail</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container text-center px-5">
+        <div class="row align-items-start mt-5">
+            <div th:replace="~{Account/accountNav :: navbar}"></div>
+
+            <div class="col-8 text-start ms-5">
+                <h4 class="text-center fw-bold">MANAGE ORDERS</h4>
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="table-primary">
+                        <th scope="col" class="text-center">ID</th>
+                        <th scope="col" class="text-center">Completed Date</th>
+                        <th scope="col" class="text-center">Customer</th>
+                        <th scope="col" class="text-center">Total</th>
+                        <th scope="col" class="text-center">Payment method</th>
+                        <th scope="col" class="text-center">Payment</th>
+                        <th scope="col" class="text-center">Fulfillment</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row" class="align-middle text-center">1</th>
+                        <td class="align-middle text-center">Completed date</td>
+                        <td class="align-middle text-center">Username</td>
+                        <td class="align-middle text-center">233.000đ</td>
+                        <td class="align-middle text-center">Credit card</td>
+                        <td class="align-middle text-center text-success fw-medium">
+                            Paid
+                        </td>
+                        <td class="align-middle text-center text-success fw-medium">
+                            Success
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="align-middle text-center">1</th>
+                        <td class="align-middle text-center">Completed date</td>
+                        <td class="align-middle text-center">Username</td>
+                        <td class="align-middle text-center">233.000đ</td>
+                        <td class="align-middle text-center">Cash</td>
+                        <td class="align-middle text-center text-danger fw-medium">
+                            Unpaid
+                        </td>
+                        <td class="align-middle text-center text-main fw-medium">
+                            Processing
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="align-middle text-center">1</th>
+                        <td class="align-middle text-center">Completed date</td>
+                        <td class="align-middle text-center">Username</td>
+                        <td class="align-middle text-center">233.000đ</td>
+                        <td class="align-middle text-center">Cash</td>
+                        <td class="align-middle text-center text-danger fw-medium">
+                            Unpaid
+                        </td>
+                        <td class="align-middle text-center text-danger fw-medium">
+                            Failure
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <ul class="pagination justify-content-center mt-4">
+                    <li class="page-item">
+                        <a class="page-link text-dark" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-dark" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-dark" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-dark" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-dark" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
