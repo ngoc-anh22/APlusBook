@@ -1,7 +1,9 @@
 package fit.se2.APlusBook.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -27,6 +29,8 @@ public class Book {
 
     @NotNull(message = "The ISBN can not be null")
     private long ISBN;
+
+    private String avatar;
     
     @Min(0)
     private double price;
@@ -42,6 +46,20 @@ public class Book {
     private Category category;
     @OneToMany(mappedBy = "book")
     private List<Comment> comment;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy = "product")
+    private Set<BookImages> bookList = new HashSet<>();
+
+    public void addBookImages(BookImages productImages) {
+        productImages.setBook(this);
+        bookList.add(productImages);
+    }
+    public void deleteBookImages(BookImages productImages) {
+        productImages.setBook(null);
+        bookList.remove(productImages);
+    }
     
     public long getId() {
         return id;
@@ -122,5 +140,19 @@ public class Book {
         this.comment = comment;
     }
 
-    
+    public Set<BookImages> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(Set<BookImages> bookList) {
+        this.bookList = bookList;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 }
