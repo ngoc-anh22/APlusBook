@@ -28,14 +28,16 @@ public class Book {
     @NotNull(message = "The ISBN can not be null")
     private long ISBN;
     
-    @Min(0)
     private String price;
     private int quantityInStock;
-    private int quatityImport;
+    private int quantityImport;
     private int quantitySold;
+    @Min(0)
+    private int avg_rate;
 
     private String publisher;
     private String author;
+    private String image;
     @ManyToOne
     private Category category;
     @OneToMany(mappedBy = "book")
@@ -84,10 +86,10 @@ public class Book {
         this.quantityInStock = quantityInStock;
     }
     public int getQuatityImport() {
-        return quatityImport;
+        return quantityImport;
     }
-    public void setQuatityImport(int quatityImport) {
-        this.quatityImport = quatityImport;
+    public void setQuatityImport(int quantityImport) {
+        this.quantityImport = quantityImport;
     }
     public int getQuantitySold() {
         return quantitySold;
@@ -119,6 +121,17 @@ public class Book {
     public void setComment(List<Comment> comment) {
         this.comment = comment;
     }
-
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
+    }
+    public int getAvg_rate() {
+        return avg_rate;
+    }
+    public void setAvg_rate(int avg_rate) {
+        this.avg_rate = avg_rate;
+    }
     
 }
