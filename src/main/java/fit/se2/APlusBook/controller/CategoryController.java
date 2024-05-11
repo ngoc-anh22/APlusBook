@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,7 +17,14 @@ import fit.se2.APlusBook.repository.CategoryRepository;
 public class CategoryController {
     @Autowired
     CategoryRepository categoryRepository;
-    @RequestMapping(value = "/category/list")
+//    @GetMapping("/")
+//    public String home(Model model) {
+//        List<Category> categories = categoryRepository.findAll();
+//        model.addAttribute("categories", categories);
+//        return "_layout";
+//    }
+//    @RequestMapping(value = "/category/list")
+    @ModelAttribute("categories")
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }

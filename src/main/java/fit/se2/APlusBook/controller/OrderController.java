@@ -2,6 +2,8 @@ package fit.se2.APlusBook.controller;
 
 import java.util.List;
 
+import fit.se2.APlusBook.model.Category;
+import fit.se2.APlusBook.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +19,14 @@ import fit.se2.APlusBook.repository.OrderRepository;
 public class OrderController {
     @Autowired
     OrderRepository orderRepository;
-    
+    @Autowired
+    CategoryRepository categoryRepository;
+    @ModelAttribute("categories")
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
+    }
+
+
     @RequestMapping(value = "/order/list")
     public String getAllOrder(Model model) {
         List<Order> orders = orderRepository.findAll();

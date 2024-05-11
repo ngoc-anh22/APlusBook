@@ -22,8 +22,13 @@
 .btn.bg-main {
     background-color: #07689f;
 }
+.btn-sm.bg-main:hover,
+.btn-sm.bg-main:focus,
 .btn.bg-main:hover,
 .btn.bg-main:focus {
     background-color: #07689f;
     opacity: 0.9;
+}
+.text-main {
+    color: #07689f !important;
 }

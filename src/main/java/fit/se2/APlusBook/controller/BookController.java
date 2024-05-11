@@ -1,12 +1,12 @@
 package fit.se2.APlusBook.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import fit.se2.APlusBook.model.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import fit.se2.APlusBook.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,6 +25,14 @@ public class BookController {
     BookRepository bookRepository;
     @Autowired
     CommentRepository commentRepository;
+    @Autowired
+    CategoryRepository categoryRepository;
+    @ModelAttribute("categories")
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
+    }
+
+
 
 //    @GetMapping(value = "/book/list")
 //    public String getAllBook(Model model) {
@@ -48,7 +56,7 @@ public class BookController {
         return "book/bookList"; // This should be the name of your Thymeleaf template file
     }
     @SuppressWarnings("deprecation")
-    @RequestMapping(value = "/book/detail/{id}")
+    @RequestMapping(value = "/book/{id}")
     public String getBookById(@PathVariable(value = "id") Long id, Model model) {
         Book book = bookRepository.getById(id);
         model.addAttribute("book", book);
@@ -124,5 +132,9 @@ public class BookController {
         }
         
         return ResponseEntity.ok(comments);
+    }
+    @GetMapping("/my-cart")
+    public String showCart() {
+        return "myCart";
     }
 }

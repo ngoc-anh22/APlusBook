@@ -143,7 +143,7 @@
     <tbody>
     <tr th:each="row : ${rows}">
         <div class="card mb-3 mx-1" style="width: 13rem; height: 22rem;" th:each="book: ${row}">
-                                <a th:href="@{/books/{id}(id=${book.id})}"><img
+                                <a th:href="@{/book/{id}(id=${book.id})}"><img
                                         th:src="${book.image}"
                                         class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 15rem;"></a>
                                 <div class="card-body pb-1">
@@ -184,7 +184,6 @@
                     </li>
                 </ul>
             </nav>
-
         </div>
         </div>
 </div>
