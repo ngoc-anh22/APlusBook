@@ -1,5 +1,7 @@
 package fit.se2.APlusBook.controller;
+import fit.se2.APlusBook.model.Category;
 import fit.se2.APlusBook.model.User;
+import fit.se2.APlusBook.repository.CategoryRepository;
 import fit.se2.APlusBook.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -14,6 +16,13 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    CategoryRepository categoryRepository;
+    @ModelAttribute("categories")
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
+    }
+
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -74,7 +83,7 @@ public class UserController {
         }
         return "redirect:/admin/account/list";
     }
-    @GetMapping("/account/change-pasword")
+    @GetMapping("/account/change-password")
     public String changePassword() {
         return "Account/changePassword";
     }

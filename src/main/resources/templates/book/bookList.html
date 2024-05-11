@@ -13,11 +13,11 @@
         <div class="row d-flex justify-content-around gy-5">
             <div th:each="book: ${books}">
             <div class="card" style="width: 17rem; height: 23rem;">
-                <a th:href="@{/books/{id}(id=${book.id})}"><img
+                <a th:href="@{/book/{id}(id=${book.id})}"><img
                         th:src="${book.image}"
                         class="card-img-top mt-2 mb-0" alt="Book Image"></a>
                 <div class="card-body">
-                    <a th:href="@{/books/{id}(id=${book.id})}" style="text-decoration: none ; color: inherit">
+                    <a th:href="@{/book/{id}(id=${book.id})}" style="text-decoration: none ; color: inherit">
                         <h5 class="card-title fs-6 text-left fw-bold ps-0 my-0" th:text="${book.title}"></h5>
                     </a>
                     <div class="d-flex justify-content-between align-items-center text-danger fs-5 fw-bold">
@@ -27,7 +27,7 @@
                     <div class="d-flex justify-content-between align-items-end">
                         <a href="#">
                             <i class="fa-solid fa-cart-plus" style="color: #07689f;"></i></a>
-                        <p class="my-0" style="font-size:12px;" th:text="'Sold:' +${quantitySold}">Sold: 900</p>
+                        <p class="my-0" style="font-size:12px;" th:text="'Sold:' +${book.quantitySold}"></p>
                     </div>
                 </div>
             </div>
