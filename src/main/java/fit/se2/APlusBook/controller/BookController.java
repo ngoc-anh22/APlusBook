@@ -37,6 +37,13 @@ public class BookController {
         return "book/bookList";
     }
 
+    @RequestMapping(value = "/book/list/{category_id}")
+    public String getAllBookbyCategoryId(@PathVariable(value = "id") Long category_id, Model model) {
+        List<Book> books = bookRepository.findByCategoryId(category_id);
+        model.addAttribute("books", books);
+        return "book/bookListByCategory";
+    }
+
     @SuppressWarnings("deprecation")
     @RequestMapping(value = "/book/{id}")
     public String getBookById(@PathVariable(value = "id") Long id, Model model) {
