@@ -1,8 +1,11 @@
 package fit.se2.APlusBook.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fit.se2.APlusBook.model.Category;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import fit.se2.APlusBook.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,13 +28,6 @@ public class BookController {
     @Autowired
     CategoryRepository categoryRepository;
     
-
-    @RequestMapping(value = "/book/list")
-    public String getAllBook(Model model) {
-        List<Book> books = bookRepository.findAll();
-        model.addAttribute("books", books);
-        return "book/bookList";
-    }
 
     @RequestMapping(value = "/book/list/{category_id}")
     public String getAllBookbyCategoryId(@PathVariable(value = "id") Long category_id, Model model) {
@@ -57,7 +53,21 @@ public class BookController {
         
         return "homepage";
     }
-
+    @GetMapping(value="/book/list")
+    public String getAllBook(Model model, @RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "30")int size) {
+        // Example list of book titles
+        Page<Book> bookPage = bookRepository.findAll(PageRequest.of(page, size));
+        // Convert the list of books into rows with 6 books per row
+        List<Book> books = bookPage.getContent();
+        List<List<Book>> rows = new ArrayList<>();
+        for (int i = 0; i < books.size(); i += 6) {
+            rows.add(books.subList(i, Math.min(i + 6, books.size())));
+        }
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", bookPage.getTotalPages());
+        model.addAttribute("rows", rows);
+        return "book/bookList"; // This should be the name of your Thymeleaf template file
+    }
     @SuppressWarnings("deprecation")
     @RequestMapping(value = "/book/{id}")
     public String getBookById(@PathVariable(value = "id") Long id, Model model) {
