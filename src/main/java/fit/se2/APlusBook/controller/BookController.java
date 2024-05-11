@@ -24,11 +24,7 @@ public class BookController {
     CommentRepository commentRepository;
     @Autowired
     CategoryRepository categoryRepository;
-    @ModelAttribute("categories")
-    public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
-    }
-
+    
 
     @RequestMapping(value = "/book/list")
     public String getAllBook(Model model) {
@@ -42,6 +38,24 @@ public class BookController {
         List<Book> books = bookRepository.findByCategoryId(category_id);
         model.addAttribute("books", books);
         return "book/bookListByCategory";
+    }
+
+    // Lấy sách để show ở homepage
+    @GetMapping("/")
+    public String getHomePage(Model model) {
+        List<Book> comicBooks = bookRepository.getTop5BooksByCategoryId(8);
+        model.addAttribute("comicBooks", comicBooks);
+        
+        List<Book> novelBooks = bookRepository.getTop5BooksByCategoryId(3);
+        model.addAttribute("novelBooks", novelBooks);
+        
+        List<Book> literatureBooks = bookRepository.getTop5BooksByCategoryId(1);
+        model.addAttribute("literatureBooks", literatureBooks);
+        
+        List<Book> livingSkillBooks = bookRepository.getTop5BooksByCategoryId(14);
+        model.addAttribute("livingSkillBooks", livingSkillBooks);
+        
+        return "homepage";
     }
 
     @SuppressWarnings("deprecation")
@@ -126,4 +140,10 @@ public class BookController {
     public String showCart() {
         return "myCart";
     }
+
+    @ModelAttribute("categories")
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
+    }
+
 }
