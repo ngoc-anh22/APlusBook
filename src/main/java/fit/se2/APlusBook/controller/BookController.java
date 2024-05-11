@@ -1,17 +1,18 @@
 package fit.se2.APlusBook.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import fit.se2.APlusBook.model.Category;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import fit.se2.APlusBook.model.Book;
 import fit.se2.APlusBook.model.Comment;
@@ -25,19 +26,33 @@ public class BookController {
     @Autowired
     CommentRepository commentRepository;
 
-    @RequestMapping(value = "/book/list")
-    public String getAllBook(Model model) {
-        List<Book> books = bookRepository.findAll();
-        model.addAttribute("books", books);
-        return "bookList";
+//    @GetMapping(value = "/book/list")
+//    public String getAllBook(Model model) {
+//        List<Book> books = bookRepository.findAll();
+//        model.addAttribute("books", books);
+//        return "book/bookList";
+//    }
+    @GetMapping(value="/book/list")
+    public String getAllBook(Model model, @RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "30")int size) {
+        // Example list of book titles
+        Page<Book> bookPage = bookRepository.findAll(PageRequest.of(page, size));
+        // Convert the list of books into rows with 6 books per row
+        List<Book> books = bookPage.getContent();
+        List<List<Book>> rows = new ArrayList<>();
+        for (int i = 0; i < books.size(); i += 6) {
+            rows.add(books.subList(i, Math.min(i + 6, books.size())));
+        }
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", bookPage.getTotalPages());
+        model.addAttribute("rows", rows);
+        return "book/bookList"; // This should be the name of your Thymeleaf template file
     }
-
     @SuppressWarnings("deprecation")
     @RequestMapping(value = "/book/detail/{id}")
     public String getBookById(@PathVariable(value = "id") Long id, Model model) {
         Book book = bookRepository.getById(id);
         model.addAttribute("book", book);
-        return "bookDetail";
+        return "book/bookDetail";
     }
 
     @RequestMapping(value = "/book/detail/{title}")
