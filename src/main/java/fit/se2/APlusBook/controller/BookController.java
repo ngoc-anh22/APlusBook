@@ -26,15 +26,15 @@ public class BookController {
     public String getAllBook(Model model) {
         List<Book> books = bookRepository.findAll();
         model.addAttribute("books", books);
-        return "bookList";
+        return "book/bookList";
     }
 
     @SuppressWarnings("deprecation")
-    @RequestMapping(value = "/book/detail/{id}")
+    @RequestMapping(value = "/book/{id}")
     public String getBookById(@PathVariable(value = "id") Long id, Model model) {
         Book book = bookRepository.getById(id);
         model.addAttribute("book", book);
-        return "bookDetail";
+        return "book/bookDetail";
     }
 
     @RequestMapping(value = "/book/detail/{title}")

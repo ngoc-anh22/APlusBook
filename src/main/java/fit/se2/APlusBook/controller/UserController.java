@@ -74,7 +74,7 @@ public class UserController {
         }
         return "redirect:/admin/account/list";
     }
-    @GetMapping("/account/change-pasword")
+    @GetMapping("/account/change-password")
     public String changePassword() {
         return "Account/changePassword";
     }
