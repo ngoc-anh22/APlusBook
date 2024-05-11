@@ -94,8 +94,5 @@ public class UserController {
     public String manageCustomers() {
         return "Account/manageCustomers";
     }
-    @GetMapping("/account/manage-promotions")
-    public String managePromotions() {
-        return "Account/managePromotions";
-    }
+
  }
