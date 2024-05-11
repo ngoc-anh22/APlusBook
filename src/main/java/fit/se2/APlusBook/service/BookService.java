@@ -1,7 +1,6 @@
 package fit.se2.APlusBook.service;
 
 import fit.se2.APlusBook.model.Book;
-import fit.se2.APlusBook.model.BookImages;
 import fit.se2.APlusBook.repository.BookRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -21,9 +20,6 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
-    @Autowired
-    private BookImagesService bookImagesService;
-
     public Book saveOrUpdate(Book book) {
         if  (book.getId() < 0) {
             entityManager.persist(book);
@@ -31,13 +27,6 @@ public class BookService {
         } else {
             return entityManager.merge(book);
         }
-    }
-
-    private boolean isEmptyUploadFile(MultipartFile[] images) {
-        if (images == null || images.length == 0)
-            return false;
-
-        return images.length != 1 || !Objects.requireNonNull(images[0].getOriginalFilename()).isEmpty();
     }
 
     private boolean isEmptyUploadFile(MultipartFile image) {
@@ -50,7 +39,7 @@ public class BookService {
     }
 
     @Transactional
-    public Book saveProduct(Book book, MultipartFile Avatar, MultipartFile[] productPictures)
+    public Book saveProduct(Book book, MultipartFile Avatar)
             throws IllegalStateException, IOException {
         if (isEmptyUploadFile(Avatar)) { // có đẩy avatar lên.
 
@@ -61,20 +50,6 @@ public class BookService {
             Avatar.transferTo(new File(pathToAvatar));
 
             book.setAvatar("product/avatar/" + fileName);
-        }
-
-        if (isEmptyUploadFile(productPictures)) {
-            for (MultipartFile pic : productPictures) {
-                String fileName = getUniqueUploadFileName(Objects.requireNonNull(pic.getOriginalFilename()));
-
-                pic.transferTo(new File("D:/Future/JavaWeb/Upload/Product/images/" + fileName));
-
-                BookImages bookImages = new BookImages();
-                bookImages.setPath("Product/images/" + fileName);
-                bookImages.setTitle(fileName);
-
-                book.addBookImages(bookImages);
-            }
         }
         return saveOrUpdate(book);
 
@@ -93,26 +68,6 @@ public class BookService {
             p.setAvatar("Product/avatar/" + fileName);
         } else {
             p.setAvatar(bookInDb.getAvatar());
-        }
-
-        if (isEmptyUploadFile(productPictures)) {
-            if (bookInDb.getBookList() != null && !bookInDb.getBookList().isEmpty()) {
-                for (BookImages opi : bookInDb.getBookList()) {
-                    new File("D:/Future/JavaWeb/Upload/" + opi.getPath()).delete();
-                    bookImagesService.delete(opi);
-                }
-            }
-            for (MultipartFile pic : productPictures) {
-                String fileName = getUniqueUploadFileName(Objects.requireNonNull(pic.getOriginalFilename()));
-
-                pic.transferTo(new File("D:/Future/JavaWeb/Upload/Product/images/" + fileName));
-
-                BookImages pi = new BookImages();
-                pi.setPath("Product/images/" + fileName);
-                pi.setTitle(fileName);
-
-                p.addBookImages(pi);
-            }
         }
         return saveOrUpdate(p);
     }

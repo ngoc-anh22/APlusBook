@@ -44,20 +44,6 @@ public class Book {
     private Category category;
     @OneToMany(mappedBy = "book")
     private List<Comment> comment;
-
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
-            mappedBy = "product")
-    private Set<BookImages> bookList = new HashSet<>();
-
-    public void addBookImages(BookImages productImages) {
-        productImages.setBook(this);
-        bookList.add(productImages);
-    }
-    public void deleteBookImages(BookImages productImages) {
-        productImages.setBook(null);
-        bookList.remove(productImages);
-    }
     
     public long getId() {
         return id;
@@ -136,14 +122,6 @@ public class Book {
     }
     public void setComment(List<Comment> comment) {
         this.comment = comment;
-    }
-
-    public Set<BookImages> getBookList() {
-        return bookList;
-    }
-
-    public void setBookList(Set<BookImages> bookList) {
-        this.bookList = bookList;
     }
 
     public String getAvatar() {

@@ -3,20 +3,20 @@ package fit.se2.APlusBook.controller;
 import java.util.List;
 
 import fit.se2.APlusBook.model.Category;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import fit.se2.APlusBook.model.Book;
 import fit.se2.APlusBook.model.Comment;
 import fit.se2.APlusBook.repository.BookRepository;
 import fit.se2.APlusBook.repository.CommentRepository;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class BookController {
@@ -96,7 +96,11 @@ public class BookController {
     }
 
     @RequestMapping(value = "/book/insert")
-    public String insertBook(@ModelAttribute Book book) {
+    public String insertBook(final Model model,
+                             final HttpServletRequest request,
+                             final HttpServletResponse response,
+                             @ModelAttribute("book") Book book, //spring-form binding
+                             @RequestAttribute("productAvatar") MultipartFile bookAvatar) {
         bookRepository.save(book);
         return "redirect:/book/detail";
     }

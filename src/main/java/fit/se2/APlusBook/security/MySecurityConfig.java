@@ -38,10 +38,10 @@ public class MySecurityConfig {
         return http
                 .authorizeHttpRequests(req -> req
                         .requestMatchers("/css/**", "/images/**").permitAll()
-                        .requestMatchers("/register/**", "/**/list", "/**/detail/**", "/**/search")
+                        .requestMatchers("/register/**", "/list", "/detail/**", "/search")
                         .permitAll()
-                        .requestMatchers("/**/update/**", "/**/delete/**" ,"/**/save", "/**/insert", "/**/comment").hasAnyAuthority("ADMIN")
-                        .anyRequest().permitAll()
+                        .requestMatchers("/update/**", "/delete/**" ,"/save", "/insert", "/comment").hasAnyAuthority("ADMIN")
+//                        .anyRequest().permitAll()
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/log-in")
