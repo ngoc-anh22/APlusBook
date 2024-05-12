@@ -5,24 +5,11 @@
     padding-bottom: 4px;
 }
 .card{
-  width: calc(100%/6);
+  width: calc(100%/5);
 }
   a:link:active, a:visited:active {
     color: (black);
   }
-.carousel-control-prev,
-.carousel-control-next {
-  background-color: #e1e1e1;
-  width: 5vh;
-  height: 5vh;
-  top: 50%;
-  transform: translateY(-50%);
-}
-@media (min-width: 768px) {
-  .card img {
-    height: 11em;
-  }
-}
 
 .form-check,
 .voucher_box,
