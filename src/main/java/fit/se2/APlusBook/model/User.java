@@ -45,7 +45,11 @@ public class User implements UserDetails {
 
     @NotEmpty(message = "Role can not be empty")
     private String role;
-    
+
+    public User() {
+
+    }
+
     public long getId() {
         return id;
     }

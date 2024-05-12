@@ -1,9 +1,8 @@
 package fit.se2.APlusBook.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -33,7 +32,7 @@ public class Book {
     private String avatar;
     
     @Min(0)
-    private String price;
+    private BigDecimal price;
     private int quantityInStock;
     private int quantityImport;
     private int quantitySold;
@@ -75,10 +74,10 @@ public class Book {
     public void setISBN(long iSBN) {
         ISBN = iSBN;
     }
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
-    public void setPrice(String price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
     public int getQuantityInStock() {
