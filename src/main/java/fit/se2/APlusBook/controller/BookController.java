@@ -51,7 +51,7 @@ public class BookController {
         List<Book> livingSkillBooks = bookRepository.getTop5BooksByCategoryId(14);
         model.addAttribute("livingSkillBooks", livingSkillBooks);
         
-        return "homepage";
+        return "book/homepage";
     }
     @GetMapping(value="/book/list")
     public String getAllBook(Model model, @RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "30")int size) {

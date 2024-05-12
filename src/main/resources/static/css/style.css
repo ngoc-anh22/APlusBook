@@ -32,3 +32,20 @@
 .text-main {
     color: #07689f !important;
 }
+.pagination .page-link {
+    color: #07689f; /* Set the desired color */
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #07689f; /* Set the desired background color */
+    border-color: #07689f; /* Set the desired border color */
+    color: #ffffff; /* Set the desired text color */
+}
+
+.pagination .page-link:hover {
+    color: #cce4f1; /* Set the desired hover color */
+}
+
+.pagination .page-item.disabled .page-link {
+    opacity: 0.5; /* Set the desired opacity for disabled links */
+}

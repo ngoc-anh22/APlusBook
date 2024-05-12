@@ -8,210 +8,50 @@
 </head>
 <body>
 <div layout:fragment="content">
-<<<<<<< HEAD
-    <div class="container-md mt-3">
-        <div class="row d-flex justify-content-around gy-5">
-            <div th:each="book: ${books}">
-            <div class="card" style="width: 17rem; height: 23rem;">
-                <a th:href="@{/book/{id}(id=${book.id})}"><img
-                        th:src="${book.image}"
-                        class="card-img-top mt-2 mb-0" alt="Book Image"></a>
-                <div class="card-body">
-                    <a th:href="@{/book/{id}(id=${book.id})}" style="text-decoration: none ; color: inherit">
-                        <h5 class="card-title fs-6 text-left fw-bold ps-0 my-0" th:text="${book.title}"></h5>
-                    </a>
-                    <div class="d-flex justify-content-between align-items-center text-danger fs-5 fw-bold">
-                        <p class="card-text my-0" th:text="${book.price} +'VND'"></p>
-
-                    </div>
-                    <div class="d-flex justify-content-between align-items-end">
-                        <a href="#">
-                            <i class="fa-solid fa-cart-plus" style="color: #07689f;"></i></a>
-                        <p class="my-0" style="font-size:12px;" th:text="'Sold:' +${book.quantitySold}"></p>
-                    </div>
-                </div>
-            </div>
-=======
     <div class="container-md my-5">
         <div class="row">
-<!--            <div class="col-2">-->
-<!--                <div class="card mb-3" style="width: 13rem; height: 22rem;" th:each="book: ${books}">-->
-<!--                    <a th:href="@{/books/{id}(id=${book.id})}"><img-->
-<!--                            th:src="${book.image}"-->
-<!--                            class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 15rem;"></a>-->
-<!--                    <div class="card-body pb-1">-->
-<!--                        <a th:href="@{/books/{id}(id=${book.id})}" style="text-decoration: none ; color: inherit">-->
-<!--                            <h5 class="card-title fs-6 text-left fw-bold text-truncate ps-0 my-0" th:text="${book.title}"></h5>-->
-<!--                        </a>-->
-<!--                        <div class="d-flex justify-content-between align-items-center text-danger fs-5 fw-bold">-->
-<!--                            <p class="card-text fs-5 my-0" th:text="${book.price} +'VND'"></p>-->
-
-<!--                        </div>-->
-<!--                        <div class="d-flex justify-content-between align-items-end">-->
-<!--                            <a href="#">-->
-<!--                                <i class="fa-solid fa-cart-plus" style="color: #07689f;"></i></a>-->
-<!--                            <p class="my-0" style="font-size:14px;" th:text="'Sold:' +${book.quantitySold}"></p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-2">-->
-<!--                <div class="card mb-3" style="width: 13rem; height: 22rem;" th:each="book: ${books}">-->
-<!--                    <a th:href="@{/books/{id}(id=${book.id})}"><img-->
-<!--                            th:src="${book.image}"-->
-<!--                            class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 15rem;"></a>-->
-<!--                    <div class="card-body pb-1">-->
-<!--                        <a th:href="@{/books/{id}(id=${book.id})}" style="text-decoration: none ; color: inherit">-->
-<!--                            <h5 class="card-title fs-6 text-left fw-bold text-truncate ps-0 my-0" th:text="${book.title}"></h5>-->
-<!--                        </a>-->
-<!--                        <div class="d-flex justify-content-between align-items-center text-danger fs-5 fw-bold">-->
-<!--                            <p class="card-text fs-5 my-0" th:text="${book.price} +'VND'"></p>-->
-
-<!--                        </div>-->
-<!--                        <div class="d-flex justify-content-between align-items-end">-->
-<!--                            <a href="#">-->
-<!--                                <i class="fa-solid fa-cart-plus" style="color: #07689f;"></i></a>-->
-<!--                            <p class="my-0 fs-6" style="font-size:12px;" th:text="'Sold:' +${quantitySold}"></p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-2">-->
-<!--                <div class="card mb-3" style="width: 13rem; height: 22rem;" th:each="book: ${books}">-->
-<!--                    <a th:href="@{/books/{id}(id=${book.id})}"><img-->
-<!--                            th:src="${book.image}"-->
-<!--                            class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 15rem;"></a>-->
-<!--                    <div class="card-body pb-1">-->
-<!--                        <a th:href="@{/books/{id}(id=${book.id})}" style="text-decoration: none ; color: inherit">-->
-<!--                            <h5 class="card-title fs-6 text-left fw-bold text-truncate ps-0 my-0" th:text="${book.title}"></h5>-->
-<!--                        </a>-->
-<!--                        <div class="d-flex justify-content-between align-items-center text-danger fs-5 fw-bold">-->
-<!--                            <p class="card-text fs-5 my-0" th:text="${book.price} +'VND'"></p>-->
-
-<!--                        </div>-->
-<!--                        <div class="d-flex justify-content-between align-items-end">-->
-<!--                            <a href="#">-->
-<!--                                <i class="fa-solid fa-cart-plus" style="color: #07689f;"></i></a>-->
-<!--                            <p class="my-0 fs-6" style="font-size:12px;" th:text="'Sold:' +${quantitySold}"></p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-2">-->
-<!--                <div class="card mb-3" style="width: 13rem; height: 22rem;" th:each="book: ${books}">-->
-<!--                    <a th:href="@{/books/{id}(id=${book.id})}"><img-->
-<!--                            th:src="${book.image}"-->
-<!--                            class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 15rem;"></a>-->
-<!--                    <div class="card-body pb-1">-->
-<!--                        <a th:href="@{/books/{id}(id=${book.id})}" style="text-decoration: none ; color: inherit">-->
-<!--                            <h5 class="card-title fs-6 text-left fw-bold text-truncate ps-0 my-0" th:text="${book.title}"></h5>-->
-<!--                        </a>-->
-<!--                        <div class="d-flex justify-content-between align-items-center text-danger fs-5 fw-bold">-->
-<!--                            <p class="card-text fs-5 my-0" th:text="${book.price} +'VND'"></p>-->
-
-<!--                        </div>-->
-<!--                        <div class="d-flex justify-content-between align-items-end">-->
-<!--                            <a href="#">-->
-<!--                                <i class="fa-solid fa-cart-plus" style="color: #07689f;"></i></a>-->
-<!--                            <p class="my-0 fs-6" style="font-size:12px;" th:text="'Sold:' +${quantitySold}"></p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-2">-->
-<!--                <div class="card mb-3" style="width: 13rem; height: 22rem;" th:each="book: ${books}">-->
-<!--                    <a th:href="@{/books/{id}(id=${book.id})}"><img-->
-<!--                            th:src="${book.image}"-->
-<!--                            class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 15rem;"></a>-->
-<!--                    <div class="card-body pb-1">-->
-<!--                        <a th:href="@{/books/{id}(id=${book.id})}" style="text-decoration: none ; color: inherit">-->
-<!--                            <h5 class="card-title fs-6 text-left fw-bold text-truncate ps-0 my-0" th:text="${book.title}"></h5>-->
-<!--                        </a>-->
-<!--                        <div class="d-flex justify-content-between align-items-center text-danger fs-5 fw-bold">-->
-<!--                            <p class="card-text fs-5 my-0" th:text="${book.price} +'VND'"></p>-->
-
-<!--                        </div>-->
-<!--                        <div class="d-flex justify-content-between align-items-end">-->
-<!--                            <a href="#">-->
-<!--                                <i class="fa-solid fa-cart-plus" style="color: #07689f;"></i></a>-->
-<!--                            <p class="my-0 fs-6" style="font-size:12px;" th:text="'Sold:' +${quantitySold}"></p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-2">-->
-<!--                <div class="card mb-3" style="width: 13rem; height: 22rem;" th:each="book: ${books}">-->
-<!--                    <a th:href="@{/books/{id}(id=${book.id})}"><img-->
-<!--                            th:src="${book.image}"-->
-<!--                            class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 15rem;"></a>-->
-<!--                    <div class="card-body pb-1">-->
-<!--                        <a th:href="@{/books/{id}(id=${book.id})}" style="text-decoration: none ; color: inherit">-->
-<!--                            <h5 class="card-title fs-6 text-left fw-bold text-truncate ps-0 my-0" th:text="${book.title}"></h5>-->
-<!--                        </a>-->
-<!--                        <div class="d-flex justify-content-between align-items-center text-danger fs-5 fw-bold">-->
-<!--                            <p class="card-text fs-5 my-0" th:text="${book.price} +'VND'"></p>-->
-
-<!--                        </div>-->
-<!--                        <div class="d-flex justify-content-between align-items-end">-->
-<!--                            <a href="#">-->
-<!--                                <i class="fa-solid fa-cart-plus" style="color: #07689f;"></i></a>-->
-<!--                            <p class="my-0 fs-6" style="font-size:12px;" th:text="'Sold:' +${quantitySold}"></p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<table>
-    <tbody>
-    <tr th:each="row : ${rows}">
-        <div class="card mb-3 mx-1" style="width: 13rem; height: 22rem;" th:each="book: ${row}">
-                                <a th:href="@{/book/{id}(id=${book.id})}"><img
-                                        th:src="${book.image}"
-                                        class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 15rem;"></a>
-                                <div class="card-body pb-1">
-                                    <a th:href="@{/books/{id}(id=${book.id})}" style="text-decoration: none ; color: inherit">
-                                        <h5 class="card-title fs-6 text-left fw-bold text-truncate ps-0 my-0" th:text="${book.title}"></h5>
-                                    </a>
-                                    <div class="d-flex justify-content-between align-items-center text-danger fs-5 fw-bold">
-                                        <p class="card-text fs-5 my-0" th:text="${book.price} +'VND'"></p>
-
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-end">
-                                        <a href="#">
-                                            <i class="fa-solid fa-cart-plus" style="color: #07689f;"></i></a>
-                                        <p class="my-0" style="font-size:14px;" th:text="'Sold:' +${book.quantitySold}"></p>
-                                    </div>
+            <table>
+                <tbody>
+                    <tr th:each="row : ${rows}">
+                        <div class="card mb-2 mx-1" style="width: 13rem; height: 20rem;" th:each="book: ${row}">
+                            <a th:href="@{/book/{id}(id=${book.id})}"><img
+                                    th:src="${book.image}"
+                                    class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 15rem;"></a>
+                            <div class="card-body pb-1 mt-2" style="padding: 0px !important;">
+                                <a th:href="@{/books/{id}(id=${book.id})}" class="text-decoration-none text-dark">
+                                    <h5 class="card-title fs-6 text-left fw-bold text-truncate ps-0 my-0" th:text="${book.title}"></h5>
+                                </a>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="card-text text-main fs-5 fw-bold" th:text="${book.price} +'VND'"></p>
+                                    <p style="font-size:14px;" th:text="'Sold: ' +${book.quantitySold}"></p>
                                 </div>
                             </div>
-    </tr>
-    </tbody>
-</table>
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
+                        </div>
+                    </tr>
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation"  th:if="${totalPages > 1}">
+                <ul class="pagination justify-content-center mt-4">
                     <li th:class="${currentPage == 0} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link" th:href='@{/book/list(size=30, page=0)}'>First</a>
+                        <a class="page-link" th:href='@{/book/list(size=30, page=0)}' th:if="${currentPage> 0}"><i class="fas fa-angle-double-left"></i></a>
                     </li>
                     <li th:class="${currentPage == 0} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link" th:href='@{/book/list(size=30, page=${currentPage-1})}'>Previous</a>
+                        <a class="page-link" th:href='@{/book/list(size=30, page=${currentPage-1})}' th:if="${currentPage> 0}"><i class="fas fa-chevron-left"></i></a>
                     </li>
                     <li th:each="pageNum : ${#numbers.sequence(0, totalPages - 1)}"
                         th:class="${pageNum == currentPage} ? 'page-item active' : 'page-item'">
                         <a class="page-link" th:href='@{/book/list(size=30, page=${pageNum})}' th:text="${pageNum + 1}">1</a>
                     </li>
                     <li th:class="${currentPage == totalPages - 1} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link" th:href='@{/book/list(size=30, page=${currentPage + 1})}'>Next</a>
+                        <a class="page-link" th:href='@{/book/list(size=30, page=${currentPage + 1})}'th:if="${currentPage!=totalPages-1}"><i class="fas fa-chevron-right"></i></a>
                     </li>
                     <li th:class="${currentPage == totalPages - 1} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link" th:href="@{/book/list(size=30, page=${totalPages - 1})}">Last</a>
+                        <a class="page-link" th:href="@{/book/list(size=30, page=${totalPages - 1})}" th:if="${currentPage!=totalPages-1}"><i class="fas fa-angle-double-right"></i></a>
                     </li>
                 </ul>
             </nav>
->>>>>>> fe-Hoang
         </div>
-        </div>
+    </div>
 </div>
-
 </body>
 </html>
