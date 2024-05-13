@@ -47,7 +47,7 @@ public class CartController {
         session.setAttribute("totalItems", getTotalItems(request));
         session.setAttribute("totalPrice", calculateTotalPrice(request));
 
-        return "customer/shoppingCart"; // -> đường dẫn tới View.
+        return "fragments/myCart"; // -> đường dẫn tới View.
     }
 
     @RequestMapping(value = { "/cart/checkout" }, method = RequestMethod.POST)
@@ -103,7 +103,7 @@ public class CartController {
         session.setAttribute("cart", null);
         session.setAttribute("totalItems", 0);
 
-        return "customer/cart_success"; // -> đường dẫn tới View.
+        return "fragments/myCart"; // -> đường dẫn tới View.
 
     }
 
@@ -140,23 +140,13 @@ public class CartController {
 
             cartItem.setProductName(productInDb.getTitle());
             cartItem.setPriceUnit(productInDb.getPrice());
-            cartItem.setAvatar(productInDb.getAvatar());
+            cartItem.setAvatar(productInDb.getImage());
             cartItem.setCategory(productInDb.getCategory().getName());
 
             cart.getCartItems().add(cartItem); // thêm mới sản phẩm vào giỏ hàng
         }
 
         session.setAttribute("totalPrice", calculateTotalPrice(request));
-
-        // tính tổng tiền
-//		this.calculateTotalPrice(request);
-
-        //set giá trị avatar cho cartItem
-//		List<ProductEntity> productList = productService.findAll();
-//		getAvatar(cartItem, request, productList);
-//
-//		//set giá trị category cho cartItem
-//		getCategory(cartItem, request, productList);
 
         // trả về kết quả
         Map<String, Object> jsonResult = new HashMap<String, Object>();
