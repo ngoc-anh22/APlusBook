@@ -38,7 +38,7 @@ public class BookController {
     }
 
     // Lấy sách để show ở homepage
-    @GetMapping(value="/")
+    @GetMapping(value="/book/homepage")
     public String getHomePage(Model model) {
         List<Book> comicBooks = bookRepository.getTop5BooksByCategoryId(8);
         model.addAttribute("comicBooks", comicBooks);
@@ -55,20 +55,29 @@ public class BookController {
         return "book/homePage";
     }
     @GetMapping(value="/book/list")
-    public String getAllBook(Model model, @RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "30")int size) {
-        // Example list of book titles
-        Page<Book> bookPage = bookRepository.findAll(PageRequest.of(page, size));
-        // Convert the list of books into rows with 6 books per row
-        List<Book> books = bookPage.getContent();
-        List<List<Book>> rows = new ArrayList<>();
-        for (int i = 0; i < books.size(); i += 6) {
-            rows.add(books.subList(i, Math.min(i + 6, books.size())));
+    public String getAllBook(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "30") int size, @RequestParam(required = false) String title) {
+        Page<Book> bookPage;
+
+        if (title != null && !title.isEmpty()) {
+            // If title is provided, search by title
+            List<Book> books = bookRepository.findByTitleContainingIgnoreCase(title);
+            model.addAttribute("books", books);
+        } else {
+            // Otherwise, retrieve all books
+            bookPage = bookRepository.findAll(PageRequest.of(page, size));
+            List<Book> books = bookPage.getContent();
+            List<List<Book>> rows = new ArrayList<>();
+            for (int i = 0; i < books.size(); i += 6) {
+                rows.add(books.subList(i, Math.min(i + 6, books.size())));
+            }
+            model.addAttribute("currentPage", page);
+            model.addAttribute("totalPages", bookPage.getTotalPages());
+            model.addAttribute("rows", rows);
         }
-        model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", bookPage.getTotalPages());
-        model.addAttribute("rows", rows);
+
         return "book/bookList"; // This should be the name of your Thymeleaf template file
     }
+
     @SuppressWarnings("deprecation")
     @RequestMapping(value = "/book/{id}")
     public String getBookById(@PathVariable(value = "id") Long id, Model model) {
@@ -77,12 +86,6 @@ public class BookController {
         return "book/bookDetail";
     }
 
-    @RequestMapping(value = "/book/detail/{title}")
-    public String searchBookByTitle(@PathVariable(value = "title") String title, Model model) {
-        List<Book> books = bookRepository.findByTitle(title);
-        model.addAttribute("books", books);
-        return "searchBookByTitle";
-    }
 
     @RequestMapping(value = "/book/detail/{category}")
     public String searchByCategory(@PathVariable(value = "category") Category category, Model model) {
