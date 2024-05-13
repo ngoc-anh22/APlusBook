@@ -22,8 +22,8 @@
             </li>
         </ul>
     </div>
-    <form class="d-flex col-6" role="search">
-        <input class="form-control me-2 rounded-pill" type="search" placeholder="Search books here"
+    <form class="d-flex col-6" role="search"  th:action="@{/book/list}"method="get">
+        <input class="form-control me-2 rounded-pill" name="title" th:value=${title} type="search" placeholder="Search books here"
                aria-label="Search" />
         <button class="btn bg-main btn-outline-light rounded-circle" type="submit">
             <i class="fas fa-magnifying-glass icon-custom"></i>
