@@ -49,7 +49,7 @@ public class BookService {
 
             Avatar.transferTo(new File(pathToAvatar));
 
-            book.setAvatar("product/avatar/" + fileName);
+            book.setImage("product/avatar/" + fileName);
         }
         return saveOrUpdate(book);
 
@@ -61,13 +61,13 @@ public class BookService {
         Book bookInDb = bookRepository.getById(p.getId());
 
         if (isEmptyUploadFile(Avatar)) {
-            new File("C:/upload/" + bookInDb.getAvatar()).delete();
+            new File("C:/upload/" + bookInDb.getImage()).delete();
 
             String fileName = getUniqueUploadFileName(Objects.requireNonNull(Avatar.getOriginalFilename()));
             Avatar.transferTo(new File("D:/Future/JavaWeb/Upload/Product/avatar/" + fileName));
-            p.setAvatar("Product/avatar/" + fileName);
+            p.setImage("Product/avatar/" + fileName);
         } else {
-            p.setAvatar(bookInDb.getAvatar());
+            p.setImage(bookInDb.getImage());
         }
         return saveOrUpdate(p);
     }

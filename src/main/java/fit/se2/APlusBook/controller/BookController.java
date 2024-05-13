@@ -3,7 +3,6 @@ package fit.se2.APlusBook.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import fit.se2.APlusBook.model.Category;
 import org.springframework.data.domain.Page;
@@ -41,8 +40,8 @@ public class BookController {
     // Lấy sách để show ở homepage
     @GetMapping(value="/")
     public String getHomePage(Model model) {
-        List<Book> languageBooks = bookRepository.getTop5BooksByCategoryId(4);
-        model.addAttribute("languageBooks", languageBooks);
+        List<Book> entertainmentBooks = bookRepository.getTop5BooksByCategoryId(7);
+        model.addAttribute("entertainmentBooks", entertainmentBooks);
 
         List<Book> novelBooks = bookRepository.getTop5BooksByCategoryId(3);
         model.addAttribute("novelBooks", novelBooks);
