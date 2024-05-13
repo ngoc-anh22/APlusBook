@@ -8,11 +8,11 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <div class="container-md mb-4 py-2 px-3 bg-light">
-    <div class="row d-flex justify-content-around">
+    <div class="container-md  mb-5 py-2 px-3 bg-light">
+    <div class="row ms-4">
         <div class=" d-flex justify-content-between pb-2">
             <h5>Comic Books</h5>
-        <a class="fs-5 text-dark" th:href="@{/category/{id}(id=8)}">More</a>
+        <a class="fs-5 me-4 text-dark" th:href="@{/category/{id}(id=8)}">More</a>
         </div>
             <div class="card mb-2 mx-1" style="width: 15rem; height: 20rem;" th:each="comicBooks: ${comicBooks}">
                 <a th:href="@{/book/{id}(id=${comicBooks.id})}"><img
@@ -30,11 +30,11 @@
             </div>
         </div>
 </div>
-    <div class="container-md mb-4 py-2 px-3 bg-light">
-        <div class="row d-flex justify-content-around">
+    <div class="container-md mb-5 py-2 px-3 bg-light">
+        <div class="row ms-4">
             <div class=" d-flex justify-content-between pb-2">
                 <h5>Novel Books</h5>
-                <a class="fs-5 text-dark" th:href="@{/category/{id}(id=3)}">More</a>
+                <a class="fs-5 me-4 text-dark" th:href="@{/category/{id}(id=3)}">More</a>
             </div>
             <div class="card mb-2 mx-1" style="width: 15rem; height: 20rem;" th:each="novelBooks: ${novelBooks}">
                 <a th:href="@{/book/{id}(id=${novelBooks.id})}"><img
@@ -52,11 +52,11 @@
             </div>
         </div>
     </div>
-    <div class="container-md mb-4 py-2 px-3 bg-light">
-        <div class="row d-flex justify-content-around">
+    <div class="container-md mb-5 py-2 px-3 bg-light">
+        <div class="row ms-4">
             <div class=" d-flex justify-content-between pb-2">
                 <h5>Literature Books</h5>
-                <a class="fs-5 text-dark" th:href="@{/category/{id}(id=1)}">More</a>
+                <a class="fs-5 me-4 text-dark" th:href="@{/category/{id}(id=1)}">More</a>
             </div>
             <div class="card mb-2 mx-1" style="width: 15rem; height: 20rem;" th:each="literatureBooks:${literatureBooks}" >
                 <a th:href="@{/book/{id}(id=${literatureBooks.id})}"><img
@@ -74,11 +74,11 @@
             </div>
         </div>
     </div>
-    <div class="container-md mb-4 py-2 px-3 bg-light">
-        <div class="row d-flex justify-content-around">
+    <div class="container-md py-2 px-3 bg-light"  style="margin-bottom: 100px;">
+        <div class="row ms-4 ">
             <div class=" d-flex justify-content-between pb-2">
                 <h5>Living Skill Books</h5>
-                <a class="fs-5 text-dark" th:href="@{/category/{id}(id=14)}">More</a>
+                <a class="fs-5 me-4 text-dark" th:href="@{/category/{id}(id=14)}">More</a>
             </div>
             <div class="card mb-2 mx-1" style="width: 15rem; height: 20rem;" th:each="livingSkillBooks:${livingSkillBooks}">
                 <a th:href="@{/book/{id}(id=${livingSkillBooks.id})}"><img
