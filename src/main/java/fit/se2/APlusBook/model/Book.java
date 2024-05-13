@@ -1,5 +1,6 @@
 package fit.se2.APlusBook.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class Book {
     @NotNull(message = "The ISBN can not be null")
     private long ISBN;
     
-    private String price;
+    private BigDecimal price;
     private int quantityInStock;
     private int quantityImport;
     private int quantitySold;
@@ -73,10 +74,10 @@ public class Book {
     public void setISBN(long iSBN) {
         ISBN = iSBN;
     }
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
-    public void setPrice(String price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
     public int getQuantityInStock() {

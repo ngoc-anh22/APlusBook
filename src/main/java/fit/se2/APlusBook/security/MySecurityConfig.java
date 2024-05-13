@@ -37,15 +37,16 @@ public class MySecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(req -> req
-//                        .requestMatchers("/css/**", "/images/**").permitAll()
-//                        .requestMatchers("/register/**", "/", "/**/details")
-//                        .permitAll()
-//                        .anyRequest().hasAnyAuthority("ADMIN")
-                                .anyRequest().permitAll()
+                        .requestMatchers("/css/**", "/images/**").permitAll()
+                        .requestMatchers("/register/**", "/list", "/detail/**", "/search")
+                        .permitAll()
+                        .requestMatchers("/update/**", "/delete/**" ,"/save", "/insert", "/comment").hasAnyAuthority("ADMIN")
+//                        .anyRequest().permitAll()
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/log-in")
-                        .loginProcessingUrl("/log-in-process")
+                        .loginProcessingUrl("/logIn-Processing")
+                        .successHandler(new UrlSuccessHandler())
                         .failureUrl("/log-in?error=true")
                         .permitAll()
                 )
