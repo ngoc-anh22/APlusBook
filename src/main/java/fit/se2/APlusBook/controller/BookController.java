@@ -38,7 +38,7 @@ public class BookController {
     }
 
     // Lấy sách để show ở homepage
-    @GetMapping(value="/")
+    @GetMapping(value="/book/homepage")
     public String getHomePage(Model model) {
         List<Book> comicBooks = bookRepository.getTop5BooksByCategoryId(8);
         model.addAttribute("comicBooks", comicBooks);
