@@ -116,7 +116,7 @@ public class BookController {
     public String updateBook(@PathVariable(value = "id") Long id, Model model) {
         Book book = bookRepository.getById(id);
         model.addAttribute("book", book);
-        return "bookUpdate";
+        return "book/bookUpdate";
     }
 
     // Xóa sách
@@ -142,7 +142,7 @@ public class BookController {
     public String addBook(Model model) {
         Book book = new Book();
         model.addAttribute("book", book);
-        return "bookAdd";
+        return "book/bookAdd";
     }
 
     // Chèn sách vào list
