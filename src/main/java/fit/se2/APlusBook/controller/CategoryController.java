@@ -30,22 +30,7 @@ public class CategoryController {
     @SuppressWarnings("deprecation")
     @GetMapping("/category/{id}")
     public String getCategoryById(@PathVariable Long id, Model model, @RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "6")int size) {
-//        Category category = categoryRepository.getById(id);
-//        List<Book> books = bookRepository.findByCategory(category);
-//        model.addAttribute("category", category);
-//        model.addAttribute("books", books);
-//        //
-//        Page<Book> bookPage = bookRepository.findByCategory(category,PageRequest.of(page, 9));
-//        // Convert the list of books into rows with 6 books per row
-////        List<Book> books = bookPage.getContent();
-//        List<List<Book>> rows = new ArrayList<>();
-//        for (int i = 0; i < books.size(); i += 3) {
-//            rows.add(books.subList(i, Math.min(i + 3, books.size())));
-//        }
-//        model.addAttribute("currentPage", page);
-//        model.addAttribute("totalPages", bookPage.getTotalPages());
-//        model.addAttribute("rows", rows);
-//        return "Category/categoryDetail";
+
         Category category = categoryRepository.getById(id);
         model.addAttribute("category", category);
 

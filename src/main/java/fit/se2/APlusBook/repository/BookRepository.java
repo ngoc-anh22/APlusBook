@@ -22,5 +22,5 @@ public interface BookRepository extends JpaRepository <Book, Long> {
     List<Book> findByCategoryId(Long category_id);
     List<Book> getTop5BooksByCategoryId(int i);
 
-
+    List<Book> findByTitleContainingIgnoreCase(String title);
 }

@@ -17,12 +17,12 @@
                         <img th:src="${book.image}"
                              class="card-img-top" alt="Image book detail">
                     </div>
-                    <div class="col-7 pt-4">
-                        <div class=" "style="background-color: white; height: 40%; width: 50%;">
-                            <h5 style="height: 48px;" th:text="${book.title}">Book title
+                    <div class="col-7 pt-4 px-4">
+                        <div>
+                            <h5  th:text="${book.title}">Book title
                             </h5>
                             <div class="d-flex align-items-end">
-                                <h5 class="text-danger" style="width: 8rem;"  th:text="${book.price}+ 'VND'">{}đ</h5>
+                                <h5 class="text-danger" style="width: 8rem;"  th:text="${book.price}+ 'VND'"></h5>
                             </div>
                             <div class="my-4">
                                 <h6 class="d-block">Quantity:
