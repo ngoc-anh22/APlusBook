@@ -110,7 +110,7 @@ public class BookController {
     }
 
     @SuppressWarnings("deprecation")
-    @RequestMapping(value = "book/delete/{id}")
+    @RequestMapping(value = "/book/delete/{id}")
     public String deleteBook(@PathVariable(value = "id") Long id) {
         if(bookRepository.existsById(id)) {
             Book book = bookRepository.getById(id);

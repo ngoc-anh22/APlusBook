@@ -85,10 +85,10 @@ public class Book {
     public void setQuantityInStock(int quantityInStock) {
         this.quantityInStock = quantityInStock;
     }
-    public int getQuatityImport() {
+    public int getQuantityImport() {
         return quantityImport;
     }
-    public void setQuatityImport(int quantityImport) {
+    public void setQuantityImport(int quantityImport) {
         this.quantityImport = quantityImport;
     }
     public int getQuantitySold() {
