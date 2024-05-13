@@ -16,7 +16,7 @@ public class Category {
     @Length(min = 3)
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "category")
     private List<Book> book;
 
     public long getId() {

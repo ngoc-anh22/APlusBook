@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/_layout}">
+<head>
+    <title>A Plus Book</title>
+    <link rel="stylesheet" th:href="@{/css/products.css}" type="text/css" />
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container-md mb-4 py-2 px-3 bg-light">
+        <div class="row d-flex justify-content-around">
+            <div class=" d-flex justify-content-between pb-2">
+                <h5>Comic Books</h5>
+                <a class="fs-6 fst-italic text-main text-decoration-none" th:href="@{/category/{id}(id=8)}">More <i class="fas fa-chevron-right text-main align-middle" style="font-size: 14px;" ></i></a>
+            </div>
+            <div class="card mb-2 mx-1" style="width: 15rem; height: 20rem;" th:each="comicBooks: ${comicBooks}">
+                <a th:href="@{/book/{id}(id=${comicBooks.id})}"><img
+                        th:src="${comicBooks.image}"
+                        class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 15rem;"></a>
+                <div class="card-body pb-1 mt-2" style="padding: 0px !important;">
+                    <a th:href="@{/book/{id}(id=${comicBooks.id})}" class="text-decoration-none text-dark">
+                        <h5 class="card-title fs-6 text-left fw-bold text-truncate ps-0 my-0" th:text="${comicBooks.title}"></h5>
+                    </a>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="card-text text-main fs-5 fw-bold" th:text="${comicBooks.price} +'VND'"></p>
+                        <p style="font-size:14px;" th:text="'Sold: ' +${comicBooks.quantitySold}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-md mb-4 py-2 px-3 bg-light">
+        <div class="row d-flex justify-content-around">
+            <div class=" d-flex justify-content-between pb-2">
+                <h5>Novel Books</h5>
+                <a class="fs-6 fst-italic text-main text-decoration-none" th:href="@{/category/{id}(id=3)}">More <i class="fas fa-chevron-right text-main align-middle" style="font-size: 14px;"></i></a>
+            </div>
+            <div class="card mb-2 mx-1" style="width: 15rem; height: 20rem;" th:each="novelBooks: ${novelBooks}">
+                <a th:href="@{/book/{id}(id=${novelBooks.id})}"><img
+                        th:src="${novelBooks.image}"
+                        class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 15rem;"></a>
+                <div class="card-body pb-1 mt-2" style="padding: 0px !important;">
+                    <a th:href="@{/book/{id}(id=${novelBooks.id})}" class="text-decoration-none text-dark">
+                        <h5 class="card-title fs-6 text-left fw-bold text-truncate ps-0 my-0" th:text="${novelBooks.title}"></h5>
+                    </a>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="card-text text-main fs-5 fw-bold" th:text="${novelBooks.price} +'VND'"></p>
+                        <p style="font-size:14px;" th:text="'Sold: ' +${novelBooks.quantitySold}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-md mb-4 py-2 px-3 bg-light">
+        <div class="row d-flex justify-content-around">
+            <div class=" d-flex justify-content-between pb-2">
+                <h5>Literature Books</h5>
+                <a class="fs-6 fst-italic text-main text-decoration-none" th:href="@{/category/{id}(id=1)}">More <i class="fas fa-chevron-right text-main align-middle" style="font-size: 14px;"></i></a>
+            </div>
+            <div class="card mb-2 mx-1" style="width: 15rem; height: 20rem;" th:each="literatureBooks:${literatureBooks}" >
+                <a th:href="@{/book/{id}(id=${literatureBooks.id})}"><img
+                        th:src="${literatureBooks.image}"
+                        class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 15rem;"></a>
+                <div class="card-body pb-1 mt-2" style="padding: 0px !important;">
+                    <a th:href="@{/book/{id}(id=${literatureBooks.id})}" class="text-decoration-none text-dark">
+                        <h5 class="card-title fs-6 text-left fw-bold text-truncate ps-0 my-0" th:text="${literatureBooks.title}"></h5>
+                    </a>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="card-text text-main fs-5 fw-bold" th:text="${literatureBooks.price} +'VND'"></p>
+                        <p style="font-size:14px;" th:text="'Sold: ' +${literatureBooks.quantitySold}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-md mb-4 py-2 px-3 bg-light">
+        <div class="row d-flex justify-content-around">
+            <div class=" d-flex justify-content-between pb-2">
+                <h5>Living Skill Books</h5>
+                <a class="fs-6 fst-italic text-main text-decoration-none" th:href="@{/category/{id}(id=14)}">More <i class="fas fa-chevron-right text-main align-middle" style="font-size: 14px;"></i></a>
+            </div>
+            <div class="card mb-2 mx-1" style="width: 15rem; height: 20rem;" th:each="livingSkillBooks:${livingSkillBooks}">
+                <a th:href="@{/book/{id}(id=${livingSkillBooks.id})}"><img
+                        th:src="${livingSkillBooks.image}"
+                        class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 15rem;"></a>
+                <div class="card-body pb-1 mt-2" style="padding: 0px !important;">
+                    <a th:href="@{/book/{id}(id=${livingSkillBooks.id})}" class="text-decoration-none text-dark">
+                        <h5 class="card-title fs-6 text-left fw-bold text-truncate ps-0 my-0" th:text="${livingSkillBooks.title}"></h5>
+                    </a>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="card-text text-main fs-5 fw-bold" th:text="${livingSkillBooks.price} +'VND'"></p>
+                        <p style="font-size:14px;" th:text="'Sold: ' +${livingSkillBooks.quantitySold}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,82 +1,45 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/_layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/_layout}">
 <head>
-
     <title>Signup</title>
 </head>
 <body>
 <div layout:fragment="content">
-    <form
-            class="container-sm bg-main-lighter my-5 px-5 py-4 rounded"
-            style="max-width: 720px"
-            action="/register"
-    >
+    <form class="container-sm bg-main-lighter my-5 px-5 py-4 rounded" style="max-width: 720px" action="/register-process" method="post">
         <h3 class="text-center mb-3">Welcome to My Website</h3>
-
         <div class="mb-2">
             <label for="username" class="form-label">Username</label>
-            <input
-                    type="text"
-                    class="form-control"
-                    id="username"
-                    placeholder="Please enter your username"
-            />
-            <p class="text-danger fst-italic err-msg">Error message here</p>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Please enter your username" />
+<!--            <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>-->
         </div>
         <div class="mb-2">
             <label for="password" class="form-label">Password</label>
-            <input
-                    type="password"
-                    class="form-control"
-                    id="password"
-                    placeholder="Please enter your password"
-            />
-            <p class="text-danger fst-italic err-msg">Error message here</p>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Please enter your password" />
+<!--            <p class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>-->
         </div>
         <div class="mb-2">
-            <label for="confirm_password" class="form-label"
-            >Confirm password</label
-            >
-            <input
-                    type="password"
-                    class="form-control"
-                    id="confirm_password"
-                    placeholder="Please enter your password again"
-            />
-            <p class="text-danger fst-italic err-msg">Error message here</p>
+            <label for="confirm_password" class="form-label">Confirm password</label>
+            <input type="password" class="form-control" id="confirm_password" name="confirmPassword" placeholder="Please enter your password again" required />
+<!--            <p class="error-message" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p>-->
         </div>
         <div class="mb-2">
             <label for="phonenum" class="form-label">Phone number</label>
-            <input
-                    type="tel"
-                    class="form-control"
-                    id="phonenum"
-                    placeholder="Please enter your phonenum"
-            />
-            <p class="text-danger fst-italic err-msg">Error message here</p>
+            <input type="tel" class="form-control" id="phonenum" name="phoneNumber" placeholder="Please enter your phone number" required />
+<!--            <p class="error-message" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>-->
         </div>
         <div class="mb-2">
             <label for="email" class="form-label">Email</label>
-            <input
-                    type="email"
-                    class="form-control"
-                    id="email"
-                    placeholder="Please enter your email"
-            />
-            <p class="text-danger fst-italic err-msg">Error message here</p>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Please enter your email" required />
+<!--            <p class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>-->
         </div>
-        <button type="submit" class="btn bg-main mt-3 text-light col-12">
-            Sign up
-        </button>
+        <button type="submit" class="btn bg-main mt-3 text-light col-12">Sign up</button>
         <hr />
         <p class="text-center">
-            You have account before? <br />
+            You already have an account? <br />
             Please login by clicking <a href="/log-in">here</a>.
         </p>
     </form>
-    <!-- content page will override this -->
+    <!-- Content page will override this -->
 </div>
 </body>
 </html>

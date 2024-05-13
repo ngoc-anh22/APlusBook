@@ -1,6 +1,6 @@
 package fit.se2.APlusBook.model;
 
-import fit.se2.APlusBook.dto.UserDto;
+import jakarta.validation.Valid;
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.*;
@@ -29,7 +29,7 @@ public class User implements UserDetails {
     @Length(min = 3, max = 50)
     @NotEmpty(message = "Full name can not be empty")
     private String fullName;
-    
+
     @Length(min = 3, max = 30)
     @NotEmpty(message = "Password can not be empty")
     private String password;
@@ -37,7 +37,7 @@ public class User implements UserDetails {
     @Min(16)
     @Max(90)
     private int age;
-    
+
     private String address;
     private String email;
     private String phoneNum;
@@ -45,10 +45,6 @@ public class User implements UserDetails {
 
     @NotEmpty(message = "Role can not be empty")
     private String role;
-
-    public User() {
-
-    }
 
     public long getId() {
         return id;
@@ -145,7 +141,7 @@ public class User implements UserDetails {
         this.role = role;
     }
 
-    public User(UserDto user, PasswordEncoder encoder) {
+    public User(@Valid UserSimple user, PasswordEncoder encoder) {
         this.userName = user.getUsername();
         this.password = encoder.encode(user.getPassword());
         this.address = user.getAddress();

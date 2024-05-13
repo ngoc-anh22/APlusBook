@@ -5,36 +5,27 @@
 <body>
 <nav th:fragment="navbar" class="navbar bg-main px-5">
     <div class="col-1">
-        <a class="navbar-brand" href="#"
-        ><img th:src="@{/images/APlusBook_logo.png}" alt="A Plus Book Logo" style="width: 100px; height: 60px"
-        /></a>
+        <a class="navbar-brand" href="/">
+            <img th:src="@{/images/APlusBook_logo.png}" alt="A Plus Book Logo"
+                 style="width: 100px; height: 60px" />
+        </a>
     </div>
     <div class="dropdown d-flex align-items-center bg-light p-2 rounded">
-        <button class="dropdown-toggle bg-light border-0" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="dropdown-toggle bg-light border-0 text-dark" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fas fa-filter me-1"></i>
             Categories
         </button>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Detective</a></li>
-            <li><a class="dropdown-item" href="#">Amime</a></li>
-            <li><a class="dropdown-item" href="#">Kid Story</a></li>
-            <li><a class="dropdown-item" href="#">Romantic</a></li>
-            <li><a class="dropdown-item" href="#">Reference Book</a></li>
-            <li><a class="dropdown-item" href="#">Course Book</a></li>
-
+            <li th:each="category: ${categories}">
+                <a class="dropdown-item" th:href="@{/category/{id}(id=${category.id})}"
+                   th:text="${category.name}"></a>
+            </li>
         </ul>
     </div>
-    <form class="d-flex col-6" role="search">
-        <input
-                class="form-control me-2 rounded-pill"
-                type="search"
-                placeholder="Search books here"
-                aria-label="Search"
-        />
-        <button
-                class="btn bg-main btn-outline-light rounded-circle"
-                type="submit"
-        >
+    <form class="d-flex col-6" role="search"  th:action="@{/book/list}"method="get">
+        <input class="form-control me-2 rounded-pill" name="title" th:value=${title} type="search" placeholder="Search books here"
+               aria-label="Search" />
+        <button class="btn bg-main btn-outline-light rounded-circle" type="submit">
             <i class="fas fa-magnifying-glass icon-custom"></i>
         </button>
     </form>
@@ -48,10 +39,12 @@
         <a href="#">
             <i class="fas fa-heart icon-custom"></i>
         </a>
-        <a href="#">
+        <a href="/my-cart">
             <i class="fas fa-cart-shopping icon-custom"></i>
         </a>
     </div>
 </nav>
 </body>
 </html>
+
+

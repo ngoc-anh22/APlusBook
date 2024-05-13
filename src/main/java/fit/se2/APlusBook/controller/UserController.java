@@ -1,9 +1,15 @@
 package fit.se2.APlusBook.controller;
+import fit.se2.APlusBook.model.Book;
+import fit.se2.APlusBook.model.Category;
 import fit.se2.APlusBook.model.User;
+import fit.se2.APlusBook.repository.BookRepository;
+import fit.se2.APlusBook.repository.CategoryRepository;
 import fit.se2.APlusBook.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +20,15 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private BookRepository bookRepository;
+    @Autowired
+    CategoryRepository categoryRepository;
+    @ModelAttribute("categories")
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
+    }
+
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -74,7 +89,7 @@ public class UserController {
         }
         return "redirect:/admin/account/list";
     }
-    @GetMapping("/account/change-pasword")
+    @GetMapping("/account/change-password")
     public String changePassword() {
         return "Account/changePassword";
     }
@@ -83,7 +98,12 @@ public class UserController {
         return "Account/myOrder";
     }
     @GetMapping("/account/manage-products")
-    public String manageProducts() {
+    public String manageProducts(Model model, @RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "30")int size) {
+        Page<Book> bookPage = bookRepository.findAll(PageRequest.of(page, size));
+        List<Book> books = bookPage.getContent();
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", bookPage.getTotalPages());
+        model.addAttribute("books", books);
         return "Account/manageProducts";
     }
     @GetMapping("/account/manage-orders")
@@ -94,8 +114,5 @@ public class UserController {
     public String manageCustomers() {
         return "Account/manageCustomers";
     }
-    @GetMapping("/account/manage-promotions")
-    public String managePromotions() {
-        return "Account/managePromotions";
-    }
+
  }

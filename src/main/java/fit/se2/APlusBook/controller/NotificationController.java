@@ -2,10 +2,13 @@ package fit.se2.APlusBook.controller;
 
 import java.util.List;
 
+import fit.se2.APlusBook.model.Category;
+import fit.se2.APlusBook.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,6 +19,13 @@ import fit.se2.APlusBook.repository.NotificationRepository;
 public class NotificationController {
     @Autowired
     NotificationRepository notificationRepository;
+    @Autowired
+    CategoryRepository categoryRepository;
+    @ModelAttribute("categories")
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
+    }
+
 
     @RequestMapping(value = "/notification/list")
     public List<Notification> getAllNotifications() {

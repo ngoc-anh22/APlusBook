@@ -13,74 +13,64 @@
             <div th:replace="~{Account/accountNav :: navbar}"></div>
 
             <div class="col-8 text-start ms-5">
-                <h4 class="text-center fw-bold">MANAGE PRODUCTS</h4>
+                <div class="d-flex mx-5 justify-content-between align-items-center">
+                    <h4 class="text-center fw-bold">MANAGE PRODUCTS</h4>
+                    <p class="btn bg-main" ><a th:href="@{/book/add}" class="text-decoration-none text-light">Add new book</a></p>
+                </div>
+
                 <table class="table table-hover">
                     <thead>
                     <tr class="table-primary">
                         <th scope="col" class="text-center">ID</th>
-                        <th scope="col" class="text-center">Name</th>
+                        <th scope="col" class="text-center">Title</th>
                         <th scope="col" class="text-center">Status</th>
                         <th scope="col" class="text-center">Price</th>
                         <th scope="col" class="text-center">Stock</th>
+                        <th scope="col" class="text-center">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row" class="align-middle text-center">1</th>
-                        <td class="align-middle text-center text-uppercase fw-bold">
-                            Bài giảng văn hóa An Nam
+                    <tr th:each="book:${books}">
+                        <th scope="row" class="align-middle text-center" th:text="${book.id}"></th>
+                        <td class="align-middle text-center fw-bold">
+                            <a th:href="@{/book/{id}(id=${book.id})}" class="align-middle text-decoration-none text-dark d-inline-block text-truncate" style="max-width: 320px;" th:text="${book.title}"></a>
                         </td>
-                        <td class="align-middle text-danger text-center fw-medium">
-                            Sold out
+                        <td class="align-middle text-center fw-medium" th:classappend="${book.quantityImport - book.quantitySold <= 10} ? 'text-danger' : 'text-success'">
+                            <span th:text="${(book.quantityImport - book.quantitySold) <= 10} ? 'Sold out' : 'Available'"></span>
                         </td>
-                        <td class="align-middle text-center">233.000đ</td>
-                        <td class="align-middle text-center">0</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="align-middle text-center">1</th>
-                        <td class="align-middle text-center text-uppercase fw-bold">
-                            Bài giảng Tư tưởng Hồ Chí Minh về đại đoàn kết dân tộc và đoàn kết quốc tế
+                        <td class="align-middle text-center" th:text="${book.price}"></td>
+                        <td class="align-middle text-center" th:text="${book.quantityInStock}"></td>
+                        <td class="align-middle d-flex align-items-center justify-content-around">
+                            <p class="btn bg-success m-0">
+                                <a class="text-decoration-none text-light" th:href="@{/book/update/{id}(id=${book.id})}">Update</a>
+                            </p>
+                            <p class="btn bg-danger m-0" >
+                                <a class="text-decoration-none text-light" th:href="@{/book/delete/{id}(id=${book.id})}">Delete</a>
+                            </p>
                         </td>
-                        <td class="align-middle text-main text-center fw-medium">
-                            Available
-                        </td>
-                        <td class="align-middle text-center">233.000đ</td>
-                        <td class="align-middle text-center">124</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="align-middle text-center">1</th>
-                        <td class="align-middle text-center text-uppercase fw-bold">
-                            Bài giảng lịch sử An Nam và ứng dụng trong đời sống
-                        </td>
-                        <td class="align-middle text-success text-center fw-medium">
-                            Best Seller
-                        </td>
-                        <td class="align-middle text-center">233.000đ</td>
-                        <td class="align-middle text-center">124</td>
                     </tr>
                     </tbody>
                 </table>
-                <ul class="pagination justify-content-center mt-4">
-                    <li class="page-item">
-                        <a class="page-link text-main" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link text-main" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link text-main" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link text-main" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link text-main" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
+                <nav aria-label="Page navigation"  th:if="${totalPages > 1}">
+                    <ul class="pagination justify-content-center mt-4">
+                        <li th:class="${currentPage == 0} ? 'page-item disabled' : 'page-item'">
+                            <a class="page-link" th:href='@{/account/manage-products(size=30, page=0)}' th:if="${currentPage> 0}"><i class="fas fa-angle-double-left"></i></a>
+                        </li>
+                        <li th:class="${currentPage == 0} ? 'page-item disabled' : 'page-item'">
+                            <a class="page-link" th:href='@{/account/manage-products(size=30, page=${currentPage-1})}' th:if="${currentPage> 0}"><i class="fas fa-chevron-left"></i></a>
+                        </li>
+                        <li th:each="pageNum : ${#numbers.sequence(0, totalPages - 1)}"
+                            th:class="${pageNum == currentPage} ? 'page-item active' : 'page-item'">
+                            <a class="page-link" th:href='@{/account/manage-products(size=30, page=${pageNum})}' th:text="${pageNum + 1}">1</a>
+                        </li>
+                        <li th:class="${currentPage == totalPages - 1} ? 'page-item disabled' : 'page-item'">
+                            <a class="page-link" th:href='@{/account/manage-products(size=30, page=${currentPage + 1})}'th:if="${currentPage!=totalPages-1}"><i class="fas fa-chevron-right"></i></a>
+                        </li>
+                        <li th:class="${currentPage == totalPages - 1} ? 'page-item disabled' : 'page-item'">
+                            <a class="page-link" th:href="@{/account/manage-products(size=30, page=${totalPages - 1})}" th:if="${currentPage!=totalPages-1}"><i class="fas fa-angle-double-right"></i></a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
