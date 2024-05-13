@@ -45,7 +45,7 @@ public class MySecurityConfig {
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/log-in")
-                        .loginProcessingUrl("/logIn-Processing")
+                        .loginProcessingUrl("/login_processing_url")
                         .successHandler(new UrlSuccessHandler())
                         .failureUrl("/log-in?error=true")
                         .permitAll()

@@ -31,6 +31,10 @@ public class UserDto {
         this.phoneNum = phoneNum;
     }
 
+    public UserDto() {
+
+    }
+
     public String getUsername() {
         return username;
     }
