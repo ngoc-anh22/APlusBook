@@ -13,12 +13,9 @@ import fit.se2.APlusBook.model.Book;
 
 
 public interface BookRepository extends JpaRepository <Book, Long> {
-    List<Book> findByTitle(String title);
-    List<Book> findByCategory(Category category);
-
     Page<Book> findByCategory(Category category, Pageable pageable);
-    @Query("SELECT b FROM Book b WHERE b.price = :price AND b.publisher = :publisher AND b.category = :category")
-    List<Book> findByFilters(@Param("price") double price, @Param("rate") int avg_rate, @Param("category") String category);
+    @Query("SELECT b FROM Book b WHERE b.price = :price AND b.avg_rate = :avg_rate AND b.category = :category")
+    List<Book> findByFilters(@Param("price") double price, @Param("avg_rate") int avg_rate, @Param("category") String category);
     List<Book> findByCategoryId(Long category_id);
     List<Book> getTop5BooksByCategoryId(int i);
 
@@ -31,5 +28,4 @@ public interface BookRepository extends JpaRepository <Book, Long> {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getBookById'");
     }
-    void update(Book book);
 }

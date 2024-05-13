@@ -3,6 +3,7 @@ package fit.se2.APlusBook.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import fit.se2.APlusBook.model.Category;
 import org.springframework.data.domain.Page;
@@ -28,7 +29,6 @@ public class BookController {
     CommentRepository commentRepository;
     @Autowired
     CategoryRepository categoryRepository;
-    private Object languageBooks;
     
     // Tìm sách theo categoryId
     @RequestMapping(value = "/book/list/{category_id}")
@@ -94,7 +94,7 @@ public class BookController {
     // Tìm sách theo tên
     @RequestMapping(value = "/book/detail/{title}")
     public String searchBookByTitle(@PathVariable(value = "title") String title, Model model) {
-        List<Book> books = bookRepository.findByTitle(title);
+        List<Book> books = bookRepository.findByTitleContainingIgnoreCase(title);
         model.addAttribute("books", books);
         return "searchBookByTitle";
     }
@@ -103,9 +103,9 @@ public class BookController {
     @RequestMapping(value = "/book/search")
     public String searchBooksByFilters(
             @RequestParam(value = "price") double price, 
-            @RequestParam(value = "rate") int avg_rate, 
+            @RequestParam(value = "rate")  int rate, 
             @RequestParam(value = "category") String category, Model model) {
-        List<Book> books = bookRepository.findByFilters(price, avg_rate, category);
+        List<Book> books = bookRepository.findByFilters(price, rate, category);
         model.addAttribute("books", books);
         return "filterResults";
     }

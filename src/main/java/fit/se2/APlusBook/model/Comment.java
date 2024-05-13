@@ -76,7 +76,4 @@ public class Comment {
         this.book = book;
     } 
     
-    public Long getBookId() {
-        return book.getId();
-    }
 }
