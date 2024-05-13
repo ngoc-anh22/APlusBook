@@ -39,7 +39,7 @@ public class BookController {
     }
 
     // Lấy sách để show ở homepage
-    @GetMapping(value="/book/homepage")
+    @GetMapping(value="/")
     public String getHomePage(Model model) {
         List<Book> languageBooks = bookRepository.getTop5BooksByCategoryId(4);
         model.addAttribute("languageBooks", languageBooks);
@@ -116,12 +116,12 @@ public class BookController {
     public String updateBook(@PathVariable(value = "id") Long id, Model model) {
         Book book = bookRepository.getById(id);
         model.addAttribute("book", book);
-        return "bookUpdate";
+        return "book/bookUpdate";
     }
 
     // Xóa sách
     @SuppressWarnings("deprecation")
-    @RequestMapping(value = "book/delete/{id}")
+    @RequestMapping(value = "/book/delete/{id}")
     public String deleteBook(@PathVariable(value = "id") Long id) {
         if(bookRepository.existsById(id)) {
             Book book = bookRepository.getById(id);
@@ -142,7 +142,7 @@ public class BookController {
     public String addBook(Model model) {
         Book book = new Book();
         model.addAttribute("book", book);
-        return "bookAdd";
+        return "book/bookAdd";
     }
 
     // Chèn sách vào list

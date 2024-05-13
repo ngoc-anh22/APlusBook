@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/_layout}">
+
+<head>
+    <title>A Plus Book</title>
+    <link rel="stylesheet" th:href="@{/css/products.css}" type="text/css" />
+</head>
+<body>
+<div layout:fragment="content">
+    <form
+            class="container-sm bg-main-lighter my-5 px-5 py-4 rounded"
+            style="max-width: 720px"
+            action="/book/insert"
+    >
+        <h3 class="text-center mb-3">Add new book</h3>
+
+        <div class="mb-2">
+            <label for="title" class="form-label">Title</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    placeholder="Please enter book's title"
+            />
+            <p class="text-danger fst-italic err-msg">Error message here</p>
+        </div>
+        <div class="mb-2">
+            <label for="description" class="form-label">Description</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    placeholder="Please enter book's description"
+            />
+            <p class="text-danger fst-italic err-msg">Error message here</p>
+        </div>
+        <div class="mb-2">
+            <label for="publishedDate" class="form-label">Published Date</label>
+            <input
+                    type="date"
+                    class="form-control"
+                    id="publishedDate"
+                    placeholder="Please enter book's published date"
+            />
+            <p class="text-danger fst-italic err-msg">Error message here</p>
+        </div>
+        <div class="mb-2">
+            <label for="isbn" class="form-label">ISBN</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="isbn"
+                    placeholder="Please enter book's ISBN"
+            />
+            <p class="text-danger fst-italic err-msg">Error message here</p>
+        </div>
+        <div class="mb-2">
+            <label for="price" class="form-label">Price</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="price"
+                    placeholder="Please enter book's price"
+            />
+            <p class="text-danger fst-italic err-msg">Error message here</p>
+        </div>
+        <div class="mb-2">
+            <label for="quantityImport" class="form-label"
+            >Quantity Import</label
+            >
+            <input
+                    type="text"
+                    class="form-control"
+                    id="quantityImport"
+                    placeholder="Please enter book's quantity imported"
+            />
+            <p class="text-danger fst-italic err-msg">Error message here</p>
+        </div>
+        <div class="mb-2">
+            <label for="publisher" class="form-label">Publisher</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="publisher"
+                    placeholder="Please enter book's publisher"
+            />
+            <p class="text-danger fst-italic err-msg">Error message here</p>
+        </div>
+        <div class="mb-2">
+            <label for="author" class="form-label">Author</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="author"
+                    placeholder="Please enter book's author"
+            />
+            <p class="text-danger fst-italic err-msg">Error message here</p>
+        </div>
+        <div class="mb-2">
+            <label for="image" class="form-label">Image</label>
+            <input
+                    type="file"
+                    accept="image/*"
+                    class="form-control"
+                    id="image"
+                    placeholder="Please enter book's image"
+            />
+            <p class="text-danger fst-italic err-msg">Error message here</p>
+        </div>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Category</option>
+            <option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+        </select>
+        <div class="d-grid gap-2 d-flex justify-content-end mt-3">
+            <button
+                    type="submit"
+                    class="btn bg-main px-2 text-light"
+                    style="width: 80px"
+            >
+                Add
+            </button>
+            <a
+                    class="btn bg-secondary px-2 text-light"
+                    style="width: 80px"
+                    href="/account/manage-products"
+            >
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

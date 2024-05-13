@@ -11,7 +11,7 @@
     <div class="container-md mb-4 py-2 px-3 bg-light">
         <div class="row d-flex justify-content-around">
             <div class=" d-flex justify-content-between pb-2">
-                <h5>Comic Books</h5>
+                <h5><a class="text-main text-decoration-none" th:href="@{/category/{id}(id=8)}">Comic Books</a></h5>
                 <a class="fs-6 fst-italic text-main text-decoration-none" th:href="@{/category/{id}(id=8)}">More <i class="fas fa-chevron-right text-main align-middle" style="font-size: 14px;" ></i></a>
             </div>
             <div class="card mb-2 mx-1" style="width: 15rem; height: 20rem;" th:each="comicBooks: ${comicBooks}">
@@ -33,7 +33,7 @@
     <div class="container-md mb-4 py-2 px-3 bg-light">
         <div class="row d-flex justify-content-around">
             <div class=" d-flex justify-content-between pb-2">
-                <h5>Novel Books</h5>
+                <h5><a class="text-main text-decoration-none" th:href="@{/category/{id}(id=3)}">Novel Books</a></h5>
                 <a class="fs-6 fst-italic text-main text-decoration-none" th:href="@{/category/{id}(id=3)}">More <i class="fas fa-chevron-right text-main align-middle" style="font-size: 14px;"></i></a>
             </div>
             <div class="card mb-2 mx-1" style="width: 15rem; height: 20rem;" th:each="novelBooks: ${novelBooks}">
@@ -55,7 +55,7 @@
     <div class="container-md mb-4 py-2 px-3 bg-light">
         <div class="row d-flex justify-content-around">
             <div class=" d-flex justify-content-between pb-2">
-                <h5>Literature Books</h5>
+                <h5><a class="text-main text-decoration-none" th:href="@{/category/{id}(id=1)}">Literature Books</a></h5>
                 <a class="fs-6 fst-italic text-main text-decoration-none" th:href="@{/category/{id}(id=1)}">More <i class="fas fa-chevron-right text-main align-middle" style="font-size: 14px;"></i></a>
             </div>
             <div class="card mb-2 mx-1" style="width: 15rem; height: 20rem;" th:each="literatureBooks:${literatureBooks}" >
@@ -76,8 +76,8 @@
     </div>
     <div class="container-md mb-4 py-2 px-3 bg-light">
         <div class="row d-flex justify-content-around">
-            <div class=" d-flex justify-content-between pb-2">
-                <h5>Living Skill Books</h5>
+            <div class="d-flex justify-content-between pb-2">
+                <h5><a class="text-main text-decoration-none" th:href="@{/category/{id}(id=14)}">Living Skill Books</a></h5>
                 <a class="fs-6 fst-italic text-main text-decoration-none" th:href="@{/category/{id}(id=14)}">More <i class="fas fa-chevron-right text-main align-middle" style="font-size: 14px;"></i></a>
             </div>
             <div class="card mb-2 mx-1" style="width: 15rem; height: 20rem;" th:each="livingSkillBooks:${livingSkillBooks}">
