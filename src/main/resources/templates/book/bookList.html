@@ -14,6 +14,7 @@
                 <tbody>
                     <tr th:each="row : ${rows}">
                         <div class="card mb-2 mx-1" style="width: 13rem; height: 20rem;" th:each="book: ${row}">
+
                             <a th:href="@{/book/{id}(id=${book.id})}"><img
                                     th:src="${book.image}"
                                     class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 15rem;"></a>
