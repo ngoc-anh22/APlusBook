@@ -33,20 +33,20 @@
             <nav aria-label="Page navigation"  th:if="${totalPages > 1}">
                 <ul class="pagination justify-content-center mt-4">
                     <li th:class="${currentPage == 0} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link" th:href='@{/book/list(size=30, page=0)}' th:if="${currentPage> 0}"><i class="fas fa-angle-double-left"></i></a>
+                        <a class="page-link" th:href='@{/book/(size=30, page=0)}' th:if="${currentPage> 0}"><i class="fas fa-angle-double-left"></i></a>
                     </li>
                     <li th:class="${currentPage == 0} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link" th:href='@{/book/list(size=30, page=${currentPage-1})}' th:if="${currentPage> 0}"><i class="fas fa-chevron-left"></i></a>
+                        <a class="page-link" th:href='@{/book/(size=30, page=${currentPage-1})}' th:if="${currentPage> 0}"><i class="fas fa-chevron-left"></i></a>
                     </li>
                     <li th:each="pageNum : ${#numbers.sequence(0, totalPages - 1)}"
                         th:class="${pageNum == currentPage} ? 'page-item active' : 'page-item'">
-                        <a class="page-link" th:href='@{/book/list(size=30, page=${pageNum})}' th:text="${pageNum + 1}">1</a>
+                        <a class="page-link" th:href='@{/book/(size=30, page=${pageNum})}' th:text="${pageNum + 1}">1</a>
                     </li>
                     <li th:class="${currentPage == totalPages - 1} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link" th:href='@{/book/list(size=30, page=${currentPage + 1})}'th:if="${currentPage!=totalPages-1}"><i class="fas fa-chevron-right"></i></a>
+                        <a class="page-link" th:href='@{/book/(size=30, page=${currentPage + 1})}'th:if="${currentPage!=totalPages-1}"><i class="fas fa-chevron-right"></i></a>
                     </li>
                     <li th:class="${currentPage == totalPages - 1} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link" th:href="@{/book/list(size=30, page=${totalPages - 1})}" th:if="${currentPage!=totalPages-1}"><i class="fas fa-angle-double-right"></i></a>
+                        <a class="page-link" th:href="@{/book/(size=30, page=${totalPages - 1})}" th:if="${currentPage!=totalPages-1}"><i class="fas fa-angle-double-right"></i></a>
                     </li>
                 </ul>
             </nav>

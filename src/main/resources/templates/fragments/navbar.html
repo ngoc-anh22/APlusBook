@@ -5,7 +5,7 @@
 <body>
 <nav th:fragment="navbar" class="navbar bg-main px-5">
     <div class="col-1">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img th:src="@{/images/APlusBook_logo.png}" alt="A Plus Book Logo"
                  style="width: 100px; height: 60px" />
         </a>
@@ -18,12 +18,12 @@
         <ul class="dropdown-menu">
             <li th:each="category: ${categories}">
                 <a class="dropdown-item" th:href="@{/category/{id}(id=${category.id})}"
-                   th:text="${category.name}">Detective</a>
+                   th:text="${category.name}"></a>
             </li>
         </ul>
     </div>
-    <form class="d-flex col-6" role="search">
-        <input class="form-control me-2 rounded-pill" type="search" placeholder="Search books here"
+    <form class="d-flex col-6" role="search"  th:action="@{/book/list}"method="get">
+        <input class="form-control me-2 rounded-pill" name="title" th:value=${title} type="search" placeholder="Search books here"
                aria-label="Search" />
         <button class="btn bg-main btn-outline-light rounded-circle" type="submit">
             <i class="fas fa-magnifying-glass icon-custom"></i>
