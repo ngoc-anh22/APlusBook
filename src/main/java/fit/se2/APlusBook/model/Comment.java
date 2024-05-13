@@ -66,5 +66,17 @@ public class Comment {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     } 
+    
+    public Long getBookId() {
+        return book.getId();
+    }
 }

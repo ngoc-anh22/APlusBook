@@ -41,7 +41,7 @@ public class Book {
     @ManyToOne
     private Category category;
     @OneToMany(mappedBy = "book")
-    private List<Comment> comment;
+    private List<Comment> comments;
     
     public long getId() {
         return id;
@@ -115,11 +115,11 @@ public class Book {
     public void setCategory(Category category) {
         this.category = category;
     }
-    public List<Comment> getComment() {
-        return comment;
+    public List<Comment> getComments() {
+        return comments;
     }
-    public void setComment(List<Comment> comment) {
-        this.comment = comment;
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
     public String getImage() {
         return image;
@@ -132,6 +132,19 @@ public class Book {
     }
     public void setAvg_rate(int avg_rate) {
         this.avg_rate = avg_rate;
+    }
+
+    public void calculateAverageRating() {
+        if (comments == null || comments.isEmpty()) {
+            avg_rate = 0; // Trường hợp không có comment, giá trị trung bình rating sẽ là 0.
+            return;
+        }
+        int sum = 0;
+        for (Comment comment : comments) {
+            sum += comment.getRate();
+        }
+        double average = (double) sum / comments.size();
+        avg_rate = (int) Math.round(average);
     }
     
 }
