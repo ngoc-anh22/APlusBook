@@ -28,4 +28,10 @@ public interface BookRepository extends JpaRepository <Book, Long> {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getBookById'");
     }
+<<<<<<< Updated upstream
+=======
+
+    Page<Book> findByTitleContainingIgnoreCase(String title, Pageable pageable);
+
+>>>>>>> Stashed changes
 }

@@ -39,19 +39,30 @@ public class RegisterController {
     }
 
     @GetMapping("/register")
-    public String register() {
+    public String register(Model model) {
+        model.addAttribute("user", new UserDto());
         return "Authentication/register";
     }
     @PostMapping("/register-process")
+<<<<<<< Updated upstream:src/main/java/fit/se2/APlusBook/controller/RegisterController.java
     public String registerHandle(Model model, @Valid UserSimple ut, BindingResult result) {
+=======
+    public String registerHandle(Model model, @ModelAttribute("user") @Valid UserDto ut, BindingResult result) {
+>>>>>>> Stashed changes:src/main/java/fit/se2/APlusBook/controller/AuthenticationController.java
         if (result.hasErrors()) {
             model.addAttribute("user", ut);
             return "Authentication/register";
         } else {
             userRepository.save(new User(ut, new BCryptPasswordEncoder(4)));
+<<<<<<< Updated upstream:src/main/java/fit/se2/APlusBook/controller/RegisterController.java
             model.addAttribute("user", new UserSimple());
             model.addAttribute("success", true);
             return "Authentication/register";
+=======
+//            model.addAttribute("user", new UserDto());
+//            model.addAttribute("success", true);
+            return "redirect:/log-in";
+>>>>>>> Stashed changes:src/main/java/fit/se2/APlusBook/controller/AuthenticationController.java
         }
     }
     @RequestMapping(value = {"/log-in"})
