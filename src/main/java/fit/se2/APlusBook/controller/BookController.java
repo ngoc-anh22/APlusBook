@@ -3,12 +3,14 @@ package fit.se2.APlusBook.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import fit.se2.APlusBook.model.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import fit.se2.APlusBook.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +30,9 @@ public class BookController {
     CommentRepository commentRepository;
     @Autowired
     CategoryRepository categoryRepository;
+
     
+
     // Tìm sách theo categoryId
     @RequestMapping(value = "/book/list/{category_id}")
     public String getAllBookbyCategoryId(@PathVariable(value = "id") Long category_id, Model model) {
@@ -38,10 +42,11 @@ public class BookController {
     }
 
     // Lấy sách để show ở homepage
-    @GetMapping(value="/")
+
+    @GetMapping(value="/book/homepage")
     public String getHomePage(Model model) {
-        List<Book> entertainmentBooks = bookRepository.getTop5BooksByCategoryId(7);
-        model.addAttribute("entertainmentBooks", entertainmentBooks);
+        List<Book> languageBooks = bookRepository.getTop5BooksByCategoryId(4);
+        model.addAttribute("languageBooks", languageBooks);
 
         List<Book> novelBooks = bookRepository.getTop5BooksByCategoryId(3);
         model.addAttribute("novelBooks", novelBooks);
@@ -62,19 +67,18 @@ public class BookController {
 
         if (title != null && !title.isEmpty()) {
             // If title is provided, search by title
-            List<Book> books = bookRepository.findByTitleContainingIgnoreCase(title);
-            model.addAttribute("books", books);
+
+            Pageable pageable = PageRequest.of(page, size);
+            bookPage = bookRepository.findByTitleContainingIgnoreCase(title, pageable);
         } else {
             // Otherwise, retrieve all books
             bookPage = bookRepository.findAll(PageRequest.of(page, size));
-            List<Book> books = bookPage.getContent();
-            List<List<Book>> rows = new ArrayList<>();
-            for (int i = 0; i < books.size(); i += 6) {
-                rows.add(books.subList(i, Math.min(i + 6, books.size())));
-            }
-            model.addAttribute("currentPage", page);
-            model.addAttribute("totalPages", bookPage.getTotalPages());
-            model.addAttribute("rows", rows);
+        }
+        List<Book> books = bookPage.getContent();
+        List<List<Book>> rows = new ArrayList<>();
+        for (int i = 0; i < books.size(); i += 6) {
+            rows.add(books.subList(i, Math.min(i + 6, books.size())));
+
         }
 
         return "book/bookList"; // This should be the name of your Thymeleaf template file
@@ -91,18 +95,22 @@ public class BookController {
     }
 
     // Tìm sách theo tên
-    @RequestMapping(value = "/book/detail/{title}")
-    public String searchBookByTitle(@PathVariable(value = "title") String title, Model model) {
-        List<Book> books = bookRepository.findByTitleContainingIgnoreCase(title);
-        model.addAttribute("books", books);
-        return "searchBookByTitle";
-    }
+
+//    @RequestMapping(value = "/book/detail/{title}")
+//    public String searchBookByTitle(@PathVariable(value = "title") String title, Model model) {
+//        List<Book> books = bookRepository.findByTitleContainingIgnoreCase(title);
+//        model.addAttribute("books", books);
+//        return "searchBookByTitle";
+//    }
+
 
     // Search theo filter
     @RequestMapping(value = "/book/search")
     public String searchBooksByFilters(
-            @RequestParam(value = "price") double price, 
-            @RequestParam(value = "rate")  int rate, 
+
+            @RequestParam(value = "price") double price,
+            @RequestParam(value = "rate")  int rate,
+
             @RequestParam(value = "category") String category, Model model) {
         List<Book> books = bookRepository.findByFilters(price, rate, category);
         model.addAttribute("books", books);
@@ -128,7 +136,8 @@ public class BookController {
         }
         return "redirect:/book/list";
     }
-    
+
+
     // Lưu sách
     @RequestMapping(value = "/book/save")
     public String saveBook(Book book, BindingResult result) {
@@ -137,7 +146,9 @@ public class BookController {
     }
 
     // Thêm sách
-    @RequestMapping(value = "/book/add") 
+
+    @RequestMapping(value = "/book/add")
+
     public String addBook(Model model) {
         Book book = new Book();
         model.addAttribute("book", book);
