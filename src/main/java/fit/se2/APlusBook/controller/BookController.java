@@ -3,6 +3,7 @@ package fit.se2.APlusBook.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import fit.se2.APlusBook.model.Category;
 import org.springframework.data.domain.Page;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import fit.se2.APlusBook.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,14 +20,13 @@ import org.springframework.web.bind.annotation.*;
 import fit.se2.APlusBook.model.Book;
 import fit.se2.APlusBook.repository.BookRepository;
 
+
 @Controller
 public class BookController {
     @Autowired
     BookRepository bookRepository;
     @Autowired
     CategoryRepository categoryRepository;
-
-    
 
     // Tìm sách theo categoryId
     @RequestMapping(value = "/book/list/{category_id}")
@@ -60,7 +61,6 @@ public class BookController {
 
         if (title != null && !title.isEmpty()) {
             // If title is provided, search by title
-
             Pageable pageable = PageRequest.of(page, size);
             bookPage = bookRepository.findByTitleContainingIgnoreCase(title, pageable);
         } else {
@@ -71,9 +71,10 @@ public class BookController {
         List<List<Book>> rows = new ArrayList<>();
         for (int i = 0; i < books.size(); i += 6) {
             rows.add(books.subList(i, Math.min(i + 6, books.size())));
-
         }
-
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", bookPage.getTotalPages());
+        model.addAttribute("rows", rows);
         return "book/bookList"; // This should be the name of your Thymeleaf template file
     }
 
@@ -87,20 +88,16 @@ public class BookController {
         return "book/bookDetail";
     }
 
-    // Filter by price
-    @GetMapping("/filter-by-price")
-    public String filterByPrice(Model model) {
-        List<Book> booksUnder10 = bookRepository.findByPriceBetween(1, 10);
-        model.addAttribute("booksUnder10", booksUnder10);
+    // Tìm sách theo tên
+//    @RequestMapping(value = "/book/detail/{title}")
+//    public String searchBookByTitle(@PathVariable(value = "title") String title, Model model) {
+//        List<Book> books = bookRepository.findByTitleContainingIgnoreCase(title);
+//        model.addAttribute("books", books);
+//        return "searchBookByTitle";
+//    }
 
-        List<Book> books10To50 = bookRepository.findByPriceBetween(10, 50);
-        model.addAttribute("books10To50", books10To50);
+    // Search theo filter
 
-        List<Book> books50To100 = bookRepository.findByPriceBetween(50, 100);
-        model.addAttribute("books50To100", books50To100);
-
-        return "filterByPrice";
-    }
 
     // Update thông tin sách
     @SuppressWarnings("deprecation")
@@ -108,12 +105,12 @@ public class BookController {
     public String updateBook(@PathVariable(value = "id") Long id, Model model) {
         Book book = bookRepository.getById(id);
         model.addAttribute("book", book);
-        return "book/bookUpdate";
+        return "bookUpdate";
     }
 
     // Xóa sách
     @SuppressWarnings("deprecation")
-    @RequestMapping(value = "/book/delete/{id}")
+    @RequestMapping(value = "book/delete/{id}")
     public String deleteBook(@PathVariable(value = "id") Long id) {
         if(bookRepository.existsById(id)) {
             Book book = bookRepository.getById(id);
@@ -121,7 +118,6 @@ public class BookController {
         }
         return "redirect:/book/list";
     }
-
 
     // Lưu sách
     @RequestMapping(value = "/book/save")
@@ -131,13 +127,11 @@ public class BookController {
     }
 
     // Thêm sách
-
     @RequestMapping(value = "/book/add")
-
     public String addBook(Model model) {
         Book book = new Book();
         model.addAttribute("book", book);
-        return "book/bookAdd";
+        return "bookAdd";
     }
 
     // Chèn sách vào list
@@ -146,6 +140,9 @@ public class BookController {
         bookRepository.save(book);
         return "redirect:/book/detail";
     }
+
+
+
 
     // Add to cart
     @GetMapping("/my-cart")
@@ -158,4 +155,7 @@ public class BookController {
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
+
+    // Add comment review
+
 }
