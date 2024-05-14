@@ -8,18 +8,130 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <div class="container-md my-5">
-        <div class="row">
-            <table>
-                <tbody>
-                    <tr th:each="row : ${rows}">
-                        <div class="card mb-2 mx-1" style="width: 13rem; height: 20rem;" th:each="book: ${row}">
+<!--    <div class="container-fluid">-->
+<!--        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">-->
+<!--            <span><i class="fa-solid fa-filter"></i></span>-->
+<!--        </button>-->
+<!--        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">-->
+<!--            <div class="offcanvas-header">-->
+<!--                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Filter</h5>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
+<!--            </div>-->
+<!--            <div class="offcanvas-body">-->
+<!--                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link active" aria-current="page" href="#">Cat</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item dropdown">-->
+<!--                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                            Price-->
+<!--                        </a>-->
+<!--                        <ul class="dropdown-menu">-->
+<!--                            <li>-->
+<!--                                <hr class="dropdown-divider">-->
+<!--                            </li>-->
+<!--                            <li><a class="dropdown-item" href="#">price &#60; 100.000VND</a></li>-->
+<!--                            <li>-->
+<!--                                <hr class="dropdown-divider">-->
+<!--                            </li>-->
+<!--                            <li><a class="dropdown-item" href="#">100.000 &#60; price &#60; 200.000VND</a></li>-->
+<!--                            <li>-->
+<!--                                <hr class="dropdown-divider">-->
+<!--                            </li>-->
+<!--                            <li><a class="dropdown-item" href="#">price &#62; 200.000VND</a></li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="container-md my-5">-->
+<!--        <div class="row">-->
+<!--            <table>-->
+<!--                <tbody>-->
+<!--                    <tr th:each="row : ${rows}">-->
+<!--                        <div class="card mb-2 mx-1" style="width: 13rem; height: 20rem;" th:each="book: ${row}">-->
 
+<!--                            <a th:href="@{/book/{id}(id=${book.id})}"><img-->
+<!--                                    th:src="${book.image}"-->
+<!--                                    class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 15rem;"></a>-->
+<!--                            <div class="card-body pb-1 mt-2" style="padding: 0px !important;">-->
+<!--                                <a th:href="@{/books/{id}(id=${book.id})}" class="text-decoration-none text-dark">-->
+<!--                                    <h5 class="card-title fs-6 text-left fw-bold text-truncate ps-0 my-0" th:text="${book.title}"></h5>-->
+<!--                                </a>-->
+<!--                                <div class="d-flex justify-content-between align-items-center">-->
+<!--                                    <p class="card-text text-main fs-5 fw-bold" th:text="${book.price} +'VND'"></p>-->
+<!--                                    <p style="font-size:14px;" th:text="'Sold: ' +${book.quantitySold}"></p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--            <nav aria-label="Page navigation"  th:if="${totalPages > 1}">-->
+<!--                <ul class="pagination justify-content-center mt-4">-->
+<!--                    <li th:class="${currentPage == 0} ? 'page-item disabled' : 'page-item'">-->
+<!--                        <a class="page-link" th:href='@{/book/(size=30, page=0)}' th:if="${currentPage> 0}"><i class="fas fa-angle-double-left"></i></a>-->
+<!--                    </li>-->
+<!--                    <li th:class="${currentPage == 0} ? 'page-item disabled' : 'page-item'">-->
+<!--                        <a class="page-link" th:href='@{/book/(size=30, page=${currentPage-1})}' th:if="${currentPage> 0}"><i class="fas fa-chevron-left"></i></a>-->
+<!--                    </li>-->
+<!--                    <li th:each="pageNum : ${#numbers.sequence(0, totalPages - 1)}"-->
+<!--                        th:class="${pageNum == currentPage} ? 'page-item active' : 'page-item'">-->
+<!--                        <a class="page-link" th:href='@{/book/(size=30, page=${pageNum})}' th:text="${pageNum + 1}">1</a>-->
+<!--                    </li>-->
+<!--                    <li th:class="${currentPage == totalPages - 1} ? 'page-item disabled' : 'page-item'">-->
+<!--                        <a class="page-link" th:href='@{/book/(size=30, page=${currentPage + 1})}'th:if="${currentPage!=totalPages-1}"><i class="fas fa-chevron-right"></i></a>-->
+<!--                    </li>-->
+<!--                    <li th:class="${currentPage == totalPages - 1} ? 'page-item disabled' : 'page-item'">-->
+<!--                        <a class="page-link" th:href="@{/book/(size=30, page=${totalPages - 1})}" th:if="${currentPage!=totalPages-1}"><i class="fas fa-angle-double-right"></i></a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </nav>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="container text-center px-5 d-flex flex-row">
+        <div class="col-2 text-start mx-5">
+            <h3 class="text-center">Category</h3>
+            <ul class="list-group list-group-flush">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Price
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">price &#60; 100.00VND</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">100.000 &#60; price &#60; 200.000VND</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">price &#62; 200.000VND</a></li>
+                    </ul>
+                </li>
+                <li th:each="cat: ${categories}"
+                    class="list-group-item"
+                    th:classappend="${cat.id == category.id} ? 'text-main fw-bold':''">
+                    <a class="dropdown-item" th:href="@{/category/{id}(id=${cat.id})}"
+                       th:text="${cat.name}"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-9 text-start border-start">
+            <div class="row mx-5">
+                <table>
+                    <tbody>
+                    <tr th:each="row : ${rows}">
+                        <div class="card mb-2 mx-1 col-4" style="width: 16rem; height: 23rem;" th:each="book: ${row}">
                             <a th:href="@{/book/{id}(id=${book.id})}"><img
                                     th:src="${book.image}"
-                                    class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 15rem;"></a>
+                                    class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 18rem;"></a>
                             <div class="card-body pb-1 mt-2" style="padding: 0px !important;">
-                                <a th:href="@{/books/{id}(id=${book.id})}" class="text-decoration-none text-dark">
+                                <a th:href="@{/book/{id}(id=${book.id})}" class="text-decoration-none text-dark">
                                     <h5 class="card-title fs-6 text-left fw-bold text-truncate ps-0 my-0" th:text="${book.title}"></h5>
                                 </a>
                                 <div class="d-flex justify-content-between align-items-center">
@@ -29,30 +141,32 @@
                             </div>
                         </div>
                     </tr>
-                </tbody>
-            </table>
-            <nav aria-label="Page navigation"  th:if="${totalPages > 1}">
-                <ul class="pagination justify-content-center mt-4">
-                    <li th:class="${currentPage == 0} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link" th:href='@{/book/(size=30, page=0)}' th:if="${currentPage> 0}"><i class="fas fa-angle-double-left"></i></a>
-                    </li>
-                    <li th:class="${currentPage == 0} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link" th:href='@{/book/(size=30, page=${currentPage-1})}' th:if="${currentPage> 0}"><i class="fas fa-chevron-left"></i></a>
-                    </li>
-                    <li th:each="pageNum : ${#numbers.sequence(0, totalPages - 1)}"
-                        th:class="${pageNum == currentPage} ? 'page-item active' : 'page-item'">
-                        <a class="page-link" th:href='@{/book/(size=30, page=${pageNum})}' th:text="${pageNum + 1}">1</a>
-                    </li>
-                    <li th:class="${currentPage == totalPages - 1} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link" th:href='@{/book/(size=30, page=${currentPage + 1})}'th:if="${currentPage!=totalPages-1}"><i class="fas fa-chevron-right"></i></a>
-                    </li>
-                    <li th:class="${currentPage == totalPages - 1} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link" th:href="@{/book/(size=30, page=${totalPages - 1})}" th:if="${currentPage!=totalPages-1}"><i class="fas fa-angle-double-right"></i></a>
-                    </li>
-                </ul>
-            </nav>
+                    </tbody>
+                </table>
+                <nav aria-label="Page navigation" th:if="${totalPages > 1}">
+                    <ul class="pagination justify-content-center mt-4">
+                        <li th:class="${currentPage == 0} ? 'page-item disabled' : 'page-item'">
+                            <a class="page-link" th:href='@{/category/{id}(id=${category.id}, page=0)}' th:if="${currentPage> 0}"><i class="fas fa-angle-double-left"></i></a>
+                        </li>
+                        <li th:class="${currentPage == 0} ? 'page-item disabled' : 'page-item'">
+                            <a class="page-link" th:href='@{/category/{id}(id=${category.id}, page=${currentPage-1})}' th:if="${currentPage> 0}"><i class="fas fa-chevron-left"></i></a>
+                        </li>
+                        <li th:each="pageNum : ${#numbers.sequence(0, totalPages - 1)}"
+                            th:class="${pageNum == currentPage} ? 'page-item active bg-main' : 'page-item'">
+                            <a class="page-link" th:href='@{/category/{id}(id=${category.id}, page=${pageNum})}' th:text="${pageNum + 1}">1</a>
+                        </li>
+                        <li th:class="${currentPage == totalPages - 1} ? 'page-item disabled' : 'page-item'">
+                            <a class="page-link" th:href='@{/category/{id}(id=${category.id}, page=${currentPage + 1})}' th:if="${currentPage!=totalPages-1}"><i class="fas fa-chevron-right"></i></a>
+                        </li>
+                        <li th:class="${currentPage == totalPages - 1} ? 'page-item disabled' : 'page-item'">
+                            <a class="page-link" th:href="@{/category/{id}(id=${category.id}, page=${totalPages - 1})}" th:if="${currentPage!=totalPages-1}"><i class="fas fa-angle-double-right"></i></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>
