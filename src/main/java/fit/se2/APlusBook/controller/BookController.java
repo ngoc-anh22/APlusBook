@@ -36,7 +36,6 @@ public class BookController {
     }
 
     // Lấy sách để show ở homepage
-
     @GetMapping(value="/book/homepage")
     public String getHomePage(Model model) {
         List<Book> languageBooks = bookRepository.getTop5BooksByCategoryId(4);
@@ -86,6 +85,21 @@ public class BookController {
         Book book = bookRepository.getById(id);
         model.addAttribute("book", book);
         return "book/bookDetail";
+    }
+
+    // Filter by price
+    @GetMapping("/filter-by-price")
+    public String filterByPrice(Model model) {
+        List<Book> booksUnder10 = bookRepository.findByPriceBetween(1, 10);
+        model.addAttribute("booksUnder10", booksUnder10);
+
+        List<Book> books10To50 = bookRepository.findByPriceBetween(10, 50);
+        model.addAttribute("books10To50", books10To50);
+
+        List<Book> books50To100 = bookRepository.findByPriceBetween(50, 100);
+        model.addAttribute("books50To100", books50To100);
+
+        return "filterByPrice";
     }
 
     // Update thông tin sách
