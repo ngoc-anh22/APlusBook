@@ -1,12 +1,11 @@
 package fit.se2.APlusBook.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -28,20 +27,16 @@ public class Book {
     @NotNull(message = "The ISBN can not be null")
     private long ISBN;
     
-    private String price;
+    private BigDecimal price;
     private int quantityInStock;
     private int quantityImport;
     private int quantitySold;
-    @Min(0)
-    private int avg_rate;
 
     private String publisher;
     private String author;
     private String image;
     @ManyToOne
     private Category category;
-    @OneToMany(mappedBy = "book")
-    private List<Comment> comments;
     
     public long getId() {
         return id;
@@ -73,10 +68,10 @@ public class Book {
     public void setISBN(long iSBN) {
         ISBN = iSBN;
     }
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
-    public void setPrice(String price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
     public int getQuantityInStock() {
@@ -115,36 +110,10 @@ public class Book {
     public void setCategory(Category category) {
         this.category = category;
     }
-    public List<Comment> getComments() {
-        return comments;
-    }
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
     public String getImage() {
         return image;
     }
     public void setImage(String image) {
         this.image = image;
-    }
-    public int getAvg_rate() {
-        return avg_rate;
-    }
-    public void setAvg_rate(int avg_rate) {
-        this.avg_rate = avg_rate;
-    }
-
-    public void calculateAverageRating() {
-        if (comments == null || comments.isEmpty()) {
-            avg_rate = 0; // Trường hợp không có comment, giá trị trung bình rating sẽ là 0.
-            return;
-        }
-        int sum = 0;
-        for (Comment comment : comments) {
-            sum += comment.getRate();
-        }
-        double average = (double) sum / comments.size();
-        avg_rate = (int) Math.round(average);
-    }
-    
+    } 
 }

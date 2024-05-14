@@ -24,6 +24,14 @@ public class Order {
 
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems;
+    public void addSaleOrderItem(OrderItem OrderItems) {
+        OrderItems.setOrder(this);
+        orderItems.add(OrderItems);
+    }
+    public void removeSaleOrderProducts(OrderItem OrderItems) {
+        OrderItems.setBook(null);
+        orderItems.remove(OrderItems);
+    }
     
     public Long getId() {
         return id;

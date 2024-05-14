@@ -20,6 +20,8 @@ public class UserDto {
     private String email;
     @NotEmpty(message = "Phone number is required")
     private String phoneNum;
+    @NotEmpty(message = "Address is required")
+    private String address;
 
     public UserDto(String username, String password, String role, String email, String phoneNum) {
         this.username = username;
@@ -27,6 +29,10 @@ public class UserDto {
         this.role = role;
         this.email = email;
         this.phoneNum = phoneNum;
+    }
+
+    public UserDto() {
+
     }
 
     public String getUsername() {
@@ -67,5 +73,13 @@ public class UserDto {
 
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
