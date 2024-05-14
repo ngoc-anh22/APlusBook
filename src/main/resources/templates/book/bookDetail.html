@@ -22,7 +22,7 @@
                             <h5  th:text="${book.title}">Book title
                             </h5>
                             <div class="d-flex align-items-end">
-                                <h5 class="text-danger" style="width: 8rem;"  th:text="${book.price}+ 'VND'"></h5>
+                                <h5 class="text-danger" style="width: 8rem;"  th:text="${book.price}+ '$'"></h5>
                             </div>
                             <div class="my-4">
                                 <h6 class="d-block">Quantity:
@@ -34,6 +34,7 @@
                                 <a><button class="btn btn-primary" style="width: 10rem; background-color: white; color: #07689f;">Add to
                                     card</button></a>
                             </div>
+
                             <div class="mt-3">
                                 <h6 th:text="'Sold: '+${book.quantitySold}"></h6>
                                 <h6 th:text="'Stock: '+${book.quantityInStock}"></h6>

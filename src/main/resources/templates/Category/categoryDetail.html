@@ -10,11 +10,37 @@
 <div layout:fragment="content">
     <div class="container text-center px-5 d-flex flex-row">
         <div class="col-2 text-start mx-5">
-            <h3 class="text-center">Category</h3>
             <ul class="list-group list-group-flush">
-                <li th:each="cat: ${categories}"
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Price
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">price &#60; 100.00VND</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">100.000 &#60; price &#60; 200.000VND</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">price &#62; 200.000VND</a></li>
+                    </ul>
+                </li>
+                <li class="list-group-item"><a class="dropdown-item" th:href="@{/book/list}">
+                    All Categories
+                </a></li>
+                <li th:each="cat: ${categories}" th:if="${category}"
                     class="list-group-item"
                     th:classappend="${cat.id == category.id} ? 'text-main fw-bold':''">
+                    <a class="dropdown-item" th:href="@{/category/{id}(id=${cat.id})}"
+                       th:text="${cat.name}"></a>
+                </li>
+                <li th:each="cat: ${categories}" th:unless="${category}"
+                    class="list-group-item">
                     <a class="dropdown-item" th:href="@{/category/{id}(id=${cat.id})}"
                        th:text="${cat.name}"></a>
                 </li>
