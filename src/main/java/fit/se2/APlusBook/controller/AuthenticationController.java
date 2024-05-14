@@ -43,11 +43,19 @@ public class AuthenticationController {
         return "Authentication/register";
     }
     @PostMapping("/register-process")
+<<<<<<< HEAD:src/main/java/fit/se2/APlusBook/controller/AuthenticationController.java
     public String registerHandle(Model model, @ModelAttribute("user") @Valid UserDto ut, BindingResult result, HttpServletRequest request) {
         String confirmPassword = request.getParameter("confirmPassword");
         if (!(ut.getPassword().equals(confirmPassword))) {
             result.rejectValue("confirmPassword", "error.confirmPassword", "Passwords do not match");
         }
+=======
+<<<<<<< Updated upstream:src/main/java/fit/se2/APlusBook/controller/RegisterController.java
+    public String registerHandle(Model model, @Valid UserSimple ut, BindingResult result) {
+=======
+    public String registerHandle(Model model, @ModelAttribute("user") @Valid UserDto ut, BindingResult result) {
+>>>>>>> Stashed changes:src/main/java/fit/se2/APlusBook/controller/AuthenticationController.java
+>>>>>>> 89e3ff1 (Add thymeleaf validation in register.html):src/main/java/fit/se2/APlusBook/controller/RegisterController.java
         if (result.hasErrors()) {
             model.addAttribute("user", ut);
             model.addAttribute("success", false);
@@ -55,10 +63,22 @@ public class AuthenticationController {
         } else {
             ut.setRole("USER");
             userRepository.save(new User(ut, new BCryptPasswordEncoder(4)));
+<<<<<<< HEAD:src/main/java/fit/se2/APlusBook/controller/AuthenticationController.java
             model.addAttribute("user", new UserDto());
             model.addAttribute("success", true);
             return "Authentication/register";
 //            return "redirect:/log-in";
+=======
+<<<<<<< Updated upstream:src/main/java/fit/se2/APlusBook/controller/RegisterController.java
+            model.addAttribute("user", new UserSimple());
+            model.addAttribute("success", true);
+            return "Authentication/register";
+=======
+//            model.addAttribute("user", new UserDto());
+//            model.addAttribute("success", true);
+            return "redirect:/log-in";
+>>>>>>> Stashed changes:src/main/java/fit/se2/APlusBook/controller/AuthenticationController.java
+>>>>>>> 89e3ff1 (Add thymeleaf validation in register.html):src/main/java/fit/se2/APlusBook/controller/RegisterController.java
         }
     }
     @RequestMapping(value = {"/log-in"})

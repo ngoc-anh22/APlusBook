@@ -20,11 +20,11 @@
             <input type="password" class="form-control" id="password" th:field="*{password}" name="password" placeholder="Please enter your password" required/>
             <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
         </div>
-<!--        <div class="mb-2">-->
-<!--            <label for="confirmPassword" class="form-label">Confirm password</label>-->
-<!--            <input type="password" class="form-control" id="confirmPassword" th:field="*{confirmPassword}" name="confirmPassword" placeholder="Please enter your password again" required />-->
-<!--            <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p>-->
-<!--        </div>-->
+        <!--        <div class="mb-2">-->
+        <!--            <label for="confirmPassword" class="form-label">Confirm password</label>-->
+        <!--            <input type="password" class="form-control" id="confirmPassword" th:field="*{confirmPassword}" name="confirmPassword" placeholder="Please enter your password again" required />-->
+        <!--            <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p>-->
+        <!--        </div>-->
         <div class="mb-2">
             <label for="confirmPassword" class="form-label">Confirm password</label>
             <input type="password" class="form-control" id="confirmPassword" th:field="*{confirmPassword}" name="confirmPassword" placeholder="Please enter your password again" required />
