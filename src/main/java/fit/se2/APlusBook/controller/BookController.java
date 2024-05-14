@@ -30,7 +30,11 @@ public class BookController {
     CommentRepository commentRepository;
     @Autowired
     CategoryRepository categoryRepository;
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> ac403476e56d44fadc2dd00849b983c207b200b7
     // Tìm sách theo categoryId
     @RequestMapping(value = "/book/list/{category_id}")
     public String getAllBookbyCategoryId(@PathVariable(value = "id") Long category_id, Model model) {
@@ -40,7 +44,11 @@ public class BookController {
     }
 
     // Lấy sách để show ở homepage
+<<<<<<< HEAD
     @GetMapping(value="/book/homepage")
+=======
+    @GetMapping(value="/")
+>>>>>>> ac403476e56d44fadc2dd00849b983c207b200b7
     public String getHomePage(Model model) {
         List<Book> languageBooks = bookRepository.getTop5BooksByCategoryId(4);
         model.addAttribute("languageBooks", languageBooks);
@@ -64,6 +72,7 @@ public class BookController {
 
         if (title != null && !title.isEmpty()) {
             // If title is provided, search by title
+<<<<<<< HEAD
             Pageable pageable = PageRequest.of(page, size);
             bookPage = bookRepository.findByTitleContainingIgnoreCase(title, pageable);
         } else {
@@ -74,10 +83,23 @@ public class BookController {
         List<List<Book>> rows = new ArrayList<>();
         for (int i = 0; i < books.size(); i += 6) {
             rows.add(books.subList(i, Math.min(i + 6, books.size())));
+=======
+            List<Book> books = bookRepository.findByTitleContainingIgnoreCase(title);
+            model.addAttribute("books", books);
+        } else {
+            // Otherwise, retrieve all books
+            bookPage = bookRepository.findAll(PageRequest.of(page, size));
+            List<Book> books = bookPage.getContent();
+            List<List<Book>> rows = new ArrayList<>();
+            for (int i = 0; i < books.size(); i += 6) {
+                rows.add(books.subList(i, Math.min(i + 6, books.size())));
+            }
+            model.addAttribute("currentPage", page);
+            model.addAttribute("totalPages", bookPage.getTotalPages());
+            model.addAttribute("rows", rows);
+>>>>>>> ac403476e56d44fadc2dd00849b983c207b200b7
         }
-        model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", bookPage.getTotalPages());
-        model.addAttribute("rows", rows);
+
         return "book/bookList"; // This should be the name of your Thymeleaf template file
     }
 
@@ -92,18 +114,32 @@ public class BookController {
     }
 
     // Tìm sách theo tên
+<<<<<<< HEAD
 //    @RequestMapping(value = "/book/detail/{title}")
 //    public String searchBookByTitle(@PathVariable(value = "title") String title, Model model) {
 //        List<Book> books = bookRepository.findByTitleContainingIgnoreCase(title);
 //        model.addAttribute("books", books);
 //        return "searchBookByTitle";
 //    }
+=======
+    @RequestMapping(value = "/book/detail/{title}")
+    public String searchBookByTitle(@PathVariable(value = "title") String title, Model model) {
+        List<Book> books = bookRepository.findByTitleContainingIgnoreCase(title);
+        model.addAttribute("books", books);
+        return "searchBookByTitle";
+    }
+>>>>>>> ac403476e56d44fadc2dd00849b983c207b200b7
 
     // Search theo filter
     @RequestMapping(value = "/book/search")
     public String searchBooksByFilters(
+<<<<<<< HEAD
             @RequestParam(value = "price") double price,
             @RequestParam(value = "rate")  int rate,
+=======
+            @RequestParam(value = "price") double price, 
+            @RequestParam(value = "rate")  int rate, 
+>>>>>>> ac403476e56d44fadc2dd00849b983c207b200b7
             @RequestParam(value = "category") String category, Model model) {
         List<Book> books = bookRepository.findByFilters(price, rate, category);
         model.addAttribute("books", books);
@@ -116,12 +152,12 @@ public class BookController {
     public String updateBook(@PathVariable(value = "id") Long id, Model model) {
         Book book = bookRepository.getById(id);
         model.addAttribute("book", book);
-        return "bookUpdate";
+        return "book/bookUpdate";
     }
 
     // Xóa sách
     @SuppressWarnings("deprecation")
-    @RequestMapping(value = "book/delete/{id}")
+    @RequestMapping(value = "/book/delete/{id}")
     public String deleteBook(@PathVariable(value = "id") Long id) {
         if(bookRepository.existsById(id)) {
             Book book = bookRepository.getById(id);
@@ -129,7 +165,11 @@ public class BookController {
         }
         return "redirect:/book/list";
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> ac403476e56d44fadc2dd00849b983c207b200b7
     // Lưu sách
     @RequestMapping(value = "/book/save")
     public String saveBook(Book book, BindingResult result) {
@@ -138,11 +178,15 @@ public class BookController {
     }
 
     // Thêm sách
+<<<<<<< HEAD
     @RequestMapping(value = "/book/add")
+=======
+    @RequestMapping(value = "/book/add") 
+>>>>>>> ac403476e56d44fadc2dd00849b983c207b200b7
     public String addBook(Model model) {
         Book book = new Book();
         model.addAttribute("book", book);
-        return "bookAdd";
+        return "book/bookAdd";
     }
 
     // Chèn sách vào list
