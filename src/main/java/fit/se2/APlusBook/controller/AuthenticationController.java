@@ -38,19 +38,27 @@ public class AuthenticationController {
     }
 
     @GetMapping("/register")
-    public String register() {
+    public String register(Model model) {
+        model.addAttribute("user", new UserDto());
         return "Authentication/register";
     }
     @PostMapping("/register-process")
-    public String registerHandle(Model model, @Valid UserDto ut, BindingResult result) {
+    public String registerHandle(Model model, @ModelAttribute("user") @Valid UserDto ut, BindingResult result, HttpServletRequest request) {
+        String confirmPassword = request.getParameter("confirmPassword");
+        if (!(ut.getPassword().equals(confirmPassword))) {
+            result.rejectValue("confirmPassword", "error.confirmPassword", "Passwords do not match");
+        }
         if (result.hasErrors()) {
             model.addAttribute("user", ut);
+            model.addAttribute("success", false);
             return "Authentication/register";
         } else {
+            ut.setRole("USER");
             userRepository.save(new User(ut, new BCryptPasswordEncoder(4)));
             model.addAttribute("user", new UserDto());
             model.addAttribute("success", true);
             return "Authentication/register";
+//            return "redirect:/log-in";
         }
     }
     @RequestMapping(value = {"/log-in"})
