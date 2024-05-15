@@ -115,7 +115,7 @@ public class BookController {
     @SuppressWarnings("deprecation")
     @PostMapping(value = "/book/save")
     public String updateBook(Model model, @Valid Book book, BindingResult result, @RequestParam("image") MultipartFile image) {
-        if (book.getImage().isEmpty()) {
+        if (image.isEmpty()) {
             result.rejectValue("image", "error.image", "Image is required");
         }
         if(result.hasErrors()) {

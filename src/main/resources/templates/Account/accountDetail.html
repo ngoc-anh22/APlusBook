@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
+
+    <!DOCTYPE html>
+    <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/_layout}" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
+      layout:decorate="~{/_layout}">
+    <head>
 
     <title>Account Detail</title>
-</head>
-<body>
-<div layout:fragment="content">
+    </head>
+    <body>
+    <div layout:fragment="content">
     <div class="container text-center px-5">
         <div class="row align-items-start mt-5">
             <div th:replace="~{Account/accountNav :: navbar}"></div>
@@ -15,18 +16,16 @@
             <div class="col-8 text-start ms-5">
                 <div class="ms-5">
                     <h4 class="text-center fw-bold">ACCOUNT INFORMATION</h4>
-                    <p>Name: <div sec:authorize="isAuthenticated()">
-                    Authenticated as <span sec:authentication="fullName"></span></div> </p>
-                    <p>Username: <div sec:authorize="isAuthenticated()">
-                    Authenticated as <span sec:authentication="username"></span></div> </p>
-                    <p>Email: <div sec:authorize="isAuthenticated()">
-                    Authenticated as <span sec:authentication="email"></span></div> </p>
+                    <p>Name: Admin </p>
+                    <p>Username: admin111 </p>
+                    <p>Email: abc@gmail.com </p>
+                    <p>Phone number: 0123849594 </p>
                     <a class="btn bg-main text-light" href="/account/update">Update</a>
                 </div>
 
             </div>
         </div>
     </div>
-</div>
-</body>
+    </div>
+    </body>
 </html>
