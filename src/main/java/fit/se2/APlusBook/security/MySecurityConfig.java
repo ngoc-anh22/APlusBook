@@ -37,10 +37,10 @@ public class MySecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers("/register", "/register-process", "/list", "/detail/**", "/search")
-                        .permitAll()
-                        .requestMatchers("/update/**", "/delete/**" ,"/save", "/insert", "/comment").hasAnyAuthority("ADMIN")
-//                        .anyRequest().permitAll()
+//                        .requestMatchers("/register", "/register-process", "/list", "/detail/**", "/search")
+//                        .permitAll()
+//                        .requestMatchers("/update/**", "/delete/**" ,"/save", "/insert", "/comment").hasAnyAuthority("ADMIN")
+                        .anyRequest().permitAll()
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/log-in")
