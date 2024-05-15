@@ -63,15 +63,14 @@ public class BookController {
             // If title is provided, search by title
             Pageable pageable = PageRequest.of(page, size);
             bookPage = bookRepository.findByTitleContainingIgnoreCase(title, pageable);
-            model.addAttribute("title", title);
         } else {
             // Otherwise, retrieve all books
             bookPage = bookRepository.findAll(PageRequest.of(page, size));
         }
         List<Book> books = bookPage.getContent();
         List<List<Book>> rows = new ArrayList<>();
-        for (int i = 0; i < books.size(); i += 5) {
-            rows.add(books.subList(i, Math.min(i + 5, books.size())));
+        for (int i = 0; i < books.size(); i += 6) {
+            rows.add(books.subList(i, Math.min(i + 6, books.size())));
         }
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", bookPage.getTotalPages());

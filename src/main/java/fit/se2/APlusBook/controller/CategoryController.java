@@ -29,7 +29,7 @@ public class CategoryController {
 
     @SuppressWarnings("deprecation")
     @GetMapping("/category/{id}")
-    public String getCategoryById(@PathVariable Long id, Model model, @RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "10")int size) {
+    public String getCategoryById(@PathVariable Long id, Model model, @RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "6")int size) {
 
         Category category = categoryRepository.getById(id);
         model.addAttribute("category", category);
@@ -39,8 +39,8 @@ public class CategoryController {
 
         // Convert the list of books into rows with 3 books per row
         List<List<Book>> rows = new ArrayList<>();
-        for (int i = 0; i < books.size(); i += 5) {
-            rows.add(books.subList(i, Math.min(i + 5, books.size())));
+        for (int i = 0; i < books.size(); i += 3) {
+            rows.add(books.subList(i, Math.min(i + 3, books.size())));
         }
 
         model.addAttribute("currentPage", page);
