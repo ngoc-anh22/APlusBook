@@ -1,6 +1,5 @@
 package fit.se2.APlusBook.model;
 
-import fit.se2.APlusBook.dto.UserDto;
 import jakarta.validation.Valid;
 import org.hibernate.validator.constraints.Length;
 
@@ -46,10 +45,6 @@ public class User implements UserDetails {
 
     @NotEmpty(message = "Role can not be empty")
     private String role;
-
-    public User() {
-
-    }
 
     public long getId() {
         return id;
@@ -146,11 +141,9 @@ public class User implements UserDetails {
         this.role = role;
     }
 
-    public User(@Valid UserDto user, PasswordEncoder encoder) {
+    public User(@Valid UserSimple user, PasswordEncoder encoder) {
         this.userName = user.getUsername();
         this.password = encoder.encode(user.getPassword());
-        this.phoneNum = user.getPhoneNum();
-        this.email = user.getEmail();
-//        this.address = user.getAddress();
+        this.address = user.getAddress();
     }
 }

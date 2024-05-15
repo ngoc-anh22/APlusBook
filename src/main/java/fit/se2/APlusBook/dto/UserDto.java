@@ -1,12 +1,11 @@
 package fit.se2.APlusBook.dto;
 
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.Length;
-@Valid
+
 public class UserDto {
     @Size(min = 6, max = 60, message = "Username must be between 6 and 60 characters long.")
     private String username;
@@ -15,15 +14,12 @@ public class UserDto {
             message = "6 chars min (at least 1" +
                     "digit & 1 uppercase letter)")
     private String password;
-    private String confirmPassword;
     private String role;
     @NotEmpty(message = "Email is required")
     @Email(message = "Invalid email format")
     private String email;
     @NotEmpty(message = "Phone number is required")
     private String phoneNum;
-    @NotEmpty(message = "Address is required")
-    private String address;
 
     public UserDto(String username, String password, String role, String email, String phoneNum) {
         this.username = username;
@@ -31,10 +27,6 @@ public class UserDto {
         this.role = role;
         this.email = email;
         this.phoneNum = phoneNum;
-    }
-
-    public UserDto() {
-
     }
 
     public String getUsername() {
@@ -51,14 +43,6 @@ public class UserDto {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
     }
 
     public String getRole() {
@@ -83,13 +67,5 @@ public class UserDto {
 
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 }
