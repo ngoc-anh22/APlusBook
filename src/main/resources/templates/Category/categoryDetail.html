@@ -8,36 +8,70 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <div class="container text-center px-5 d-flex flex-row">
-        <div class="col-2 text-start mx-5">
-            <h3 class="text-center">Category</h3>
+    <div class="container text-center d-flex flex-row">
+        <div class="col-2 text-start">
             <ul class="list-group list-group-flush">
-                <li th:each="cat: ${categories}"
+                <div class="d-flex flex-row justify-content-between align-items-center">
+                    <h5>Price</h5>
+                    <i class="fas fa-chevron-down p-2" data-bs-toggle="collapse" data-bs-target="#price" aria-expanded="false" aria-controls="price"></i>
+                </div>
+                <div class="collapse" id="price">
+                    <li class="list-group-item">
+                        <input class="form-check-input me-3" type="checkbox" value="" id="first">
+                        <label class="form-check-label" for="first"><30$</label>
+                    </li>
+                    <li class="list-group-item">
+                        <input class="form-check-input me-3" type="checkbox" value="" id="second">
+                        <label class="form-check-label" for="second">30-60$</label>
+                    </li>
+                    <li class="list-group-item">
+                        <input class="form-check-input me-3" type="checkbox" value="" id="third">
+                        <label class="form-check-label" for="third">>60$</label>
+                    </li>
+                </div>
+                <div class="d-flex flex-row justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#category" aria-expanded="false" aria-controls="category">
+                    <h5 class="mt-3">Category</h5>
+                    <i class="fas fa-chevron-down p-2" ></i>
+                </div>
+                <div class="collapse" id="category">
+                <li class="list-group-item"><a class="dropdown-item" th:href="@{/book/list}">
+                    All Categories
+                </a></li>
+                <li th:each="cat: ${categories}" th:if="${category}"
                     class="list-group-item"
-                    th:classappend="${cat.id == category.id} ? 'text-main fw-bold':''">
+                    th:classappend="${cat.id == category.id} ? 'text-main':''">
                     <a class="dropdown-item" th:href="@{/category/{id}(id=${cat.id})}"
                        th:text="${cat.name}"></a>
                 </li>
+<<<<<<< HEAD
                 <li class="list-group-item"><a th:href='@{/category/{id}( id=${category.id}, size=12, page=${pageNum}, from=1, to=10)}'>price &#60; 10</a></li>
                 <li class="list-group-item"><a th:href='@{/category/{id}( id=${category.id}, size=12, page=${pageNum}, from=10, to=50)}'>10 &#60; price &#60; 50</a></li>
                 <li class="list-group-item"><a th:href='@{/category/{id}( id=${category.id}, size=12, page=${pageNum}, from=50, to=100)}'>50 &#60; price &#60; 100</a></li>
+=======
+                <li th:each="cat: ${categories}" th:unless="${category}"
+                    class="list-group-item">
+                    <a class="dropdown-item" th:href="@{/category/{id}(id=${cat.id})}"
+                       th:text="${cat.name}"></a>
+                </li>
+                </div>
+>>>>>>> 1fd2957b025679b6849258de04d9478dc9080abf
             </ul>
         </div>
-        <div class="col-9 text-start border-start">
-            <div class="row mx-5">
+        <div class="col-10 ps-5">
+            <div class="row">
                 <table>
                     <tbody>
                     <tr th:each="row : ${rows}">
-                        <div class="card mb-2 mx-1 col-4" style="width: 16rem; height: 23rem;" th:each="book: ${row}">
+                        <div class="card mb-2 mx-1 col-3" style="width: 12rem; height: 16rem;" th:each="book: ${row}">
                             <a th:href="@{/book/{id}(id=${book.id})}"><img
                                     th:src="${book.image}"
-                                    class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 18rem;"></a>
+                                    class="card-img-top mt-2 mb-0" alt="Book Image" style="height: 12rem;"></a>
                             <div class="card-body pb-1 mt-2" style="padding: 0px !important;">
                                 <a th:href="@{/book/{id}(id=${book.id})}" class="text-decoration-none text-dark">
-                                    <h5 class="card-title fs-6 text-left fw-bold text-truncate ps-0 my-0" th:text="${book.title}"></h5>
+                                    <h5 class="card-title fs-6 text-start fw-bold text-truncate ps-0 my-0" th:text="${book.title}"></h5>
                                 </a>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <p class="card-text text-main fs-5 fw-bold" th:text="${book.price} +'VND'"></p>
+                                    <p class="card-text text-main fs-6 fw-bold" th:text="${book.price} +'$'"></p>
                                     <p style="font-size:14px;" th:text="'Sold: ' +${book.quantitySold}"></p>
                                 </div>
                             </div>

@@ -69,6 +69,7 @@ public class BookController {
          else if (title != null && !title.isEmpty()) {
             // If title is provided, search by title
             bookPage = bookRepository.findByTitleContainingIgnoreCase(title, pageable);
+            model.addAttribute("title", title);
         } else {
             // Otherwise, retrieve all books
             bookPage = bookRepository.findAll(pageable);

@@ -37,13 +37,13 @@ public class MySecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(req -> req
-<<<<<<< HEAD
-                        .requestMatchers("/css/**", "/images/**").permitAll()
-                        .requestMatchers("/register", "/register-process", "/list", "/detail/**", "/search")
-                        .permitAll()
-                        .requestMatchers("/update/**", "/delete/**" ,"/save", "/insert", "/comment").hasAnyAuthority("ADMIN")
+
+//                        .requestMatchers("/css/**", "/images/**").permitAll()
+//                        .requestMatchers("/register", "/register-process", "/list", "/detail/**", "/search")
+//                        .permitAll()
+//                        .requestMatchers("/update/**", "/delete/**" ,"/save", "/insert", "/comment").hasAnyAuthority("ADMIN")
+
                         .anyRequest().permitAll()
-=======
 
 
 //                        .requestMatchers("/css/**", "/images/**").permitAll()
@@ -51,8 +51,6 @@ public class MySecurityConfig {
 //                        .permitAll()
 //                        .anyRequest().hasAnyAuthority("ADMIN")
                                 .anyRequest().permitAll()
-
->>>>>>> origin/fe-Hoang
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/log-in")
