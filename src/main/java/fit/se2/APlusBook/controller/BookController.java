@@ -3,7 +3,6 @@ package fit.se2.APlusBook.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import fit.se2.APlusBook.model.Category;
 import org.springframework.data.domain.Page;
@@ -11,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import fit.se2.APlusBook.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -56,21 +54,30 @@ public class BookController {
 
     // Lấy danh sách tất cả các sách
     @GetMapping(value="/book/list")
-    public String getAllBook(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "30") int size, @RequestParam(required = false) String title) {
+    public String getAllBook(
+            Model model,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "15") int size,
+            @RequestParam(required = false) String title,
+            @RequestParam(defaultValue = "0")int from,
+            @RequestParam(defaultValue = "0")int to)
+    {
         Page<Book> bookPage;
-
-        if (title != null && !title.isEmpty()) {
+        Pageable pageable = PageRequest.of(page, size);
+        if (from > 0 && to > 0) {
+           bookPage = bookRepository.findByPriceBetween(from, to, pageable);
+        }
+         else if (title != null && !title.isEmpty()) {
             // If title is provided, search by title
-            Pageable pageable = PageRequest.of(page, size);
             bookPage = bookRepository.findByTitleContainingIgnoreCase(title, pageable);
         } else {
             // Otherwise, retrieve all books
-            bookPage = bookRepository.findAll(PageRequest.of(page, size));
+            bookPage = bookRepository.findAll(pageable);
         }
         List<Book> books = bookPage.getContent();
         List<List<Book>> rows = new ArrayList<>();
-        for (int i = 0; i < books.size(); i += 6) {
-            rows.add(books.subList(i, Math.min(i + 6, books.size())));
+        for (int i = 0; i < books.size(); i += 5) {
+            rows.add(books.subList(i, Math.min(i + 5, books.size())));
         }
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", bookPage.getTotalPages());
@@ -78,7 +85,13 @@ public class BookController {
         return "book/bookList"; // This should be the name of your Thymeleaf template file
     }
 
-
+    // Filter by price
+//    @GetMapping("/filter-by-price")
+//    public String filterByPrice(Model model, int from, int to) {
+//        List<Book> booksUnder10 = bookRepository.findByPriceBetween(from, to, pageable);
+//        model.addAttribute("booksUnder10", booksUnder10);
+//        return "filterByPrice";
+//    }
     // Lấy chi tiết một cuốn sách
     @SuppressWarnings("deprecation")
     @RequestMapping(value = "/book/{id}")
