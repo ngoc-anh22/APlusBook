@@ -149,6 +149,8 @@ public class User implements UserDetails {
     public User(@Valid UserDto user, PasswordEncoder encoder) {
         this.userName = user.getUsername();
         this.password = encoder.encode(user.getPassword());
-        this.address = user.getAddress();
+        this.phoneNum = user.getPhoneNum();
+        this.email = user.getEmail();
+//        this.address = user.getAddress();
     }
 }
