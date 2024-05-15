@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import fit.se2.APlusBook.model.Book;
 import fit.se2.APlusBook.repository.BookRepository;
 
+
 @Controller
 public class BookController {
     @Autowired
@@ -50,25 +51,32 @@ public class BookController {
 
         return "book/homePage";
     }
-
     // Lấy danh sách tất cả các sách
     @GetMapping(value="/book/list")
-    public String getAllBook(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "30") int size, @RequestParam(required = false) String title) {
+    public String getAllBook(
+            Model model,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "15") int size,
+            @RequestParam(required = false) String title,
+            @RequestParam(defaultValue = "0")int from,
+            @RequestParam(defaultValue = "0")int to)
+    {
         Page<Book> bookPage;
-
-        if (title != null && !title.isEmpty()) {
+        Pageable pageable = PageRequest.of(page, size);
+        if (from > 0 && to > 0) {
+           bookPage = bookRepository.findByPriceBetween(from, to, pageable);
+        }
+         else if (title != null && !title.isEmpty()) {
             // If title is provided, search by title
-            Pageable pageable = PageRequest.of(page, size);
             bookPage = bookRepository.findByTitleContainingIgnoreCase(title, pageable);
         } else {
             // Otherwise, retrieve all books
-            bookPage = bookRepository.findAll(PageRequest.of(page, size));
+            bookPage = bookRepository.findAll(pageable);
         }
         List<Book> books = bookPage.getContent();
         List<List<Book>> rows = new ArrayList<>();
-        for (int i = 0; i < books.size(); i += 6) {
-            rows.add(books.subList(i, Math.min(i + 6, books.size())));
-
+        for (int i = 0; i < books.size(); i += 5) {
+            rows.add(books.subList(i, Math.min(i + 5, books.size())));
         }
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", bookPage.getTotalPages());
@@ -76,7 +84,13 @@ public class BookController {
         return "book/bookList"; // This should be the name of your Thymeleaf template file
     }
 
-
+    // Filter by price
+//    @GetMapping("/filter-by-price")
+//    public String filterByPrice(Model model, int from, int to) {
+//        List<Book> booksUnder10 = bookRepository.findByPriceBetween(from, to, pageable);
+//        model.addAttribute("booksUnder10", booksUnder10);
+//        return "filterByPrice";
+//    }
     // Lấy chi tiết một cuốn sách
     @SuppressWarnings("deprecation")
     @RequestMapping(value = "/book/{id}")
@@ -86,16 +100,16 @@ public class BookController {
         return "book/bookDetail";
     }
 
-    // Search theo filter
-//    @RequestMapping(value = "/book/search")
-//    public String searchBooksByFilters(
-//            @RequestParam(value = "price") double price,
-//            @RequestParam(value = "rate")  int rate,
-//            @RequestParam(value = "category") String category, Model model) {
-//        List<Book> books = bookRepository.findByFilters(price, rate, category);
+    // Tìm sách theo tên
+//    @RequestMapping(value = "/book/detail/{title}")
+//    public String searchBookByTitle(@PathVariable(value = "title") String title, Model model) {
+//        List<Book> books = bookRepository.findByTitleContainingIgnoreCase(title);
 //        model.addAttribute("books", books);
-//        return "filterResults";
+//        return "searchBookByTitle";
 //    }
+
+    // Search theo filter
+
 
     // Update thông tin sách
     @SuppressWarnings("deprecation")
@@ -125,9 +139,7 @@ public class BookController {
     }
 
     // Thêm sách
-    @RequestMapping(value = "/book/add") 
-
-
+    @RequestMapping(value = "/book/add")
     public String addBook(Model model) {
         Book book = new Book();
         model.addAttribute("book", book);
@@ -141,6 +153,9 @@ public class BookController {
         return "redirect:/book/detail";
     }
 
+
+
+
     // Add to cart
     @GetMapping("/my-cart")
     public String showCart() {
@@ -152,4 +167,7 @@ public class BookController {
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
+
+    // Add comment review
+
 }
