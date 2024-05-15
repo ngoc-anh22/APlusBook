@@ -43,7 +43,6 @@ public class MySecurityConfig {
 //                        .permitAll()
 //                        .requestMatchers("/update/**", "/delete/**" ,"/save", "/insert", "/comment").hasAnyAuthority("ADMIN")
                         .anyRequest().permitAll()
-
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/log-in")

@@ -8,7 +8,6 @@ import fit.se2.APlusBook.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,27 +29,18 @@ public class CategoryController {
 
     @SuppressWarnings("deprecation")
     @GetMapping("/category/{id}")
-    public String getCategoryById(@PathVariable Long id, Model model,
-                                  @RequestParam(defaultValue = "0")int page,
-                                  @RequestParam(defaultValue = "6")int size,
-                                  @RequestParam(defaultValue = "0")int from,
-                                  @RequestParam(defaultValue = "0")int to) {
-        Page<Book> bookPage;
-        Pageable pageable = PageRequest.of(page, size);
-        if (from > 0 && to > 0) {
-            bookPage = bookRepository.findByPriceBetween(from, to, pageable);
-        }
-        else {
-            Category category = categoryRepository.getById(id);
-            model.addAttribute("category", category);
+    public String getCategoryById(@PathVariable Long id, Model model, @RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "10")int size) {
 
-            bookPage = bookRepository.findByCategory(category, pageable);
-        }
-            List<Book> books = bookPage.getContent();
+        Category category = categoryRepository.getById(id);
+        model.addAttribute("category", category);
+
+        Page<Book> bookPage = bookRepository.findByCategory(category, PageRequest.of(page, size));
+        List<Book> books = bookPage.getContent();
+
         // Convert the list of books into rows with 3 books per row
         List<List<Book>> rows = new ArrayList<>();
-        for (int i = 0; i < books.size(); i += 3) {
-            rows.add(books.subList(i, Math.min(i + 3, books.size())));
+        for (int i = 0; i < books.size(); i += 5) {
+            rows.add(books.subList(i, Math.min(i + 5, books.size())));
         }
 
         model.addAttribute("currentPage", page);

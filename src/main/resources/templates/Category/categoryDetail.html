@@ -17,16 +17,13 @@
                 </div>
                 <div class="collapse" id="price">
                     <li class="list-group-item">
-                        <input class="form-check-input me-3" type="checkbox" value="" id="first">
-                        <label class="form-check-label" for="first"><30$</label>
+                        <a class="text-decoration-none text-dark" th:href='@{/book/list(size=15, page=${pageNum}, from=1, to=30)}'><30$</a>
                     </li>
                     <li class="list-group-item">
-                        <input class="form-check-input me-3" type="checkbox" value="" id="second">
-                        <label class="form-check-label" for="second">30-60$</label>
+                        <a class="text-decoration-none text-dark" th:href='@{/book/list(size=15, page=${pageNum}, from=30, to=60)}'>30-60$</a>
                     </li>
                     <li class="list-group-item">
-                        <input class="form-check-input me-3" type="checkbox" value="" id="third">
-                        <label class="form-check-label" for="third">>60$</label>
+                        <a class="text-decoration-none text-dark" th:href='@{/book/list(size=15, page=${pageNum}, from=60, to=99)}'>>60$</a>
                     </li>
                 </div>
                 <div class="d-flex flex-row justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#category" aria-expanded="false" aria-controls="category">
@@ -43,18 +40,12 @@
                     <a class="dropdown-item" th:href="@{/category/{id}(id=${cat.id})}"
                        th:text="${cat.name}"></a>
                 </li>
-<<<<<<< HEAD
-                <li class="list-group-item"><a th:href='@{/category/{id}( id=${category.id}, size=12, page=${pageNum}, from=1, to=10)}'>price &#60; 10</a></li>
-                <li class="list-group-item"><a th:href='@{/category/{id}( id=${category.id}, size=12, page=${pageNum}, from=10, to=50)}'>10 &#60; price &#60; 50</a></li>
-                <li class="list-group-item"><a th:href='@{/category/{id}( id=${category.id}, size=12, page=${pageNum}, from=50, to=100)}'>50 &#60; price &#60; 100</a></li>
-=======
                 <li th:each="cat: ${categories}" th:unless="${category}"
                     class="list-group-item">
                     <a class="dropdown-item" th:href="@{/category/{id}(id=${cat.id})}"
                        th:text="${cat.name}"></a>
                 </li>
                 </div>
->>>>>>> 1fd2957b025679b6849258de04d9478dc9080abf
             </ul>
         </div>
         <div class="col-10 ps-5">

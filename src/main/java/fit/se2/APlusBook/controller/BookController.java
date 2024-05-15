@@ -84,7 +84,6 @@ public class BookController {
         model.addAttribute("rows", rows);
         return "book/bookList"; // This should be the name of your Thymeleaf template file
     }
-
     // Lấy chi tiết một cuốn sách
     @SuppressWarnings("deprecation")
     @RequestMapping(value = "/book/{id}")
