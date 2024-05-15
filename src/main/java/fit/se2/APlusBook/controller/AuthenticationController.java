@@ -46,16 +46,18 @@ public class AuthenticationController {
     @PostMapping("/register-process")
     public String registerHandle(Model model, @ModelAttribute("user") @Valid UserDto ut, BindingResult result, HttpServletRequest request) {
         String confirmPassword = request.getParameter("confirmPassword");
+        ut.setRole("USER");
         if (!(ut.getPassword().equals(confirmPassword))) {
             result.rejectValue("confirmPassword", "error.confirmPassword", "Passwords do not match");
         }
         if (result.hasErrors()) {
             model.addAttribute("user", ut);
             model.addAttribute("success", false);
+            model.addAttribute("result", result);
             return "Authentication/register";
         } else {
-            ut.setRole("USER");
-            userRepository.save(new User(ut, new BCryptPasswordEncoder(4)));
+            User user = new User(ut, new BCryptPasswordEncoder());
+            userRepository.save(user);
             model.addAttribute("user", new UserDto());
             model.addAttribute("success", true);
             return "Authentication/register";

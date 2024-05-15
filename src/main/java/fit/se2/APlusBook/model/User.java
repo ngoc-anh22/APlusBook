@@ -2,12 +2,10 @@ package fit.se2.APlusBook.model;
 
 import fit.se2.APlusBook.dto.UserDto;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,20 +21,22 @@ public class User implements UserDetails {
     @Column(name = "id", nullable = false)
     private long id;
 
-    @Length(min = 3, max = 50)
-    @NotEmpty(message = "User name can not be empty")
+    @Size(min = 6, max = 60, message = "Username must be between 6 and 60 characters long.")
     private String userName;
 
-    @Length(min = 3, max = 50)
-    @NotEmpty(message = "Full name can not be empty")
+//    @Length(min = 3, max = 50)
     private String fullName;
 
-    @Length(min = 3, max = 30)
-    @NotEmpty(message = "Password can not be empty")
+    @Pattern(regexp = "^(?=.*\\d)(?=.*[A-Z]).{6,}$", message = "6 chars min (at least 1 digit & 1 uppercase letter)")
+    @Size(min=6, max = 30, message = "Password must be a maximum of 30 characters")
     private String password;
+//@Pattern(regexp = "^(?=.*\\d)(?=.*[A-Z]).{6,60}$",
+//        message = "6 chars min (at least 1" +
+//                "digit & 1 uppercase letter)")
+//    private String password;
 
-    @Min(16)
-    @Max(90)
+//    @Min(16)
+//    @Max(90)
     private int age;
 
     private String address;
@@ -44,7 +44,6 @@ public class User implements UserDetails {
     private String phoneNum;
     private String avatar;
 
-    @NotEmpty(message = "Role can not be empty")
     private String role;
 
     public User() {

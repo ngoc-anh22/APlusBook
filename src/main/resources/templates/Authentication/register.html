@@ -8,13 +8,12 @@
     <form class="container-sm bg-main-lighter my-5 px-5 py-4 rounded" style="max-width: 720px" th:action="@{/register-process}" method="post" th:object="${user}">
         <h3 class="text-center mb-3">Welcome to My Website</h3>
         <p th:if="${success==true}">You have been logged out!</p>
-
+        <p th:text="${result}"></p>
         <p th:if="${success==false}">You have been logged out falef!</p>
         <div class="mb-2">
             <label for="username" class="form-label">Username</label>
-<<<<<<< HEAD
-            <input type="text" class="form-control" id="username" th:field="*{username}" name="username" placeholder="Please enter your username" required/>
-            <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+            <input type="text" class="form-control" id="username" th:field="*{userName}" name="userName" placeholder="Please enter your username" required/>
+            <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>
         </div>
         <div class="mb-2">
             <label for="password" class="form-label">Password</label>
@@ -40,56 +39,8 @@
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email" th:field="*{email}" placeholder="Please enter your email" required />
             <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-=======
-<<<<<<< HEAD
-            <input type="text" class="form-control" id="username" th:field=${username} name="username" placeholder="Please enter your username" />
-<!--            <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>-->
         </div>
-        <div class="mb-2">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" th:field=${password} name="password" placeholder="Please enter your password" />
-<!--            <p class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>-->
-        </div>
-        <div class="mb-2">
-            <label for="confirm_password" class="form-label">Confirm password</label>
-            <input type="password" class="form-control" id="confirm_password"  th:field=${confirmPassword} name="confirmPassword" placeholder="Please enter your password again" required />
-<!--            <p class="error-message" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p>-->
-        </div>
-        <div class="mb-2">
-            <label for="phonenum" class="form-label">Phone number</label>
-            <input type="tel" class="form-control" id="phonenum" th:field=${phoneNumber} name="phoneNumber" placeholder="Please enter your phone number" required />
-<!--            <p class="error-message" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>-->
-        </div>
-        <div class="mb-2">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" th:field=${email} name="email" placeholder="Please enter your email" required />
-<!--            <p class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>-->
-=======
-            <input type="text" class="form-control" id="username" th:field="*{username}" name="username" placeholder="Please enter your username" required/>
-            <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
-        </div>
-        <div class="mb-2">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Please enter your password" required/>
-            <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
-        </div>
-        <div class="mb-2">
-            <label for="confirm_password" class="form-label">Confirm password</label>
-            <input type="password" class="form-control" id="confirm_password" name="confirmPassword" placeholder="Please enter your password again" required />
-            <p class="text-danger fst-italic err-msg" th:if="${password!= confirmPassword}" th:text="'Passwords do not match.'"></p>
-        </div>
-        <div class="mb-2">
-            <label for="phoneNum" class="form-label">Phone number</label>
-            <input type="tel" class="form-control" id="phonenum" name="phoneNum" placeholder="Please enter your phone number" required />
-            <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('phoneNum')}" th:errors="*{phoneNum}"></p>
-        </div>
-        <div class="mb-2">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Please enter your email" required />
-            <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
->>>>>>> 1c48c3d67246f22c7681275666dd47c37f4ce23c
->>>>>>> origin/fe-Hoang
-        </div>
+<!--        <input type="hidden" id="role" name="role" th:value="USER" />-->
         <button type="submit" class="btn bg-main mt-3 text-light col-12">Sign up</button>
         <hr />
         <p class="text-center">
