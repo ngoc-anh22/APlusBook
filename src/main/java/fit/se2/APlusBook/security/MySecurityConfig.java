@@ -37,7 +37,6 @@ public class MySecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(req -> req
-
 //                        .requestMatchers("/css/**", "/images/**").permitAll()
 //                        .requestMatchers("/register", "/register-process", "/list", "/detail/**", "/search")
 //                        .permitAll()

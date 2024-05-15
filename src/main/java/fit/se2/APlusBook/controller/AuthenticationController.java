@@ -58,10 +58,7 @@ public class AuthenticationController {
         } else {
             User user = new User(ut, new BCryptPasswordEncoder());
             userRepository.save(user);
-            model.addAttribute("user", new UserDto());
-            model.addAttribute("success", true);
-            return "Authentication/register";
-//            return "redirect:/log-in";
+            return "redirect:/log-in";
         }
     }
     @RequestMapping(value = {"/log-in"})

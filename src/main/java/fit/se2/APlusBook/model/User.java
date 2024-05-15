@@ -27,8 +27,7 @@ public class User implements UserDetails {
 //    @Length(min = 3, max = 50)
     private String fullName;
 
-    @Pattern(regexp = "^(?=.*\\d)(?=.*[A-Z]).{6,}$", message = "6 chars min (at least 1 digit & 1 uppercase letter)")
-    @Size(min=6, max = 30, message = "Password must be a maximum of 30 characters")
+
     private String password;
 //@Pattern(regexp = "^(?=.*\\d)(?=.*[A-Z]).{6,60}$",
 //        message = "6 chars min (at least 1" +
