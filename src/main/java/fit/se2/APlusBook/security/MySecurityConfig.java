@@ -41,6 +41,7 @@ public class MySecurityConfig {
                         .permitAll()
                         .requestMatchers("/update/**", "/delete/**" ,"/save", "/insert", "/comment").hasAnyAuthority("ADMIN")
 //                        .anyRequest().permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/upload/**", "/img/**", "/login", "/logout").permitAll()
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/log-in")

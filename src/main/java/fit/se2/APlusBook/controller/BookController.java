@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fit.se2.APlusBook.model.Category;
+import fit.se2.APlusBook.service.BookService;
 import jakarta.validation.Valid;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
@@ -104,10 +105,27 @@ public class BookController {
     // Update thông tin sách
     @SuppressWarnings("deprecation")
     @RequestMapping(value = "/book/update/{id}")
-    public String updateBook(@PathVariable(value = "id") Long id, Model model) {
-        Book book = bookRepository.getById(id);
-        model.addAttribute("book", book);
-        return "bookUpdate";
+    public String updateBook(Model model, @Valid Book book, BindingResult result, @RequestParam("bookImage") MultipartFile image) {
+        if (book.getImage().isEmpty()) {
+            result.rejectValue("image", "error.image", "Image is required");
+        }
+        if(result.hasErrors()) {
+            model.addAttribute("book", book);
+            return "book/bookUpdate";
+        } else {
+            try {
+
+                bookService.updateProduct(book, image);
+            } catch (IOException e) {
+                // Xử lý lỗi khi lưu tệp tin
+                e.printStackTrace();
+                return "redirect:/book/bookUpdate";
+            }
+
+//            bookRepository.save(book);
+            return "redirect:/book/"+book.getId();
+        }
+
     }
 
     // Xóa sách
@@ -136,9 +154,11 @@ public class BookController {
         return "book/bookAdd";
     }
 
+    @Autowired
+    private BookService bookService;
     // Chèn sách vào list
     @RequestMapping(value = "/book/insert")
-    public String insertBook(Model model, @Valid Book book, BindingResult result, @RequestParam("image") MultipartFile image) {
+    public String insertBook(Model model, @Valid Book book, BindingResult result, @RequestParam("bookImage") MultipartFile image) {
         if (book.getImage().isEmpty()) {
             result.rejectValue("image", "error.image", "Image is required");
         }
@@ -148,14 +168,7 @@ public class BookController {
         } else {
             try {
 
-                File saveFile = new ClassPathResource("static/images/upload").getFile();
-
-                Path filePath = Paths.get(saveFile.getAbsolutePath()+File.separator + image.getOriginalFilename());
-
-                Files.copy(image.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-
-                book.setImage(image.getOriginalFilename());
-                bookRepository.save(book);
+                bookService.saveProduct(book, image);
             } catch (IOException e) {
                 // Xử lý lỗi khi lưu tệp tin
                 e.printStackTrace();

@@ -45,27 +45,28 @@ public class BookService {
 
             String fileName = getUniqueUploadFileName(Objects.requireNonNull(Avatar.getOriginalFilename()));
 
-            String pathToAvatar = "D:/Future/JavaWeb/Upload/Product/avatar/" + fileName;
+            String pathToAvatar = "C:/Users/Quoc/OneDrive/Máy tính/HANU Subjects/Third/2nd/SE2/Upload/Image/Book" + fileName;
+
 
             Avatar.transferTo(new File(pathToAvatar));
 
-            book.setImage("product/avatar/" + fileName);
+            book.setImage("Image/Book" + fileName);
         }
         return saveOrUpdate(book);
 
     }
     @Transactional
-    public Book updateProduct(Book p, MultipartFile Avatar, MultipartFile[] productPictures)
+    public Book updateProduct(Book p, MultipartFile Avatar)
             throws IllegalStateException, IOException {
 
         Book bookInDb = bookRepository.getById(p.getId());
 
         if (isEmptyUploadFile(Avatar)) {
-            new File("C:/upload/" + bookInDb.getImage()).delete();
+            new File("C:/Users/Quoc/OneDrive/Máy tính/HANU Subjects/Third/2nd/SE2/Upload/Image/Book" + bookInDb.getImage()).delete();
 
             String fileName = getUniqueUploadFileName(Objects.requireNonNull(Avatar.getOriginalFilename()));
-            Avatar.transferTo(new File("D:/Future/JavaWeb/Upload/Product/avatar/" + fileName));
-            p.setImage("Product/avatar/" + fileName);
+            Avatar.transferTo(new File("C:/Users/Quoc/OneDrive/Máy tính/HANU Subjects/Third/2nd/SE2/Upload/Image/Book" + fileName));
+            p.setImage("Image/Book" + fileName);
         } else {
             p.setImage(bookInDb.getImage());
         }
