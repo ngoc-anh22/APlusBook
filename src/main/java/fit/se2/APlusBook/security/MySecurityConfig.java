@@ -51,7 +51,7 @@ public class MySecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutUrl("/log-out")
-                        .logoutSuccessUrl("/home")
+                        .logoutSuccessUrl("/book/homepage")
                         .permitAll()
                 )
                 .authenticationProvider(authenticationProvider)
