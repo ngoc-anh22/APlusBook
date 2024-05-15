@@ -7,11 +7,8 @@
 <div layout:fragment="content">
     <form class="container-sm bg-main-lighter my-5 px-5 py-4 rounded" style="max-width: 720px" th:action="@{/register-process}" method="post" th:object="${user}">
         <h3 class="text-center mb-3">Welcome to My Website</h3>
-        <p th:if="${success==true}">You have been logged out!</p>
-
-        <p th:if="${success==false}">You have been logged out falef!</p>
         <div class="mb-2">
-            <label for="username" class="form-label">Username</label>
+            <label for="userName" class="form-label">Username</label>
             <input type="text" class="form-control" id="username" th:field="*{username}" name="username" placeholder="Please enter your username" required/>
             <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
         </div>

@@ -16,11 +16,11 @@ public class UserService{
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        List<User> user = userRepository.findByUserName(username);
+        List<User> user = userRepository.findByUsername(username);
         if (user.isEmpty()) {
             throw new UsernameNotFoundException(String.format("No User with username %s found", username));
         }
         User user1 = user.get(0);
-        return new org.springframework.security.core.userdetails.User(user1.getUserName(), user1.getPassword(), user1.getAuthorities());
+        return new org.springframework.security.core.userdetails.User(user1.getUsername(), user1.getPassword(), user1.getAuthorities());
     }
 }

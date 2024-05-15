@@ -34,7 +34,8 @@ public class AuthenticationController {
     }
 
     @GetMapping("/log-in")
-    public String login() {
+    public String login(Model model) {
+        model.addAttribute("user", new UserDto());
         return "Authentication/login";
     }
 

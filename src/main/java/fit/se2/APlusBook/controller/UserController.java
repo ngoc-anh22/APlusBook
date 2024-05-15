@@ -60,7 +60,7 @@ public class UserController {
 
     @RequestMapping(value = "/admin/account/search")
     public String searchAccount(@RequestParam(value = "regex") String str, Model model) {
-        List<User> accounts = userRepository.findByUserName(str);
+        List<User> accounts = userRepository.findByUsername(str);
         if (!accounts.isEmpty()) {
            accounts = userRepository.findByPhoneNum(str);
            if (!accounts.isEmpty()) {

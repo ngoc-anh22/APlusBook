@@ -24,7 +24,6 @@ public class UserDto extends User {
     private String email;
     @NotEmpty(message = "Phone number is required")
     private String phoneNum;
-//    @NotEmpty(message = "Address is required")
     private String address;
 
     public UserDto(String userName, String password, String role, String email, String phoneNum) {
@@ -39,7 +38,6 @@ public class UserDto extends User {
 
     }
 
-    @Override
     public String getUserName() {
         return userName;
     }

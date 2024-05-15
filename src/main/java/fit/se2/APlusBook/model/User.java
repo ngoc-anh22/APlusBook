@@ -22,17 +22,11 @@ public class User implements UserDetails {
     private long id;
 
     @Size(min = 6, max = 60, message = "Username must be between 6 and 60 characters long.")
-    private String userName;
+    private String username;
 
-//    @Length(min = 3, max = 50)
     private String fullName;
 
-
     private String password;
-//@Pattern(regexp = "^(?=.*\\d)(?=.*[A-Z]).{6,60}$",
-//        message = "6 chars min (at least 1" +
-//                "digit & 1 uppercase letter)")
-//    private String password;
 
 //    @Min(16)
 //    @Max(90)
@@ -55,12 +49,11 @@ public class User implements UserDetails {
     public void setId(long id) {
         this.id = id;
     }
-    public String getUserName() {
-        return userName;
+
+    public void setUsername(String username) {
+        this.username = username;
     }
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+
     public String getFullName() {
         return fullName;
     }
@@ -81,7 +74,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.userName;
+        return this.username;
     }
 
     @Override
@@ -145,7 +138,7 @@ public class User implements UserDetails {
     }
 
     public User(@Valid UserDto user, PasswordEncoder encoder) {
-        this.userName = user.getUsername();
+        this.username = user.getUsername();
         this.password = encoder.encode(user.getPassword());
         this.phoneNum = user.getPhoneNum();
         this.email = user.getEmail();
