@@ -15,10 +15,10 @@ public class Book {
     @Column(name = "id", nullable = false)
     private long id;
 
-    @Length(min = 3)
+    @Length(min = 3, message = "Title's length must be greater than 3")
     private String title;
 
-    @Length(min = 3)
+    @Length(min = 3, message = "Description's length must be greater than 3")
     private String description;
 
     @Temporal(TemporalType.DATE)

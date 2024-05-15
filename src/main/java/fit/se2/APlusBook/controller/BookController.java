@@ -1,10 +1,18 @@
 
 package fit.se2.APlusBook.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
 import fit.se2.APlusBook.model.Category;
+import jakarta.validation.Valid;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import fit.se2.APlusBook.repository.CategoryRepository;
@@ -17,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 
 import fit.se2.APlusBook.model.Book;
 import fit.se2.APlusBook.repository.BookRepository;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Controller
@@ -124,14 +133,39 @@ public class BookController {
     public String addBook(Model model) {
         Book book = new Book();
         model.addAttribute("book", book);
-        return "bookAdd";
+        return "book/bookAdd";
     }
 
     // Chèn sách vào list
     @RequestMapping(value = "/book/insert")
-    public String insertBook(@ModelAttribute Book book) {
-        bookRepository.save(book);
-        return "redirect:/book/detail";
+    public String insertBook(Model model, @Valid Book book, BindingResult result, @RequestParam("image") MultipartFile image) {
+        if (book.getImage().isEmpty()) {
+            result.rejectValue("image", "error.image", "Image is required");
+        }
+        if(result.hasErrors()) {
+            model.addAttribute("book", book);
+            return "book/bookAdd";
+        } else {
+            try {
+
+                File saveFile = new ClassPathResource("static/images/upload").getFile();
+
+                Path filePath = Paths.get(saveFile.getAbsolutePath()+File.separator + image.getOriginalFilename());
+
+                Files.copy(image.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+                book.setImage(image.getOriginalFilename());
+                bookRepository.save(book);
+            } catch (IOException e) {
+                // Xử lý lỗi khi lưu tệp tin
+                e.printStackTrace();
+                return "redirect:/book/add";
+            }
+
+//            bookRepository.save(book);
+            return "redirect:/book/"+book.getId();
+        }
+
     }
     // Add to cart
     @GetMapping("/my-cart")

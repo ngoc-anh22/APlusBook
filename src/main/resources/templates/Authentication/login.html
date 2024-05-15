@@ -16,13 +16,13 @@
         <h3 class="text-center mb-3">Welcome to My Website</h3>
         <div class="mb-2">
             <label for="userName" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" th:field="*{username}" name="username" placeholder="Please enter your username" required/>
-            <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Please enter your username" required/>
+<!--            <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>-->
         </div>
         <div class="mb-2">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" th:field="*{password}" name="password" placeholder="Please enter your password" required/>
-            <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Please enter your password" required/>
+<!--            <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>-->
         </div>
         <button type="submit" class="btn bg-main mt-3 text-light col-12">
             Login

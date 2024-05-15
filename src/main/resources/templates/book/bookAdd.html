@@ -12,7 +12,9 @@
     <form
             class="container-sm bg-main-lighter my-5 px-5 py-4 rounded"
             style="max-width: 720px"
-            action="/book/insert"
+            th:action="@{/book/insert}"
+            th:object="${book}"
+            enctype="multipart/form-data"
     >
         <h3 class="text-center mb-3">Add new book</h3>
 
@@ -22,19 +24,23 @@
                     type="text"
                     class="form-control"
                     id="title"
+                    th:field="*{title}"
                     placeholder="Please enter book's title"
             />
-            <p class="text-danger fst-italic err-msg">Error message here</p>
+            <p th:if="${#fields.hasErrors('title')}"
+               class="text-danger fst-italic err-msg" th:errors="*{title}"></p>
         </div>
         <div class="mb-2">
-            <label for="description" class="form-label">Description</label>
+            <label for="title" class="form-label">Description</label>
             <input
                     type="text"
                     class="form-control"
                     id="description"
+                    th:field="*{description}"
                     placeholder="Please enter book's description"
             />
-            <p class="text-danger fst-italic err-msg">Error message here</p>
+            <p th:if="${#fields.hasErrors('description')}"
+               class="text-danger fst-italic err-msg" th:errors="*{description}"></p>
         </div>
         <div class="mb-2">
             <label for="publishedDate" class="form-label">Published Date</label>
@@ -42,19 +48,21 @@
                     type="date"
                     class="form-control"
                     id="publishedDate"
+                    th:field="*{publishedDate}"
                     placeholder="Please enter book's published date"
             />
-            <p class="text-danger fst-italic err-msg">Error message here</p>
         </div>
         <div class="mb-2">
-            <label for="isbn" class="form-label">ISBN</label>
+            <label for="title" class="form-label">ISBN</label>
             <input
                     type="text"
                     class="form-control"
-                    id="isbn"
+                    id="ISBN"
+                    th:field="*{ISBN}"
                     placeholder="Please enter book's ISBN"
             />
-            <p class="text-danger fst-italic err-msg">Error message here</p>
+            <p th:if="${#fields.hasErrors('ISBN')}"
+               class="text-danger fst-italic err-msg" th:errors="*{ISBN}"></p>
         </div>
         <div class="mb-2">
             <label for="price" class="form-label">Price</label>
@@ -62,9 +70,9 @@
                     type="text"
                     class="form-control"
                     id="price"
+                    th:field="*{price}"
                     placeholder="Please enter book's price"
             />
-            <p class="text-danger fst-italic err-msg">Error message here</p>
         </div>
         <div class="mb-2">
             <label for="quantityImport" class="form-label"
@@ -74,9 +82,9 @@
                     type="text"
                     class="form-control"
                     id="quantityImport"
+                    th:field="*{quantityImport}"
                     placeholder="Please enter book's quantity imported"
             />
-            <p class="text-danger fst-italic err-msg">Error message here</p>
         </div>
         <div class="mb-2">
             <label for="publisher" class="form-label">Publisher</label>
@@ -84,9 +92,9 @@
                     type="text"
                     class="form-control"
                     id="publisher"
+                    th:field="*{publisher}"
                     placeholder="Please enter book's publisher"
             />
-            <p class="text-danger fst-italic err-msg">Error message here</p>
         </div>
         <div class="mb-2">
             <label for="author" class="form-label">Author</label>
@@ -94,9 +102,9 @@
                     type="text"
                     class="form-control"
                     id="author"
+                    th:field="*{author}"
                     placeholder="Please enter book's author"
             />
-            <p class="text-danger fst-italic err-msg">Error message here</p>
         </div>
         <div class="mb-2">
             <label for="image" class="form-label">Image</label>
@@ -105,12 +113,14 @@
                     accept="image/*"
                     class="form-control"
                     id="image"
-                    placeholder="Please enter book's image"
+                    name="image"
+                    th:field="*{image}"
             />
-            <p class="text-danger fst-italic err-msg">Error message here</p>
+            <p th:if="${#fields.hasErrors('image')}"
+               class="text-danger fst-italic err-msg" th:errors="*{image}"></p>
         </div>
-        <select class="form-select" aria-label="Default select example">
-            <option selected>Category</option>
+        <select class="form-select" aria-label="Default select example" th:field="*{category}">
+            <option selected disabled value="">Category</option>
             <option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}"></option>
         </select>
         <div class="d-grid gap-2 d-flex justify-content-end mt-3">
