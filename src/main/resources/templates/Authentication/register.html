@@ -8,12 +8,12 @@
     <form class="container-sm bg-main-lighter my-5 px-5 py-4 rounded" style="max-width: 720px" th:action="@{/register-process}" method="post" th:object="${user}">
         <h3 class="text-center mb-3">Welcome to My Website</h3>
         <p th:if="${success==true}">You have been logged out!</p>
-        <p th:text="${result}"></p>
+
         <p th:if="${success==false}">You have been logged out falef!</p>
         <div class="mb-2">
             <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" th:field="*{userName}" name="userName" placeholder="Please enter your username" required/>
-            <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>
+            <input type="text" class="form-control" id="username" th:field="*{username}" name="username" placeholder="Please enter your username" required/>
+            <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
         </div>
         <div class="mb-2">
             <label for="password" class="form-label">Password</label>
@@ -40,7 +40,6 @@
             <input type="email" class="form-control" id="email" name="email" th:field="*{email}" placeholder="Please enter your email" required />
             <p class="text-danger fst-italic err-msg" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
         </div>
-<!--        <input type="hidden" id="role" name="role" th:value="USER" />-->
         <button type="submit" class="btn bg-main mt-3 text-light col-12">Sign up</button>
         <hr />
         <p class="text-center">
