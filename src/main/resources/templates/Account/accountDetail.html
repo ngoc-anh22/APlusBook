@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/_layout}">
+      layout:decorate="~{/_layout}" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
 
     <title>Account Detail</title>
@@ -15,11 +15,12 @@
             <div class="col-8 text-start ms-5">
                 <div class="ms-5">
                     <h4 class="text-center fw-bold">ACCOUNT INFORMATION</h4>
-                    <p>Name: <a class="fullName" th:text="${userLogined.fullName}"></a> </p>
-                    <p>Username: <a class="username" th:text="${userLogined.username}"></a> </p>
-                    <p>Email: <a class="email" th:text="${userLogined.email}"></a> </p>
-                    <p>Address: <a class="address" th:text="${userLogined.address}"></a> </p>
-                    <p>Age: <a class="age" th:text="${userLogined.age}"></a> </p>
+                    <p>Name: <div sec:authorize="isAuthenticated()">
+                    Authenticated as <span sec:authentication="fullName"></span></div> </p>
+                    <p>Username: <div sec:authorize="isAuthenticated()">
+                    Authenticated as <span sec:authentication="username"></span></div> </p>
+                    <p>Email: <div sec:authorize="isAuthenticated()">
+                    Authenticated as <span sec:authentication="email"></span></div> </p>
                     <a class="btn bg-main text-light" href="/account/update">Update</a>
                 </div>
 

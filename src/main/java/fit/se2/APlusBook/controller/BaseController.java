@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 public abstract class BaseController {
     @ModelAttribute("userLogined")
-    public UserDetails getUserLogined() {
+    public User getUserLogined() {
         Object userLogined = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            return (UserDetails) userLogined;
-   }
+        if (userLogined != null && userLogined instanceof UserDetails) {
+            return (User) userLogined;
+        }
+        return new User();
+    }
 }
