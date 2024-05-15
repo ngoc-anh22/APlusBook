@@ -15,11 +15,11 @@
             <div class="col-8 text-start ms-5">
                 <div class="ms-5">
                     <h4 class="text-center fw-bold">ACCOUNT INFORMATION</h4>
-                    <p>Name: {user.name} </p>
-                    <p>Username: {user.username} </p>
-                    <p>Email: {user.email} </p>
-                    <p>Address: {user.address} </p>
-                    <p>Date of birth: {user.dob} </p>
+                    <p>Name: <a class="name" th:text="${userLogined.fullName}"></a> </p>
+                    <p>Username: <a class="name" th:text="${userLogined.username}"></a> </p>
+                    <p>Email: <a class="name" th:text="${userLogined.email}"></a> </p>
+                    <p>Address: <a class="name" th:text="${userLogined.address}"></a> </p>
+                    <p>Age: <a class="name" th:text="${userLogined.age}"></a> </p>
                     <a class="btn bg-main text-light" href="/account/update">Update</a>
                 </div>
 
