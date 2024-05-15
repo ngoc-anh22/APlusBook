@@ -85,13 +85,6 @@ public class BookController {
         return "book/bookList"; // This should be the name of your Thymeleaf template file
     }
 
-    // Filter by price
-//    @GetMapping("/filter-by-price")
-//    public String filterByPrice(Model model, int from, int to) {
-//        List<Book> booksUnder10 = bookRepository.findByPriceBetween(from, to, pageable);
-//        model.addAttribute("booksUnder10", booksUnder10);
-//        return "filterByPrice";
-//    }
     // Lấy chi tiết một cuốn sách
     @SuppressWarnings("deprecation")
     @RequestMapping(value = "/book/{id}")
@@ -100,18 +93,6 @@ public class BookController {
         model.addAttribute("book", book);
         return "book/bookDetail";
     }
-
-    // Tìm sách theo tên
-//    @RequestMapping(value = "/book/detail/{title}")
-//    public String searchBookByTitle(@PathVariable(value = "title") String title, Model model) {
-//        List<Book> books = bookRepository.findByTitleContainingIgnoreCase(title);
-//        model.addAttribute("books", books);
-//        return "searchBookByTitle";
-//    }
-
-    // Search theo filter
-
-
     // Update thông tin sách
     @SuppressWarnings("deprecation")
     @RequestMapping(value = "/book/update/{id}")
@@ -153,10 +134,6 @@ public class BookController {
         bookRepository.save(book);
         return "redirect:/book/detail";
     }
-
-
-
-
     // Add to cart
     @GetMapping("/my-cart")
     public String showCart() {
