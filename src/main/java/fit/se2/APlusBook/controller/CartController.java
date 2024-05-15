@@ -47,7 +47,7 @@ public class CartController {
         session.setAttribute("totalItems", getTotalItems(request));
         session.setAttribute("totalPrice", calculateTotalPrice(request));
 
-        return "fragments/myCart"; // -> đường dẫn tới View.
+        return  "Order/transactionBook" ; // -> đường dẫn tới View.
     }
 
     @RequestMapping(value = { "/cart/checkout" }, method = RequestMethod.POST)
@@ -103,7 +103,7 @@ public class CartController {
         session.setAttribute("cart", null);
         session.setAttribute("totalItems", 0);
 
-        return "fragments/myCart"; // -> đường dẫn tới View.
+        return "Order/transactionBook"; // -> đường dẫn tới View.
 
     }
 
