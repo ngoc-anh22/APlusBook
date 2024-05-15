@@ -18,7 +18,7 @@
             enctype="multipart/form-data"
     >
         <h3 class="text-center mb-3">Add new book</h3>
-
+        <p th:if="${image==null}" th:text="${image}"></p>
         <div class="mb-2">
             <label for="title" class="form-label">Title</label>
             <input
@@ -115,7 +115,6 @@
                     class="form-control"
                     id="image"
                     name="image"
-                    th:field="*{image}"
             />
             <p th:if="${#fields.hasErrors('image')}"
                class="text-danger fst-italic err-msg" th:errors="*{image}"></p>

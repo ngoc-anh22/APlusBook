@@ -108,7 +108,7 @@ public class BookController {
     public String updateBook(@PathVariable(value = "id") Long id, Model model) {
         Book book = bookRepository.getById(id);
         model.addAttribute("book", book);
-        return "bookUpdate";
+        return "book/bookUpdate";
     }
 
     // Update thông tin sách
@@ -160,11 +160,13 @@ public class BookController {
     // Chèn sách vào list
     @RequestMapping(value = "/book/insert")
     public String insertBook(Model model, @Valid Book book, BindingResult result, @RequestParam("image") MultipartFile image) {
-        if (book.getImage().isEmpty()) {
+        if (image.isEmpty()) {
             result.rejectValue("image", "error.image", "Image is required");
         }
         if(result.hasErrors()) {
             model.addAttribute("book", book);
+            model.addAttribute("image", image);
+
             return "book/bookAdd";
         } else {
             try {
@@ -172,6 +174,7 @@ public class BookController {
                 bookService.saveProduct(book, image);
             } catch (IOException e) {
                 // Xử lý lỗi khi lưu tệp tin
+                model.addAttribute("image", image);
                 e.printStackTrace();
                 return "redirect:/book/add";
             }

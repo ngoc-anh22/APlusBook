@@ -45,12 +45,11 @@ public class BookService {
 
             String fileName = getUniqueUploadFileName(Objects.requireNonNull(Avatar.getOriginalFilename()));
 
-            String pathToAvatar = "C:/Users/Quoc/OneDrive/Máy tính/HANU Subjects/Third/2nd/SE2/Upload/Image/Book" + fileName;
-
+            String pathToAvatar = "D:/Workspace/SE2(Tut)/APlusBook/APlusBook/src/main/resources/static/upload" + fileName;
 
             Avatar.transferTo(new File(pathToAvatar));
 
-            book.setImage("Image/Book" + fileName);
+            book.setImage("upload" + fileName);
         }
         return saveOrUpdate(book);
 
@@ -62,11 +61,11 @@ public class BookService {
         Book bookInDb = bookRepository.getById(p.getId());
 
         if (isEmptyUploadFile(Avatar)) {
-            new File("C:/Users/Quoc/OneDrive/Máy tính/HANU Subjects/Third/2nd/SE2/Upload/Image/Book" + bookInDb.getImage()).delete();
+            new File("D:/Workspace/SE2(Tut)/APlusBook/APlusBook/src/main/resources/static/upload" + bookInDb.getImage()).delete();
 
             String fileName = getUniqueUploadFileName(Objects.requireNonNull(Avatar.getOriginalFilename()));
-            Avatar.transferTo(new File("C:/Users/Quoc/OneDrive/Máy tính/HANU Subjects/Third/2nd/SE2/Upload/Image/Book" + fileName));
-            p.setImage("Image/Book" + fileName);
+            Avatar.transferTo(new File("D:/Workspace/SE2(Tut)/APlusBook/APlusBook/src/main/resources/static/upload" + fileName));
+            p.setImage("upload" + fileName);
         } else {
             p.setImage(bookInDb.getImage());
         }
