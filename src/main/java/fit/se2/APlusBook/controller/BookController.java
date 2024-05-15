@@ -102,10 +102,19 @@ public class BookController {
         model.addAttribute("book", book);
         return "book/bookDetail";
     }
-    // Update thông tin sách
+
     @SuppressWarnings("deprecation")
     @RequestMapping(value = "/book/update/{id}")
-    public String updateBook(Model model, @Valid Book book, BindingResult result, @RequestParam("bookImage") MultipartFile image) {
+    public String updateBook(@PathVariable(value = "id") Long id, Model model) {
+        Book book = bookRepository.getById(id);
+        model.addAttribute("book", book);
+        return "bookUpdate";
+    }
+
+    // Update thông tin sách
+    @SuppressWarnings("deprecation")
+    @PostMapping(value = "/book/save")
+    public String updateBook(Model model, @Valid Book book, BindingResult result, @RequestParam("image") MultipartFile image) {
         if (book.getImage().isEmpty()) {
             result.rejectValue("image", "error.image", "Image is required");
         }
@@ -125,7 +134,6 @@ public class BookController {
 //            bookRepository.save(book);
             return "redirect:/book/"+book.getId();
         }
-
     }
 
     // Xóa sách
@@ -137,13 +145,6 @@ public class BookController {
             bookRepository.delete(book);
         }
         return "redirect:/book/list";
-    }
-
-    // Lưu sách
-    @RequestMapping(value = "/book/save")
-    public String saveBook(Book book, BindingResult result) {
-        bookRepository.save(book);
-        return "redirect:/book/detail/" + book.getId();
     }
 
     // Thêm sách
@@ -158,7 +159,7 @@ public class BookController {
     private BookService bookService;
     // Chèn sách vào list
     @RequestMapping(value = "/book/insert")
-    public String insertBook(Model model, @Valid Book book, BindingResult result, @RequestParam("bookImage") MultipartFile image) {
+    public String insertBook(Model model, @Valid Book book, BindingResult result, @RequestParam("image") MultipartFile image) {
         if (book.getImage().isEmpty()) {
             result.rejectValue("image", "error.image", "Image is required");
         }
