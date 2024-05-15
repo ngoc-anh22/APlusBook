@@ -51,7 +51,6 @@ public class BookController {
 
         return "book/homePage";
     }
-
     // Lấy danh sách tất cả các sách
     @GetMapping(value="/book/list")
     public String getAllBook(
