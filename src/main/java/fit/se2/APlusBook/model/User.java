@@ -142,6 +142,7 @@ public class User implements UserDetails {
         this.password = encoder.encode(user.getPassword());
         this.phoneNum = user.getPhoneNum();
         this.email = user.getEmail();
-//        this.address = user.getAddress();
+        this.role = user.getRole();
+        this.address = user.getAddress();
     }
 }
